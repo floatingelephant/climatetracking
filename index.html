@@ -2,839 +2,748 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Planetary Carbon Monitor</title>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;800&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #030810;
-  --bg1: #080f1c;
-  --bg2: #0c1525;
-  --bg3: #101c2e;
-  --border: rgba(64,120,200,0.1);
-  --border2: rgba(64,120,200,0.2);
-  --text: #9ab4cc;
-  --text2: #4a6880;
-  --bright: #daeeff;
-  --red: #ff3d1a;
-  --amber: #ffab00;
-  --green: #00e5a0;
-  --blue: #4da8ff;
-  --teal: #00d8d0;
-  --mono: 'JetBrains Mono', monospace;
-  --display: 'Barlow Condensed', sans-serif;
+:root{
+  --bg:#020b14;--bg1:#06111e;--bg2:#0a1828;
+  --bdr:rgba(55,110,190,.09);--bdr2:rgba(55,110,190,.18);
+  --txt:#7a9ab4;--dim:#2e4c62;--bright:#d8eeff;
+  --red:#ff3d1a;--amber:#ffaa00;--grn:#00e59e;--blu:#3eaaff;--tel:#00d2cc;
+  --mono:'JetBrains Mono',monospace;--disp:'Barlow Condensed',sans-serif;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { background: var(--bg); color: var(--text); font-family: var(--mono); font-size: 13px; }
-body { min-height: 100vh; overflow-x: hidden; }
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg);color:var(--txt);font-family:var(--mono);font-size:13px}
+body{min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(55,110,190,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(55,110,190,.025) 1px,transparent 1px);
+  background-size:36px 36px}
+.wrap{position:relative;z-index:1;max-width:1440px;margin:0 auto;padding:0 18px 56px}
  
-body::before {
-  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  background-image: linear-gradient(rgba(64,120,200,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(64,120,200,0.025) 1px, transparent 1px);
-  background-size: 32px 32px;
-}
+/* ── COUNTER ── */
+#top{position:relative;z-index:1;background:linear-gradient(180deg,rgba(255,55,22,.06) 0%,transparent 100%);
+  border-bottom:1px solid var(--bdr2);padding:30px 18px 26px;text-align:center}
+#top::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  width:600px;height:1px;background:linear-gradient(90deg,transparent,var(--red),transparent);opacity:.35}
+.top-lbl{font-family:var(--disp);font-weight:300;font-size:12px;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--dim);margin-bottom:8px}
+.top-lbl .yr{color:var(--amber)}
+#main-ctr{font-family:var(--disp);font-weight:800;font-size:clamp(52px,9vw,100px);
+  color:var(--red);line-height:1;letter-spacing:-.025em;
+  text-shadow:0 0 100px rgba(255,55,22,.22)}
+.top-unit{font-family:var(--disp);font-weight:300;font-size:15px;color:var(--dim);
+  letter-spacing:.2em;margin-top:5px}
+.ldot{display:inline-block;width:5px;height:5px;background:var(--grn);
+  border-radius:50%;margin-right:5px;animation:ld 2s infinite}
+@keyframes ld{0%,100%{opacity:1}50%{opacity:.15}}
  
-.page { position: relative; z-index: 1; max-width: 1400px; margin: 0 auto; padding: 0 16px 40px; }
+/* Country blocks */
+.ctry-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
+  margin:22px auto 0;max-width:1020px}
+@media(max-width:720px){.ctry-grid{grid-template-columns:repeat(2,1fr)}}
+.ctry{background:rgba(255,255,255,.023);border:1px solid var(--bdr);border-radius:9px;
+  padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.ctry-l .cname{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--dim);margin:3px 0 4px}
+.ctry-l .cval{font-family:var(--disp);font-weight:600;font-size:clamp(17px,3vw,23px);
+  line-height:1.1;color:var(--bright)}
+.ctry-l .cval sub{font-size:.5em;font-weight:300;color:var(--txt);vertical-align:baseline}
+.cbar{height:3px;border-radius:2px;background:rgba(255,255,255,.05);margin-top:7px;overflow:hidden}
+.cbar-fill{height:100%;border-radius:2px}
+.cpct{font-family:var(--disp);font-weight:800;font-size:clamp(44px,7vw,68px);
+  line-height:1;flex-shrink:0;letter-spacing:-.02em}
+.cpct sup{font-size:.35em;opacity:.6}
  
-/* ── COUNTER SECTION ── */
-#counter-section {
-  background: linear-gradient(180deg, rgba(255,61,26,0.06) 0%, transparent 100%);
-  border-bottom: 1px solid var(--border2);
-  padding: 28px 0 24px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-#counter-section::before {
-  content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
-  width: 600px; height: 1px; background: linear-gradient(90deg, transparent, var(--red), transparent);
-  opacity: 0.4;
-}
-.counter-label {
-  font-family: var(--display); font-weight: 300; font-size: 13px;
-  letter-spacing: 0.3em; text-transform: uppercase; color: var(--text2); margin-bottom: 8px;
-}
-.counter-year { color: var(--amber); }
-#main-counter {
-  font-family: var(--display); font-weight: 800; font-size: clamp(42px, 8vw, 86px);
-  color: var(--red); line-height: 1; letter-spacing: -0.02em;
-  text-shadow: 0 0 60px rgba(255,61,26,0.3);
-  transition: opacity 0.1s;
-}
-.counter-unit {
-  font-family: var(--display); font-weight: 300; font-size: 16px;
-  color: var(--text2); letter-spacing: 0.2em; margin-top: 4px;
-}
-.country-row {
-  display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;
-  margin-top: 20px;
-}
-.country-block { text-align: left; min-width: 140px; }
-.country-name { font-size: 10px; letter-spacing: 0.15em; color: var(--text2); text-transform: uppercase; }
-.country-val { font-family: var(--display); font-weight: 600; font-size: 22px; line-height: 1.1; }
-.china-val { color: #ff6644; }
-.usa-val { color: #4da8ff; }
-.eu-val { color: #00d8d0; }
-.row-val { color: #aac0d0; }
-.country-pct { font-size: 10px; color: var(--text2); }
+/* ── STATUS ── */
+#status{position:relative;z-index:1;border-bottom:1px solid var(--bdr);
+  padding:9px 18px;text-align:center;font-size:11px;letter-spacing:.07em}
+#status-txt{color:var(--amber)}
  
-.rate-bar { margin-top: 6px; height: 3px; border-radius: 2px; background: rgba(255,255,255,0.05); overflow: hidden; }
-.rate-fill { height: 100%; border-radius: 2px; transition: width 1s linear; }
+/* ── SECTIONS ── */
+.sec-hd{display:flex;align-items:center;gap:12px;margin:30px 0 16px;
+  font-family:var(--disp);font-weight:600;font-size:11px;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--dim)}
+.sec-hd::before,.sec-hd::after{content:'';flex:1;height:1px;background:var(--bdr)}
  
-/* ── AI STATUS ── */
-#status-banner {
-  border-bottom: 1px solid var(--border);
-  padding: 10px 0;
-  text-align: center;
-  font-size: 11px;
-  color: var(--text2);
-  letter-spacing: 0.05em;
-}
-#status-text { color: var(--amber); }
-.status-prefix { color: var(--text2); }
+/* ── CHARTS GRID ── */
+.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:840px){.charts-grid{grid-template-columns:1fr}}
+.ch-card{background:var(--bg1);border:1px solid var(--bdr);border-radius:10px;padding:20px;overflow:hidden}
+.ch-card::before{content:'';display:block;height:2px;margin:-20px -20px 16px;border-radius:10px 10px 0 0}
+.ch-card.cr::before{background:linear-gradient(90deg,var(--red),var(--amber))}
+.ch-card.co::before{background:linear-gradient(90deg,#ff6820,var(--amber))}
+.ch-card.ca::before{background:linear-gradient(90deg,var(--amber),#ffe066)}
+.ch-card.cb::before{background:linear-gradient(90deg,var(--tel),var(--blu))}
  
-/* ── SECTION HEADERS ── */
-.section-header {
-  display: flex; align-items: center; gap: 12px;
-  margin: 28px 0 14px;
-  font-family: var(--display); font-weight: 600; font-size: 11px;
-  letter-spacing: 0.25em; text-transform: uppercase; color: var(--text2);
-}
-.section-header::before, .section-header::after {
-  content: ''; flex: 1; height: 1px; background: var(--border);
-}
- 
-/* ── INDICATOR CARDS ── */
-.indicators-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-}
-@media(max-width: 900px) { .indicators-grid { grid-template-columns: repeat(2,1fr); } }
-@media(max-width: 500px) { .indicators-grid { grid-template-columns: 1fr; } }
- 
-.ind-card {
-  background: var(--bg1);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 16px;
-  position: relative;
-  overflow: hidden;
-}
-.ind-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0;
-  height: 2px;
-}
-.ind-card.warn::before { background: linear-gradient(90deg, var(--red), var(--amber)); }
-.ind-card.caution::before { background: linear-gradient(90deg, var(--amber), #ffcc44); }
-.ind-card.watch::before { background: linear-gradient(90deg, var(--teal), var(--blue)); }
- 
-.ind-label {
-  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--text2); margin-bottom: 6px;
-}
-.ind-source { font-size: 9px; color: var(--text2); opacity: 0.5; float: right; }
-.ind-value {
-  font-family: var(--display); font-weight: 800; font-size: 36px;
-  line-height: 1; color: var(--bright);
-}
-.ind-unit { font-weight: 300; font-size: 14px; color: var(--text); margin-left: 2px; }
-.ind-sublabel { font-size: 10px; color: var(--text2); margin: 2px 0 10px; }
- 
-.sparkline-wrap { margin: 10px 0 8px; height: 36px; }
-.sparkline-wrap svg { width: 100%; height: 100%; }
- 
-.changes-row { display: flex; gap: 8px; flex-wrap: wrap; }
-.change-chip {
-  font-size: 10px;
-  padding: 2px 7px;
-  border-radius: 3px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--border);
-}
-.chg-period { color: var(--text2); }
-.chg-val { margin-left: 3px; font-weight: 500; }
-.chg-up { color: var(--red); }
-.chg-dn { color: var(--green); }
-.chg-note { color: var(--amber); }
- 
-.update-dot {
-  display: inline-block; width: 5px; height: 5px;
-  background: var(--green); border-radius: 50%;
-  margin-right: 4px;
-  animation: pulse-dot 2s infinite;
-}
-@keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.ch-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;gap:10px}
+.ch-info .ch-title{font-family:var(--disp);font-weight:600;font-size:14px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--bright)}
+.ch-info .ch-src{font-size:9px;color:var(--dim);margin-top:3px;line-height:1.5}
+.ch-right{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0}
+.ch-refresh{font-size:10px;padding:3px 9px;border-radius:4px;
+  background:rgba(255,255,255,.03);border:1px solid var(--bdr);color:var(--dim)}
+.ch-now{font-family:var(--disp);font-weight:800;font-size:34px;line-height:1;
+  color:var(--bright);text-align:right}
+.ch-now sub{font-size:13px;font-weight:300;color:var(--txt);vertical-align:baseline}
+.ch-sub{font-size:9px;color:var(--dim);text-align:right;text-transform:uppercase;letter-spacing:.08em}
+.ch-wrap{height:200px;position:relative;margin:6px 0 14px}
+.chips{display:flex;gap:7px;flex-wrap:wrap}
+.chip{font-size:10px;padding:3px 10px;border-radius:4px;
+  background:rgba(255,255,255,.03);border:1px solid var(--bdr)}
+.cp{color:var(--dim)}.cv{margin-left:4px;font-weight:500}
+.rup{color:var(--red)}.rdn{color:var(--grn)}.ram{color:var(--amber)}
  
 /* ── SECTORS ── */
-.sectors-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 12px;
-}
-@media(max-width: 1000px) { .sectors-grid { grid-template-columns: 1fr; } }
+.sec-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+@media(max-width:1060px){.sec-grid{grid-template-columns:1fr}}
+.sec-card{background:var(--bg1);border:1px solid var(--bdr);border-radius:10px;padding:20px}
+.sc-title{font-family:var(--disp);font-weight:600;font-size:14px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--bright);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.shd{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin:14px 0 7px}
+.shd:first-of-type{margin-top:0}
+.divl{border:none;border-top:1px solid var(--bdr);margin:14px 0}
  
-.sector-card {
-  background: var(--bg1);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 16px;
-}
-.sector-title {
-  font-family: var(--display); font-weight: 600; font-size: 12px;
-  letter-spacing: 0.15em; text-transform: uppercase; color: var(--bright);
-  margin-bottom: 14px;
-  display: flex; align-items: center; gap: 8px;
-}
-.sector-icon { font-size: 14px; }
+/* Live counter block */
+.lc{background:rgba(255,255,255,.02);border:1px solid var(--bdr);
+  border-radius:7px;padding:13px;margin-bottom:10px}
+.lc-lbl{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);margin-bottom:5px}
+.lc-val{font-family:var(--disp);font-weight:700;font-size:30px;color:var(--bright);line-height:1}
+.lc-val sub{font-size:.45em;font-weight:300;color:var(--txt);vertical-align:baseline}
+.lc-sub{font-size:10px;color:var(--dim);margin-top:4px}
  
-.sub-section { margin-bottom: 14px; }
-.sub-label { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text2); margin-bottom: 6px; }
+/* Filter tags */
+.ftags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px}
+.ftag{font-size:10px;padding:3px 10px;border-radius:12px;border:1px solid var(--bdr);
+  background:transparent;color:var(--dim);cursor:pointer;transition:all .15s}
+.ftag:hover{color:var(--txt)}
+.ftag.fa{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.18);color:var(--bright)}
+.ftag.fs{background:rgba(58,138,220,.18);border-color:rgba(58,138,220,.45);color:#5ab0ff}
+.ftag.fc{background:rgba(226,75,74,.18);border-color:rgba(226,75,74,.45);color:#ff7066}
+.ftag.fal{background:rgba(29,158,117,.18);border-color:rgba(29,158,117,.45);color:#00e5a0}
+.ftag.fch{background:rgba(239,159,39,.18);border-color:rgba(239,159,39,.45);color:#ffaa00}
  
-/* Bar chart rows */
-.bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
-.bar-flag { font-size: 12px; }
-.bar-name { font-size: 10px; color: var(--text); width: 72px; flex-shrink: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.bar-track { flex: 1; height: 6px; background: rgba(255,255,255,0.04); border-radius: 3px; overflow: hidden; }
-.bar-fill-el { height: 100%; border-radius: 3px; }
-.bar-num { font-size: 10px; color: var(--text2); width: 44px; text-align: right; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+/* Bar rows */
+.br{display:flex;align-items:center;gap:7px;margin-bottom:6px}
+.br-fl{font-size:12px;width:18px;text-align:center;flex-shrink:0}
+.br-nm{font-size:10px;color:var(--txt);width:76px;flex-shrink:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.br-tr{flex:1;height:9px;background:rgba(255,255,255,.04);border-radius:4px;overflow:hidden;display:flex}
+.br-sg{height:100%}
+.br-vl{font-size:10px;color:var(--dim);width:50px;text-align:right;flex-shrink:0;font-variant-numeric:tabular-nums}
+.ind-legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.il{font-size:9px;color:var(--dim);display:flex;align-items:center;gap:3px}
+.il-sq{width:8px;height:8px;border-radius:2px;flex-shrink:0}
  
-/* Split fuel bars */
-.fuel-split { margin-bottom: 10px; }
-.fuel-label { font-size: 10px; color: var(--text); margin-bottom: 4px; }
-.fuel-track { height: 18px; border-radius: 4px; background: rgba(255,255,255,0.04); overflow: hidden; display: flex; }
-.fuel-fossil { background: var(--red); display: flex; align-items: center; justify-content: flex-end; padding-right: 6px; }
-.fuel-green { background: var(--green); display: flex; align-items: center; padding-left: 6px; }
-.fuel-pct { font-size: 10px; font-weight: 500; color: rgba(0,0,0,0.7); white-space: nowrap; }
-.fuel-legend { display: flex; gap: 12px; margin-top: 5px; font-size: 9px; color: var(--text2); }
-.fuel-dot { width: 8px; height: 8px; border-radius: 2px; display: inline-block; margin-right: 3px; vertical-align: middle; }
+/* Fuel split */
+.fuel-tr{height:24px;border-radius:5px;overflow:hidden;display:flex;margin:7px 0}
+.f-fos{display:flex;align-items:center;justify-content:flex-end;padding-right:9px}
+.f-grn{display:flex;align-items:center;padding-left:6px}
+.f-pct{font-size:10px;font-weight:600;color:rgba(0,0,0,.75);white-space:nowrap}
+.fuel-leg{display:flex;gap:14px;font-size:9px;color:var(--dim);margin-top:5px}
+.fleg-d{width:8px;height:8px;border-radius:2px;display:inline-block;margin-right:3px;vertical-align:middle}
  
-/* EV progress */
-.ev-gauge { margin-bottom: 10px; }
-.ev-pct { font-family: var(--display); font-weight: 800; font-size: 32px; color: var(--green); line-height: 1; }
-.ev-track { height: 8px; background: rgba(255,255,255,0.04); border-radius: 4px; margin: 6px 0; overflow: hidden; }
-.ev-fill { height: 100%; background: linear-gradient(90deg, var(--green), var(--teal)); border-radius: 4px; }
+/* EV */
+.ev-n{font-family:var(--disp);font-weight:800;font-size:44px;color:var(--grn);line-height:1}
+.ev-tr{height:8px;background:rgba(255,255,255,.04);border-radius:4px;overflow:hidden;margin:7px 0}
+.ev-fi{height:100%;background:linear-gradient(90deg,var(--grn),var(--tel));border-radius:4px}
  
-/* Grid intensity */
-.grid-items { display: flex; flex-direction: column; gap: 8px; }
-.grid-item { display: flex; align-items: center; gap: 10px; }
-.grid-loc { font-size: 10px; color: var(--text); width: 26px; }
-.grid-track { flex: 1; height: 10px; background: rgba(255,255,255,0.04); border-radius: 5px; overflow: hidden; }
-.grid-fill { height: 100%; border-radius: 5px; }
-.grid-val { font-size: 11px; font-weight: 500; color: var(--bright); width: 70px; text-align: right; }
-.grid-trend { font-size: 9px; margin-left: 4px; }
+/* Energy mix */
+.mix-r{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.mix-loc{font-size:10px;color:var(--txt);width:30px;flex-shrink:0}
+.mix-bar{flex:1;height:16px;border-radius:3px;overflow:hidden;display:flex}
+.mix-sg{height:100%}
+.mix-int{font-size:10px;font-variant-numeric:tabular-nums;width:96px;text-align:right;flex-shrink:0;white-space:nowrap}
+.mix-leg{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 4px}
+.ml{font-size:9px;color:var(--dim);display:flex;align-items:center;gap:2px}
+.ml-sq{width:7px;height:7px;border-radius:1px;flex-shrink:0}
  
-.note-tiny { font-size: 9px; color: var(--text2); margin-top: 8px; line-height: 1.5; }
+.note9{font-size:9px;color:var(--dim);line-height:1.6;margin-top:7px}
+.dr{display:flex;justify-content:space-between;align-items:baseline;
+  padding:4px 0;border-bottom:1px solid var(--bdr)}
+.dr:last-child{border-bottom:none}
+.dk{font-size:10px;color:var(--dim)}.dv{font-size:11px;font-weight:500;color:var(--bright)}
  
-/* Legend items */
-.legend-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 6px 0; }
-.leg { font-size: 9px; color: var(--text2); display: flex; align-items: center; gap: 4px; }
-.leg-sq { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
- 
-/* Misc */
-.live-tag { font-size: 9px; color: var(--green); letter-spacing: 0.1em; }
-.annual-tag { font-size: 9px; color: var(--text2); letter-spacing: 0.1em; }
-.loading { color: var(--text2); font-size: 11px; }
-.data-row { display: flex; justify-content: space-between; align-items: baseline; padding: 4px 0; border-bottom: 1px solid var(--border); }
-.data-row:last-child { border-bottom: none; }
-.data-key { font-size: 10px; color: var(--text2); }
-.data-val { font-size: 12px; font-weight: 500; color: var(--bright); }
- 
-footer {
-  text-align: center; padding: 24px 0 8px;
-  font-size: 9px; color: var(--text2); letter-spacing: 0.1em; line-height: 1.8;
-  border-top: 1px solid var(--border);
-}
+footer{max-width:1440px;margin:0 auto;padding:24px 18px 10px;
+  text-align:center;font-size:9px;color:var(--dim);letter-spacing:.08em;
+  line-height:2;border-top:1px solid var(--bdr)}
 </style>
 </head>
 <body>
  
-<!-- ═══ LIVE COUNTER ═══ -->
-<div id="counter-section">
-  <div class="page" style="padding-top:0;padding-bottom:0">
-    <div class="counter-label">CO₂ equivalent emitted globally in <span class="counter-year">2026</span></div>
-    <div id="main-counter">0</div>
-    <div class="counter-unit">tonnes CO₂e · <span class="live-tag"><span class="update-dot"></span>live · updating every second</span></div>
+<!-- ══════════════════════ LIVE COUNTER ══════════════════════ -->
+<div id="top">
+  <div class="top-lbl">Total CO₂e emitted globally in <span class="yr">2026</span></div>
+  <div id="main-ctr">0.0000</div>
+  <div class="top-unit"><span class="ldot"></span>megatonnes CO₂e · live via requestAnimationFrame · ~0.001696 Mt / second</div>
  
-    <div class="country-row">
-      <div class="country-block">
-        <div class="country-name">🇨🇳 China · 29%</div>
-        <div class="country-val china-val" id="china-val">—</div>
-        <div class="rate-bar"><div class="rate-fill" style="width:29%;background:#ff6644"></div></div>
+  <div class="ctry-grid">
+    <div class="ctry">
+      <div class="ctry-l">
+        <div>🇨🇳 <span class="cname">China</span></div>
+        <div class="cval" id="c-cn">0.000<sub> Mt</sub></div>
+        <div class="cbar"><div class="cbar-fill" style="width:29%;background:#ff6644"></div></div>
       </div>
-      <div class="country-block">
-        <div class="country-name">🇺🇸 USA · 11%</div>
-        <div class="country-val usa-val" id="usa-val">—</div>
-        <div class="rate-bar"><div class="rate-fill" style="width:11%;background:#4da8ff"></div></div>
-      </div>
-      <div class="country-block">
-        <div class="country-name">🇪🇺 EU27 · 6%</div>
-        <div class="country-val eu-val" id="eu-val">—</div>
-        <div class="rate-bar"><div class="rate-fill" style="width:6%;background:#00d8d0"></div></div>
-      </div>
-      <div class="country-block">
-        <div class="country-name">🌍 Rest of world · 54%</div>
-        <div class="country-val row-val" id="row-val">—</div>
-        <div class="rate-bar"><div class="rate-fill" style="width:54%;background:#5a7088"></div></div>
-      </div>
+      <div class="cpct" style="color:#ff6644">29<sup>%</sup></div>
     </div>
-    <div style="margin-top:14px;font-size:10px;color:var(--text2);letter-spacing:0.1em">
-      Rate: ~1,696 tonnes/second · Based on 53.5 Gt CO₂e annual (EDGAR/Climate TRACE 2024–25 estimates)
+    <div class="ctry">
+      <div class="ctry-l">
+        <div>🇺🇸 <span class="cname">USA</span></div>
+        <div class="cval" id="c-us">0.000<sub> Mt</sub></div>
+        <div class="cbar"><div class="cbar-fill" style="width:11%;background:#3eaaff"></div></div>
+      </div>
+      <div class="cpct" style="color:#3eaaff">11<sup>%</sup></div>
     </div>
+    <div class="ctry">
+      <div class="ctry-l">
+        <div>🇪🇺 <span class="cname">EU27</span></div>
+        <div class="cval" id="c-eu">0.000<sub> Mt</sub></div>
+        <div class="cbar"><div class="cbar-fill" style="width:6%;background:#00d2cc"></div></div>
+      </div>
+      <div class="cpct" style="color:#00d2cc">6<sup>%</sup></div>
+    </div>
+    <div class="ctry">
+      <div class="ctry-l">
+        <div>🌍 <span class="cname">Rest of World</span></div>
+        <div class="cval" id="c-rw">0.000<sub> Mt</sub></div>
+        <div class="cbar"><div class="cbar-fill" style="width:54%;background:#5a7a8e"></div></div>
+      </div>
+      <div class="cpct" style="color:#5a7a8e">54<sup>%</sup></div>
+    </div>
+  </div>
+  <div style="margin-top:12px;font-size:10px;color:var(--dim);letter-spacing:.08em">
+    Source: EDGAR/JRC 2024 · 53.5 Gt CO₂e/yr · 1,695.6 t/sec · China 29% · USA 11% · EU27 6% · ROW 54%
   </div>
 </div>
  
-<!-- ═══ AI STATUS ═══ -->
-<div id="status-banner">
-  <span class="status-prefix">PLANETARY STATUS · </span>
-  <span id="status-text">Loading climate summary…</span>
-</div>
+<!-- ══════════════════════ STATUS ══════════════════════ -->
+<div id="status"><span style="color:var(--dim)">PLANETARY STATUS · </span><span id="status-txt">Loading climate summary…</span></div>
  
-<div class="page">
+<div class="wrap">
  
-<!-- ═══ CLIMATE INDICATORS ═══ -->
-<div class="section-header">Key climate indicators</div>
- 
-<div class="indicators-grid">
+<!-- ══════════════════════ CLIMATE INDICATORS ══════════════════════ -->
+<div class="sec-hd">Key climate indicators</div>
+<div class="charts-grid">
  
   <!-- CO2 PPM -->
-  <div class="ind-card warn" id="co2-card">
-    <div class="ind-label"><span class="update-dot"></span>Atmospheric CO₂ <span class="ind-source">NOAA Mauna Loa</span></div>
-    <div class="ind-value" id="co2-val"><span class="loading">…</span></div>
-    <div class="ind-sublabel">parts per million · pre-industrial: 280 ppm</div>
-    <div class="sparkline-wrap"><svg id="co2-spark" viewBox="0 0 200 36" preserveAspectRatio="none"></svg></div>
-    <div class="changes-row" id="co2-changes">
-      <div class="change-chip"><span class="chg-period">12m</span><span class="chg-val chg-up" id="co2-12m">…</span></div>
-      <div class="change-chip"><span class="chg-period">5yr</span><span class="chg-val chg-up" id="co2-5y">…</span></div>
-      <div class="change-chip"><span class="chg-period">10yr</span><span class="chg-val chg-up" id="co2-10y">…</span></div>
+  <div class="ch-card cr">
+    <div class="ch-top">
+      <div class="ch-info">
+        <div class="ch-title">Atmospheric CO₂</div>
+        <div class="ch-src">NOAA Global Monitoring Lab · Mauna Loa Observatory<br>global-warming.org/api/co2-api · Monthly averages</div>
+      </div>
+      <div class="ch-right">
+        <div class="ch-refresh"><span class="ldot"></span>Monthly · ~2 wk lag</div>
+        <div class="ch-now" id="co2-now">—<sub> ppm</sub></div>
+        <div class="ch-sub">vs 280 pre-industrial</div>
+      </div>
+    </div>
+    <div class="ch-wrap"><canvas id="co2-chart"></canvas></div>
+    <div class="chips">
+      <div class="chip"><span class="cp">12 months</span><span class="cv rup" id="co2-12m">…</span></div>
+      <div class="chip"><span class="cp">5 years</span><span class="cv rup" id="co2-5y">…</span></div>
+      <div class="chip"><span class="cp">10 years</span><span class="cv rup" id="co2-10y">…</span></div>
     </div>
   </div>
  
   <!-- SST -->
-  <div class="ind-card warn">
-    <div class="ind-label"><span class="update-dot"></span>Sea surface temp anomaly <span class="ind-source">NOAA OISST</span></div>
-    <div class="ind-value">+0.49<span class="ind-unit">°C</span></div>
-    <div class="ind-sublabel">above 1981–2010 mean · 2025 La Niña year</div>
-    <div class="sparkline-wrap">
-      <svg viewBox="0 0 200 36" preserveAspectRatio="none">
-        <polyline fill="none" stroke="#ff3d1a" stroke-width="1.5" opacity="0.7"
-          points="0,30 18,29 36,27 54,25 72,23 90,19 108,16 126,12 144,9 162,6 180,4 200,7"/>
-        <polyline fill="none" stroke="#ff3d1a" stroke-width="1.5"
-          points="0,30 18,29 36,27 54,25 72,23 90,19 108,16 126,12 144,9 162,6 180,4 200,7"/>
-        <line x1="0" y1="18" x2="200" y2="18" stroke="rgba(255,255,255,0.08)" stroke-width="0.5" stroke-dasharray="3,3"/>
-        <text x="2" y="17" font-size="7" fill="rgba(255,255,255,0.2)" font-family="monospace">0°C</text>
-      </svg>
+  <div class="ch-card co">
+    <div class="ch-top">
+      <div class="ch-info">
+        <div class="ch-title">Sea Surface Temp Anomaly</div>
+        <div class="ch-src">NOAA OISST v2.1 · vs 1981–2010 baseline<br>Daily · Climate Reanalyzer ERA5 / global-warming.org</div>
+      </div>
+      <div class="ch-right">
+        <div class="ch-refresh"><span class="ldot"></span>Daily · ~5 day lag</div>
+        <div class="ch-now" style="color:#ff8840">+0.49<sub> °C</sub></div>
+        <div class="ch-sub">2025 La Niña year</div>
+      </div>
     </div>
-    <div class="changes-row">
-      <div class="change-chip"><span class="chg-period">12m</span><span class="chg-val chg-dn">−0.12°C</span></div>
-      <div class="change-chip"><span class="chg-period">5yr</span><span class="chg-val chg-up">+0.19°C</span></div>
-      <div class="change-chip"><span class="chg-period">10yr</span><span class="chg-val chg-up">+0.39°C</span></div>
+    <div class="ch-wrap"><canvas id="sst-chart"></canvas></div>
+    <div class="chips">
+      <div class="chip"><span class="cp">12 months</span><span class="cv ram">−0.12°C (2024 was peak record)</span></div>
+      <div class="chip"><span class="cp">5 years</span><span class="cv rup">+0.19°C (+63%)</span></div>
+      <div class="chip"><span class="cp">10 years</span><span class="cv rup">+0.39°C (+390%)</span></div>
     </div>
   </div>
  
   <!-- EEI -->
-  <div class="ind-card caution">
-    <div class="ind-label">Earth's energy imbalance <span class="ind-source">NASA CERES (~60d lag)</span></div>
-    <div class="ind-value">0.90<span class="ind-unit">W/m²</span></div>
-    <div class="ind-sublabel">net heat trapped · pre-industrial: ~0 W/m²</div>
-    <div class="sparkline-wrap">
-      <svg viewBox="0 0 200 36" preserveAspectRatio="none">
-        <line x1="0" y1="30" x2="200" y2="30" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
-        <polyline fill="none" stroke="#ffab00" stroke-width="1.5"
-          points="0,30 18,28 36,26 54,24 72,22 90,20 108,18 126,15 144,13 162,11 180,9 200,7"/>
-        <text x="170" y="6" font-size="7" fill="#ffab00" font-family="monospace">0.90</text>
-      </svg>
+  <div class="ch-card ca">
+    <div class="ch-top">
+      <div class="ch-info">
+        <div class="ch-title">Earth's Energy Imbalance</div>
+        <div class="ch-src">NASA CERES EBAF Ed4.2.1 · opendap.larc.nasa.gov<br>Monthly satellite measurement · ~60 day lag</div>
+      </div>
+      <div class="ch-right">
+        <div class="ch-refresh">Monthly · ~60 day lag</div>
+        <div class="ch-now" style="color:var(--amber)">0.90<sub> W/m²</sub></div>
+        <div class="ch-sub">pre-industrial ≈ 0</div>
+      </div>
     </div>
-    <div class="changes-row">
-      <div class="change-chip"><span class="chg-period">vs 2015</span><span class="chg-val chg-up">+0.20 W/m²</span></div>
-      <div class="change-chip"><span class="chg-period">vs 2000</span><span class="chg-val chg-up">+0.48 W/m²</span></div>
+    <div class="ch-wrap"><canvas id="eei-chart"></canvas></div>
+    <div class="chips">
+      <div class="chip"><span class="cp">vs 2015</span><span class="cv rup">+0.20 W/m² (+29%)</span></div>
+      <div class="chip"><span class="cp">vs 2010</span><span class="cv rup">+0.35 W/m² (+63%)</span></div>
+      <div class="chip"><span class="cp">vs 2000</span><span class="cv rup">+0.48 W/m² (+114%)</span></div>
     </div>
-    <div class="note-tiny" style="margin-top:6px">Monthly CERES EBAF · 2× doubled since 2000 · updated monthly</div>
   </div>
  
   <!-- ARCTIC ICE -->
-  <div class="ind-card watch" id="arctic-card">
-    <div class="ind-label"><span class="update-dot"></span>Arctic sea ice extent <span class="ind-source">NSIDC</span></div>
-    <div class="ind-value" id="arctic-val"><span class="loading">…</span></div>
-    <div class="ind-sublabel" id="arctic-sub">million km² · updated daily</div>
-    <div class="sparkline-wrap"><svg id="arctic-spark" viewBox="0 0 200 36" preserveAspectRatio="none"></svg></div>
-    <div class="changes-row" id="arctic-changes">
-      <div class="change-chip"><span class="chg-period">12m</span><span class="chg-val" id="arctic-12m">…</span></div>
-      <div class="change-chip"><span class="chg-period">5yr</span><span class="chg-val chg-dn" id="arctic-5y">…</span></div>
-      <div class="change-chip"><span class="chg-period">10yr</span><span class="chg-val chg-dn" id="arctic-10y">…</span></div>
+  <div class="ch-card cb">
+    <div class="ch-top">
+      <div class="ch-info">
+        <div class="ch-title">Arctic Sea Ice Extent</div>
+        <div class="ch-src">NSIDC Sea Ice Index · nsidc.org/data/G02135<br>Daily · global-warming.org/api/arctic-api</div>
+      </div>
+      <div class="ch-right">
+        <div class="ch-refresh"><span class="ldot"></span>Daily update</div>
+        <div class="ch-now" id="ice-now" style="color:var(--blu)">—<sub> M km²</sub></div>
+        <div class="ch-sub" id="ice-sub">annual September min</div>
+      </div>
+    </div>
+    <div class="ch-wrap"><canvas id="ice-chart"></canvas></div>
+    <div class="chips">
+      <div class="chip"><span class="cp">12 months</span><span class="cv" id="ice-12m">…</span></div>
+      <div class="chip"><span class="cp">5 years</span><span class="cv rdn" id="ice-5y">…</span></div>
+      <div class="chip"><span class="cp">10 years</span><span class="cv rdn" id="ice-10y">…</span></div>
     </div>
   </div>
  
-</div><!-- /indicators-grid -->
+</div>
  
-<!-- ═══ SECTOR PROXIES ═══ -->
-<div class="section-header">Sector proxies driving emissions</div>
+<!-- ══════════════════════ SECTOR PROXIES ══════════════════════ -->
+<div class="sec-hd">Sector drivers · live counters</div>
+<div class="sec-grid">
  
-<div class="sectors-grid">
+  <!-- ── INDUSTRY ── -->
+  <div class="sec-card">
+    <div class="sc-title">🏭 Industry · EU + UK</div>
  
-  <!-- INDUSTRY -->
-  <div class="sector-card">
-    <div class="sector-title"><span class="sector-icon">🏭</span>Industry · EU+UK <span style="font-weight:300;font-size:10px;color:var(--text2);margin-left:auto">Climate TRACE 2024</span></div>
- 
-    <div class="sub-section">
-      <div class="sub-label">Top 5 countries — manufacturing CO₂e (Mt/yr)</div>
-      <div class="legend-row">
-        <span class="leg"><span class="leg-sq" style="background:#378ADD"></span>Steel</span>
-        <span class="leg"><span class="leg-sq" style="background:#E24B4A"></span>Cement</span>
-        <span class="leg"><span class="leg-sq" style="background:#1D9E75"></span>Aluminium</span>
-        <span class="leg"><span class="leg-sq" style="background:#EF9F27"></span>Chemicals</span>
-      </div>
- 
-      <!-- Stacked bars per country -->
-      <div id="industry-bars"></div>
+    <div class="lc">
+      <div class="lc-lbl"><span class="ldot"></span>EU+UK manufacturing CO₂ emitted in 2026</div>
+      <div class="lc-val" id="ind-ctr">0.000<sub> Mt CO₂e</sub></div>
+      <div class="lc-sub">~250 Mt/yr · steel, cement, aluminium, chemicals combined</div>
     </div>
  
-    <div class="note-tiny">
-      Source: Climate TRACE v4.8 country inventory · Scope 1 direct emissions · Annual 2024
-      estimates · Beta API: api.climatetrace.org/v6
+    <div class="shd">Filter by subsector</div>
+    <div class="ftags">
+      <button class="ftag fa" onclick="setF('all',this)">All sectors</button>
+      <button class="ftag" onclick="setF('steel',this)">Steel</button>
+      <button class="ftag" onclick="setF('cement',this)">Cement</button>
+      <button class="ftag" onclick="setF('aluminum',this)">Aluminium</button>
+      <button class="ftag" onclick="setF('chemicals',this)">Chemicals</button>
     </div>
+ 
+    <div class="shd">Mt CO₂e / year · <span id="ind-filter-lbl">all subsectors</span></div>
+    <div id="ind-bars"></div>
+    <div class="ind-legend">
+      <span class="il"><span class="il-sq" style="background:#378ADD"></span>Steel</span>
+      <span class="il"><span class="il-sq" style="background:#E24B4A"></span>Cement</span>
+      <span class="il"><span class="il-sq" style="background:#1D9E75"></span>Aluminium</span>
+      <span class="il"><span class="il-sq" style="background:#EF9F27"></span>Chemicals</span>
+    </div>
+    <div class="note9">Source: Climate TRACE v4.8 · Scope 1 direct emissions · 2024 annual estimates · beta API: api.climatetrace.org/v6</div>
   </div>
  
-  <!-- TRANSPORT -->
-  <div class="sector-card">
-    <div class="sector-title"><span class="sector-icon">🚗</span>Transport</div>
+  <!-- ── TRANSPORT ── -->
+  <div class="sec-card">
+    <div class="sc-title">🚗 Transport</div>
  
-    <!-- ROAD: EV sales -->
-    <div class="sub-section">
-      <div class="sub-label">Road · EV share of new car sales · Europe</div>
-      <div class="ev-gauge">
-        <div class="ev-pct">24%</div>
-        <div style="font-size:10px;color:var(--text2);margin-top:2px">of new passenger cars in 2024 · Q2 2025 record: 25%</div>
-        <div class="ev-track"><div class="ev-fill" style="width:24%"></div></div>
-        <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--text2)">
-          <span>0%</span><span style="color:var(--amber)">2030 target: 100%</span><span>100%</span>
-        </div>
-      </div>
-      <div class="note-tiny">Source: ACEA / EAFO monthly · EU+EFTA sales data</div>
+    <!-- EV -->
+    <div class="shd">Road · EV share of new car sales · Europe 2024</div>
+    <div class="ev-n">24%</div>
+    <div style="font-size:10px;color:var(--dim);margin-top:3px">of all new passenger cars · Q2 2025 record 25% · 2030 ICE ban target 100%</div>
+    <div class="ev-tr"><div class="ev-fi" style="width:24%"></div></div>
+    <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--dim);margin-bottom:4px">
+      <span>0%</span><span style="color:var(--amber)">▲ 2030 mandate</span><span>100%</span>
     </div>
+    <div class="note9">Source: ACEA · EAFO monthly registrations · EU+EFTA</div>
  
-    <!-- AVIATION: SAF -->
-    <div class="sub-section">
-      <div class="sub-label">Aviation · Global fuel mix 2025 est.</div>
-      <div class="fuel-split">
-        <div class="fuel-label">Jet fuel consumption</div>
-        <div class="fuel-track">
-          <div class="fuel-fossil" style="width:99.3%"><span class="fuel-pct">99.3% fossil</span></div>
-          <div class="fuel-green" style="width:0.7%"></div>
-        </div>
-        <div class="fuel-legend">
-          <span><span class="fuel-dot" style="background:var(--red)"></span>Fossil Jet A-1</span>
-          <span><span class="fuel-dot" style="background:var(--green)"></span>SAF 0.7% (~2.1 Mt)</span>
-        </div>
-      </div>
-      <div class="data-row">
-        <span class="data-key">IAG (leader)</span><span class="data-val" style="color:var(--green)">0.66% SAF · 162,000 t</span>
-      </div>
-      <div class="data-row">
-        <span class="data-key">AF-KLM</span><span class="data-val" style="color:var(--green)">1.25% SAF · 103,000 t</span>
-      </div>
-      <div class="data-row">
-        <span class="data-key">Ryanair / Wizz</span><span class="data-val" style="color:var(--text2)">&lt;0.1% · not quantified</span>
-      </div>
-      <div class="note-tiny">EU ReFuelEU mandate: 2% in 2025 → 6% in 2030 → 70% in 2050</div>
+    <div class="divl"></div>
+ 
+    <!-- AVIATION -->
+    <div class="shd"><span class="ldot"></span>Aviation · global jet fuel burned in 2026</div>
+    <div class="lc">
+      <div class="lc-lbl">Total jet fuel consumed year-to-date</div>
+      <div class="lc-val" id="av-tot">0.000<sub> Mt</sub></div>
+      <div class="lc-sub">~300 Mt/yr globally · ~9.51 tonnes/second</div>
     </div>
+    <div class="fuel-tr">
+      <div class="f-fos" style="width:99.3%;background:var(--red)"><span class="f-pct">Fossil Jet A-1 · 99.3%</span></div>
+      <div class="f-grn" style="width:0.7%;background:var(--grn)"></div>
+    </div>
+    <div class="fuel-leg">
+      <span><span class="fleg-d" style="background:var(--red)"></span>Fossil: <span id="av-fos">—</span> Mt</span>
+      <span><span class="fleg-d" style="background:var(--grn)"></span>SAF 0.7%: <span id="av-saf">—</span> Mt</span>
+    </div>
+    <div class="note9" style="margin-bottom:8px">IAG 162,000 t SAF (leader) · AF-KLM 103,000 t · Ryanair &lt;0.1% · EU ReFuelEU 2025 mandate: 2% → 6% by 2030</div>
+    <div class="dr"><span class="dk">Approx airmiles flown in 2026</span><span class="dv" id="av-miles">—</span></div>
+    <div class="note9">~5.5 trillion revenue passenger-km/yr globally · est. from ICAO 2024 traffic data</div>
+ 
+    <div class="divl"></div>
  
     <!-- SHIPPING -->
-    <div class="sub-section">
-      <div class="sub-label">Shipping · Global fuel mix 2024</div>
-      <div class="fuel-split">
-        <div class="fuel-track">
-          <div class="fuel-fossil" style="width:99.1%"><span class="fuel-pct">99.1% fossil fuels</span></div>
-          <div class="fuel-green" style="width:0.9%"></div>
-        </div>
-        <div class="fuel-legend">
-          <span><span class="fuel-dot" style="background:var(--red)"></span>HFO / VLSFO / MGO</span>
-          <span><span class="fuel-dot" style="background:var(--green)"></span>LNG/methanol 0.9%</span>
-        </div>
-      </div>
-      <div class="note-tiny">DNV Alt Fuels Insight · ~1,000 vessels on order with alt-fuel capability · IMO net-zero 2050</div>
+    <div class="shd"><span class="ldot"></span>Shipping · global marine fuel burned in 2026</div>
+    <div class="lc">
+      <div class="lc-lbl">Total marine fuel consumed year-to-date</div>
+      <div class="lc-val" id="sh-tot">0.000<sub> Mt</sub></div>
+      <div class="lc-sub">~300 Mt/yr globally · ~9.51 tonnes/second</div>
     </div>
+    <div class="fuel-tr">
+      <div class="f-fos" style="width:99.1%;background:var(--red)"><span class="f-pct">HFO / VLSFO / MGO · 99.1%</span></div>
+      <div class="f-grn" style="width:0.9%;background:var(--grn)"></div>
+    </div>
+    <div class="fuel-leg">
+      <span><span class="fleg-d" style="background:var(--red)"></span>Fossil: <span id="sh-fos">—</span> Mt</span>
+      <span><span class="fleg-d" style="background:var(--grn)"></span>Green fuels 0.9%: <span id="sh-grn">—</span> Mt</span>
+    </div>
+    <div class="note9">IMO DCS · DNV Alternative Fuels Insight · LNG/methanol/ammonia orders growing · IMO net-zero target 2050</div>
   </div>
  
-  <!-- ELECTRICITY -->
-  <div class="sector-card">
-    <div class="sector-title"><span class="sector-icon">⚡</span>Electricity &amp; Heat <span style="font-weight:300;font-size:10px;color:var(--text2);margin-left:auto">Ember · daily</span></div>
+  <!-- ── ELECTRICITY ── -->
+  <div class="sec-card">
+    <div class="sc-title">⚡ Electricity &amp; Heat</div>
  
-    <div class="sub-section">
-      <div class="sub-label">Grid carbon intensity <span class="live-tag"><span class="update-dot"></span>updates daily</span></div>
- 
-      <div class="grid-items" id="grid-items">
-        <!-- populated by JS -->
-      </div>
- 
-      <div class="note-tiny" style="margin-top:10px">
-        Values are rolling 7-day averages · gCO₂/kWh production-based · Source: Ember Carbon Price Viewer + Electricity Maps
-      </div>
+    <div class="shd"><span class="ldot"></span>EU+UK electricity generated in 2026</div>
+    <div class="lc">
+      <div class="lc-lbl">Grid electricity output year-to-date</div>
+      <div class="lc-val" id="grid-ctr">0.000<sub> TWh</sub></div>
+      <div class="lc-sub">~3,900 TWh/yr combined (EU27 ~3,600 + UK ~300)</div>
     </div>
  
-    <div class="sub-section">
-      <div class="sub-label">EU ETS allowance price <span class="live-tag"><span class="update-dot"></span>daily</span></div>
-      <div id="ets-display">
-        <div class="data-row">
-          <span class="data-key">EUA price</span>
-          <span class="data-val" style="color:var(--amber)">~€67 / tCO₂</span>
-        </div>
-        <div class="data-row">
-          <span class="data-key">2024 avg</span>
-          <span class="data-val">~€63 / tCO₂</span>
-        </div>
-        <div class="data-row">
-          <span class="data-key">ETS2 (builds) starts</span>
-          <span class="data-val" style="color:var(--text2)">2027</span>
-        </div>
-      </div>
-      <div class="note-tiny">Live price: ember-energy.org/data/carbon-price-viewer</div>
+    <div class="shd">Daily avg carbon intensity · gCO₂/kWh · 2024 annual mean</div>
+    <div class="note9" style="margin-bottom:8px">
+      Hourly intensity varies widely (UK: 50–400 g/kWh depending on wind output). Daily average avoids misleading spikes and is more comparable across time periods.
     </div>
  
-    <div class="sub-section">
-      <div class="sub-label">EU renewables share 2024</div>
-      <div class="data-row">
-        <span class="data-key">Wind + solar</span><span class="data-val" style="color:var(--green)">28% of generation</span>
-      </div>
-      <div class="data-row">
-        <span class="data-key">All renewables</span><span class="data-val" style="color:var(--green)">~50% of generation</span>
-      </div>
-      <div class="data-row">
-        <span class="data-key">Fossil fuel share</span><span class="data-val" style="color:var(--amber)">~25% (Q2 2025)</span>
-      </div>
-      <div class="note-tiny">Source: ENTSO-E · EU Commission Market Analysis Q2 2025</div>
+    <div id="grid-mix"></div>
+ 
+    <div class="mix-leg">
+      <span class="ml"><span class="ml-sq" style="background:#4a4a4a"></span>Coal</span>
+      <span class="ml"><span class="ml-sq" style="background:#5577bb"></span>Gas</span>
+      <span class="ml"><span class="ml-sq" style="background:#ffcc00"></span>Nuclear</span>
+      <span class="ml"><span class="ml-sq" style="background:#00b8cc"></span>Hydro</span>
+      <span class="ml"><span class="ml-sq" style="background:#00cc88"></span>Wind</span>
+      <span class="ml"><span class="ml-sq" style="background:#ff9900"></span>Solar</span>
+      <span class="ml"><span class="ml-sq" style="background:#334455"></span>Other</span>
     </div>
  
+    <div class="note9">Sources: Ember · ENTSO-E Transparency · National Grid ESO · 2024 annual generation mix
+      <br>Live hourly: <a href="https://app.electricitymaps.com" style="color:var(--blu);text-decoration:none">Electricity Maps API</a> (key req.) · <a href="https://ember-energy.org/data" style="color:var(--blu);text-decoration:none">Ember</a> (free)
+      <br><span style="color:var(--grn)">↓%</span> = improvement vs 5yr average</div>
   </div>
  
-</div><!-- /sectors-grid -->
+</div><!-- /sec-grid -->
  
 <footer>
-  DATA SOURCES · EDGAR / JRC (GHG emissions totals) · NOAA GML (CO₂ ppm) · NOAA OISST (SST) · NASA CERES EBAF (EEI) ·
-  NSIDC (Arctic ice) · Climate TRACE v4.8 (industry) · ACEA/EAFO (EV sales) · IATA/EASA (SAF) · DNV (shipping) · Ember (grid intensity)<br>
-  All live indicators refresh automatically. Climate TRACE data has ~60-day lag. CERES EEI updates monthly.<br>
-  Built using public APIs and verified published data · <span id="last-update"></span>
+  DATA · EDGAR/JRC (global GHG) · NOAA GML (CO₂) · NOAA OISST (SST) · NASA CERES EBAF (EEI) ·
+  NSIDC G02135 (Arctic ice) · Climate TRACE v4.8 (industry) · ACEA/EAFO (EV) · IATA/EASA (aviation) · IMO DCS / DNV (shipping) · Ember / ENTSO-E (grid)<br>
+  Live counters use published annual rates. Climate TRACE has ~60-day lag. CERES EEI monthly. All charts use annual averages.<br>
+  <span id="ts"></span>
 </footer>
-</div><!-- /page -->
+</div><!-- /wrap -->
  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script>
-// ─── CONFIG ──────────────────────────────────────────────────────────────────
-const ANNUAL_EMISSIONS = 53_500_000_000; // tonnes CO2e (2025 est, EDGAR baseline)
-const YEAR_START = new Date('2026-01-01T00:00:00Z').getTime();
-const MS_PER_YEAR = 365.25 * 24 * 3600 * 1000;
-const RATE_PER_MS = ANNUAL_EMISSIONS / MS_PER_YEAR;
+// ── CONFIG ────────────────────────────────────────────────────────────────────
+const YS     = new Date('2026-01-01T00:00:00Z').getTime();
+const MSYR   = 365.25 * 24 * 3600 * 1e3;
+const GLBL   = 53500;        // Mt CO2e / yr
+const GLBL_R = GLBL / MSYR;  // Mt / ms
  
-const COUNTRY_SHARE = { china: 0.29, usa: 0.11, eu: 0.06, row: 0.54 };
+const AV_R   = 300 / MSYR;   // Mt aviation fuel / ms
+const SH_R   = 300 / MSYR;   // Mt shipping fuel / ms
+const IND_R  = 250 / MSYR;   // Mt EU+UK industry CO2 / ms
+const GRID_R = 3900 / MSYR;  // TWh EU+UK electricity / ms
+const RPK_R  = 5500 / MSYR;  // bn RPK / ms (~5.5 trillion RPK/yr)
  
-// ─── INDUSTRY DATA (Climate TRACE 2024) ──────────────────────────────────────
-const INDUSTRY_DATA = [
-  { flag:'🇩🇪', name:'Germany',     steel:17.8, cement:14.3, aluminum:6.2, chemicals:22.1 },
-  { flag:'🇮🇹', name:'Italy',       steel:14.2, cement:9.7,  aluminum:3.2, chemicals:12.3 },
-  { flag:'🇵🇱', name:'Poland',      steel:9.1,  cement:12.8, aluminum:1.8, chemicals:7.2  },
-  { flag:'🇳🇱', name:'Netherlands', steel:0,    cement:0,    aluminum:5.8, chemicals:18.4 },
-  { flag:'🇪🇸', name:'Spain',       steel:7.4,  cement:11.6, aluminum:4.1, chemicals:9.4  },
-];
+// ── CHART DEFAULTS ────────────────────────────────────────────────────────────
+Chart.defaults.color = '#2e4c62';
+Chart.defaults.borderColor = 'rgba(55,110,190,.07)';
+Chart.defaults.font.family = "'JetBrains Mono',monospace";
+Chart.defaults.font.size   = 10;
  
-// ─── GRID DATA (Ember/Electricity Maps approximate weekly averages) ───────────
-const GRID_DATA = [
-  { id:'EU',  label:'EU27', val:228, prev:260, max:400, color:'#4da8ff', trend:'-12%' },
-  { id:'DEU', label:'DE',   val:342, prev:410, max:500, color:'#ff8844', trend:'-17%' },
-  { id:'FRA', label:'FR',   val: 68, prev: 72, max:200, color:'#00e5a0', trend:'-6%' },
-  { id:'GBR', label:'UK',   val:178, prev:215, max:400, color:'#4da8ff', trend:'-17%' },
-  { id:'POL', label:'PL',   val:564, prev:620, max:800, color:'#ff3d1a', trend:'-9%' },
-  { id:'SWE', label:'SE',   val: 20, prev: 25, max:200, color:'#00e5a0', trend:'-20%' },
-];
+// ── FORMAT HELPERS ────────────────────────────────────────────────────────────
+const f4 = v => { const i=Math.floor(v); return i.toLocaleString('en-US')+(v-i).toFixed(4).slice(1); };
+const f3 = v => { const i=Math.floor(v); return i.toLocaleString('en-US')+(v-i).toFixed(3).slice(1); };
+const f2 = v => { const i=Math.floor(v); return i.toLocaleString('en-US')+(v-i).toFixed(2).slice(1); };
  
-// ─── CO2 PPM DATA (NOAA annual averages, Mauna Loa) ──────────────────────────
-// Monthly fallback data if API fails: last 12 months trend
-const CO2_FALLBACK = {
-  current: 427.5, // approx early 2026
-  ago12m: 423.7,  // early 2025
-  ago5y: 415.5,   // early 2021
-  ago10y: 403.2,  // early 2016
-  sparkline: [406,408,411,413,415,417,418,420,421,422,424,425,427]
-};
+// ── RAF COUNTER ───────────────────────────────────────────────────────────────
+function tick() {
+  const el = Date.now() - YS;
+  if (el < 0) { requestAnimationFrame(tick); return; }
  
-// ─── ARCTIC ICE FALLBACK (million km², based on NSIDC 2024-2025 data) ────────
-const ARCTIC_FALLBACK = {
-  current: 14.2, // March 2026 estimate (million km²) — depends heavily on month
-  ago12y: 14.8,
-  ago5y:  15.1,
-  ago10y: 15.6,
-  sparkline: [16.8,15.8,14.6,13.1,11.9,10.8,10.5,11.2,12.6,14.0,15.2,16.0,14.2]
-};
+  const tot = el * GLBL_R;
+  document.getElementById('main-ctr').textContent = f4(tot);
+  document.getElementById('c-cn').innerHTML = f3(tot*.29)+'<sub> Mt</sub>';
+  document.getElementById('c-us').innerHTML = f3(tot*.11)+'<sub> Mt</sub>';
+  document.getElementById('c-eu').innerHTML = f3(tot*.06)+'<sub> Mt</sub>';
+  document.getElementById('c-rw').innerHTML = f3(tot*.54)+'<sub> Mt</sub>';
  
-// ─── COUNTER ─────────────────────────────────────────────────────────────────
-function fmtNum(n) {
-  return Math.floor(n).toLocaleString('en-US');
+  // Aviation
+  const av = el * AV_R;
+  document.getElementById('av-tot').innerHTML = f3(av)+'<sub> Mt</sub>';
+  document.getElementById('av-fos').textContent = f3(av*.993);
+  document.getElementById('av-saf').textContent = (av*.007).toFixed(3);
+  document.getElementById('av-miles').textContent = f2(el * RPK_R) + ' bn RPK';
+ 
+  // Shipping
+  const sh = el * SH_R;
+  document.getElementById('sh-tot').innerHTML = f3(sh)+'<sub> Mt</sub>';
+  document.getElementById('sh-fos').textContent = f3(sh*.991);
+  document.getElementById('sh-grn').textContent = (sh*.009).toFixed(3);
+ 
+  // Industry
+  document.getElementById('ind-ctr').innerHTML = f3(el*IND_R)+'<sub> Mt CO₂e</sub>';
+ 
+  // Grid
+  document.getElementById('grid-ctr').innerHTML = f3(el*GRID_R)+'<sub> TWh</sub>';
+ 
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);
+ 
+// ── CHART FACTORY ─────────────────────────────────────────────────────────────
+function mkChart(id, labels, data, color, yLbl, fill0) {
+  const ctx = document.getElementById(id).getContext('2d');
+  return new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        data,
+        borderColor: color,
+        borderWidth: 2,
+        pointRadius: 3.5,
+        pointHoverRadius: 6,
+        pointBackgroundColor: color,
+        pointBorderColor: '#020b14',
+        pointBorderWidth: 1.5,
+        tension: 0.3,
+        fill: true,
+        backgroundColor: ctx2 => {
+          const g = ctx2.chart.ctx.createLinearGradient(0,0,0,200);
+          g.addColorStop(0, color.replace(')',',0.16)').replace('rgb','rgba'));
+          g.addColorStop(1, color.replace(')',',0)').replace('rgb','rgba'));
+          return g;
+        }
+      }]
+    },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      interaction:{mode:'index', intersect:false},
+      plugins:{
+        legend:{display:false},
+        tooltip:{
+          backgroundColor:'#0a1828',
+          borderColor:'rgba(55,110,190,.22)',
+          borderWidth:1,
+          titleColor:color,
+          bodyColor:'#7a9ab4',
+          padding:11,
+          titleFont:{family:"'Barlow Condensed'",size:13,weight:'600'},
+          bodyFont:{family:"'JetBrains Mono'",size:10},
+          callbacks:{
+            label: ctx3 => ` ${ctx3.parsed.y} ${yLbl}`
+          }
+        }
+      },
+      scales:{
+        x:{
+          grid:{color:'rgba(55,110,190,.06)'},
+          ticks:{color:'#2e4c62', maxRotation:0, maxTicksLimit:8},
+          border:{color:'rgba(55,110,190,.1)'}
+        },
+        y:{
+          min: fill0 ? 0 : undefined,
+          grid:{color:'rgba(55,110,190,.06)'},
+          ticks:{color:'#2e4c62', callback:v=>v+' '+yLbl, maxTicksLimit:5},
+          border:{color:'rgba(55,110,190,.1)'}
+        }
+      }
+    }
+  });
 }
  
-function tickCounter() {
-  const elapsed = Date.now() - YEAR_START;
-  const total = elapsed * RATE_PER_MS;
-  if (total < 0) return; // before Jan 1 2026
+// ── CO₂ PPM DATA & CHART ──────────────────────────────────────────────────────
+const CO2_FB = {
+  yr:  ['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025','2026*'],
+  val: [400.8, 403.8, 406.5, 408.5, 411.4, 414.2, 416.4, 418.6, 421.1, 422.8, 426.4, 428.9]
+};
  
-  document.getElementById('main-counter').textContent = fmtNum(total);
-  document.getElementById('china-val').textContent = fmtNum(total * COUNTRY_SHARE.china);
-  document.getElementById('usa-val').textContent   = fmtNum(total * COUNTRY_SHARE.usa);
-  document.getElementById('eu-val').textContent    = fmtNum(total * COUNTRY_SHARE.eu);
-  document.getElementById('row-val').textContent   = fmtNum(total * COUNTRY_SHARE.row);
-}
- 
-setInterval(tickCounter, 1000);
-tickCounter();
- 
-// ─── CO2 PPM FETCH ────────────────────────────────────────────────────────────
 async function loadCO2() {
+  let yr = CO2_FB.yr, val = CO2_FB.val;
   try {
     const r = await fetch('https://global-warming.org/api/co2-api');
-    if (!r.ok) throw new Error('CO2 API error');
     const d = await r.json();
-    const results = d.result || [];
- 
-    // Sort by year/month and get the most recent
-    const sorted = results.slice().sort((a,b)=>{
-      const da = parseFloat(a.year)*12 + parseFloat(a.month);
-      const db = parseFloat(b.year)*12 + parseFloat(b.month);
-      return db - da;
-    });
- 
-    const latest = sorted[0];
-    const curVal = parseFloat(latest.trend || latest.cycle);
- 
-    // Find historical values
-    const curYM = parseFloat(latest.year)*12 + parseFloat(latest.month);
-    function findNearest(monthsAgo) {
-      const target = curYM - monthsAgo;
-      let best = null, bestDist = Infinity;
-      results.forEach(r => {
-        const ym = parseFloat(r.year)*12 + parseFloat(r.month);
-        const dist = Math.abs(ym - target);
-        if (dist < bestDist) { bestDist = dist; best = r; }
-      });
-      return best ? parseFloat(best.trend || best.cycle) : null;
+    const res = (d.result||[]).filter(x=>x.trend);
+    if (res.length > 20) {
+      const byYr = {};
+      res.forEach(r => { (byYr[r.year]=byYr[r.year]||[]).push(+r.trend); });
+      const yrs = Object.keys(byYr).sort().slice(-12);
+      yr  = yrs;
+      val = yrs.map(y => +((byYr[y].reduce((s,v)=>s+v,0)/byYr[y].length).toFixed(2)));
     }
+  } catch(e) {}
  
-    const val12m = findNearest(12);
-    const val5y  = findNearest(60);
-    const val10y = findNearest(120);
+  const cur = val[val.length-1];
+  document.getElementById('co2-now').innerHTML = cur.toFixed(1)+'<sub> ppm</sub>';
  
-    // Render current value
-    document.getElementById('co2-val').innerHTML =
-      curVal.toFixed(1) + '<span class="ind-unit">ppm</span>';
+  const chg = (c,o) => `+${(c-o).toFixed(1)} ppm (+${((c-o)/o*100).toFixed(1)}%)`;
+  document.getElementById('co2-12m').textContent = chg(cur, val[val.length-2]||val[0]);
+  document.getElementById('co2-5y').textContent  = chg(cur, val[val.length-7]||val[0]);
+  document.getElementById('co2-10y').textContent = chg(cur, val[0]);
  
-    // Changes
-    const fmt = (cur, old) => {
-      if (!old) return '—';
-      const abs = (cur - old).toFixed(1);
-      const pct = ((cur - old)/old*100).toFixed(1);
-      return `+${abs} ppm (+${pct}%)`;
-    };
-    document.getElementById('co2-12m').textContent = val12m ? fmt(curVal, val12m) : '—';
-    document.getElementById('co2-5y').textContent  = val5y  ? fmt(curVal, val5y)  : '—';
-    document.getElementById('co2-10y').textContent = val10y ? fmt(curVal, val10y) : '—';
- 
-    // Sparkline (last 12 monthly trend values)
-    const last12 = sorted.slice(0,12).reverse();
-    const vals12 = last12.map(r => parseFloat(r.trend || r.cycle));
-    drawSparkline('co2-spark', vals12, '#ff3d1a');
- 
-  } catch(e) {
-    // Use fallback data
-    const fb = CO2_FALLBACK;
-    document.getElementById('co2-val').innerHTML =
-      fb.current.toFixed(1) + '<span class="ind-unit">ppm</span>';
-    const chg12 = fb.current - fb.ago12m;
-    const chg5  = fb.current - fb.ago5y;
-    const chg10 = fb.current - fb.ago10y;
-    document.getElementById('co2-12m').textContent = `+${chg12.toFixed(1)}ppm (+${(chg12/fb.ago12m*100).toFixed(1)}%)`;
-    document.getElementById('co2-5y').textContent  = `+${chg5.toFixed(1)}ppm (+${(chg5/fb.ago5y*100).toFixed(1)}%)`;
-    document.getElementById('co2-10y').textContent = `+${chg10.toFixed(1)}ppm (+${(chg10/fb.ago10y*100).toFixed(1)}%)`;
-    drawSparkline('co2-spark', fb.sparkline, '#ff3d1a');
-  }
+  mkChart('co2-chart', yr, val, 'rgb(255,61,26)', 'ppm', false);
 }
  
-// ─── ARCTIC ICE FETCH ─────────────────────────────────────────────────────────
+// ── SST CHART ─────────────────────────────────────────────────────────────────
+mkChart('sst-chart',
+  ['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+  [0.10,  0.22,  0.18,  0.12,  0.15,  0.25,  0.18,  0.22,  0.60,  0.61,  0.49],
+  'rgb(255,120,50)', '°C', false);
+ 
+// ── EEI CHART ─────────────────────────────────────────────────────────────────
+mkChart('eei-chart',
+  ['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024'],
+  [0.70,  0.72,  0.74,  0.76,  0.79,  0.83,  0.87,  0.88,  0.90,  0.93],
+  'rgb(255,170,0)', 'W/m²', true);
+ 
+// ── ARCTIC ICE CHART ──────────────────────────────────────────────────────────
+const ICE_FB = {
+  yr:  ['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+  val: [4.41,  4.14,  4.64,  4.59,  4.14,  3.74,  4.72,  4.67,  4.23,  4.28,  4.18]
+};
+ 
 async function loadArctic() {
+  let yr = ICE_FB.yr, val = ICE_FB.val;
   try {
     const r = await fetch('https://global-warming.org/api/arctic-api');
-    if (!r.ok) throw new Error();
     const d = await r.json();
-    const data = (d.arcticData || []).filter(x => x.extent && parseFloat(x.extent) > 0);
+    const data = (d.arcticData||[]).filter(x=>x.extent&&+x.extent>0);
+    if (data.length > 8) {
+      const s = [...data].sort((a,b)=>+a.year-+b.year).slice(-11);
+      yr  = s.map(x=>x.year);
+      val = s.map(x=>+parseFloat(x.extent).toFixed(2));
+    }
+  } catch(e) {}
  
-    if (!data.length) throw new Error('No arctic data');
+  const cur = val[val.length-1];
+  document.getElementById('ice-now').innerHTML = cur.toFixed(2)+'<sub> M km²</sub>';
  
-    const sorted = [...data].sort((a,b) => {
-      // Sort by year desc
-      return parseFloat(b.year) - parseFloat(a.year);
-    });
+  const fi = (c,o) => {
+    const dv=(c-o).toFixed(2), pc=((c-o)/o*100).toFixed(1);
+    return `<span class="${c<o?'rdn':'rup'}">${dv>0?'+':''}${dv}M (${pc>0?'+':''}${pc}%)</span>`;
+  };
+  document.getElementById('ice-12m').innerHTML = fi(cur, val[val.length-2]||val[0]);
+  document.getElementById('ice-5y').innerHTML  = fi(cur, val[val.length-6]||val[0]);
+  document.getElementById('ice-10y').innerHTML = fi(cur, val[0]);
  
-    const curYear = parseFloat(sorted[0].year);
-    const curExt  = parseFloat(sorted[0].extent);
- 
-    // Find 1y, 5y, 10y ago
-    const findYear = (yr) => {
-      const match = data.find(x => parseFloat(x.year) === yr);
-      return match ? parseFloat(match.extent) : null;
-    };
- 
-    const ext1y  = findYear(curYear - 1);
-    const ext5y  = findYear(curYear - 5);
-    const ext10y = findYear(curYear - 10);
- 
-    document.getElementById('arctic-val').innerHTML =
-      curExt.toFixed(2) + '<span class="ind-unit">M km²</span>';
-    document.getElementById('arctic-sub').textContent =
-      `million km² · ${curYear} · updated annually`;
- 
-    const fmtIce = (cur, old) => {
-      if (!old) return '—';
-      const d = (cur - old).toFixed(2);
-      const p = ((cur-old)/old*100).toFixed(1);
-      const cls = cur < old ? 'chg-dn' : 'chg-up';
-      return `<span class="${cls}">${d > 0 ? '+' : ''}${d}M (${p > 0 ? '+' : ''}${p}%)</span>`;
-    };
- 
-    document.getElementById('arctic-12m').innerHTML  = fmtIce(curExt, ext1y);
-    document.getElementById('arctic-5y').innerHTML   = fmtIce(curExt, ext5y);
-    document.getElementById('arctic-10y').innerHTML  = fmtIce(curExt, ext10y);
- 
-    // Sparkline — use all available annual data
-    const allYears = [...data].sort((a,b) => parseFloat(a.year) - parseFloat(b.year));
-    const last13 = allYears.slice(-13).map(x => parseFloat(x.extent));
-    drawSparkline('arctic-spark', last13, '#4da8ff', true); // descending = bad
- 
-  } catch(e) {
-    const fb = ARCTIC_FALLBACK;
-    document.getElementById('arctic-val').innerHTML =
-      fb.current.toFixed(1) + '<span class="ind-unit">M km²</span>';
-    document.getElementById('arctic-12m').innerHTML = '<span class="chg-dn">−0.6M (−4%)</span>';
-    document.getElementById('arctic-5y').innerHTML  = '<span class="chg-dn">−0.9M (−6%)</span>';
-    document.getElementById('arctic-10y').innerHTML = '<span class="chg-dn">−1.4M (−9%)</span>';
-    drawSparkline('arctic-spark', fb.sparkline, '#4da8ff', true);
-  }
+  mkChart('ice-chart', yr, val, 'rgb(62,170,255)', 'M km²', true);
 }
  
-// ─── SPARKLINE HELPER ────────────────────────────────────────────────────────
-function drawSparkline(svgId, values, color, invertBad = false) {
-  const svg = document.getElementById(svgId);
-  if (!svg || !values.length) return;
-  const W = 200, H = 36, pad = 2;
-  const min = Math.min(...values);
-  const max = Math.max(...values);
-  const range = max - min || 1;
+// ── INDUSTRY BARS ─────────────────────────────────────────────────────────────
+const IND_DATA = [
+  {fl:'🇩🇪',nm:'Germany',    steel:17.8,cement:14.3,aluminum:6.2,chemicals:22.1},
+  {fl:'🇮🇹',nm:'Italy',      steel:14.2,cement:9.7, aluminum:3.2,chemicals:12.3},
+  {fl:'🇵🇱',nm:'Poland',     steel:9.1, cement:12.8,aluminum:1.8,chemicals:7.2 },
+  {fl:'🇳🇱',nm:'Netherlands',steel:0,   cement:0,   aluminum:5.8,chemicals:18.4},
+  {fl:'🇪🇸',nm:'Spain',      steel:7.4, cement:11.6,aluminum:4.1,chemicals:9.4 },
+  {fl:'🇬🇧',nm:'UK',         steel:4.6, cement:5.8, aluminum:2.9,chemicals:6.9 },
+];
+const IND_C = {steel:'#378ADD',cement:'#E24B4A',aluminum:'#1D9E75',chemicals:'#EF9F27'};
+let curF = 'all';
  
-  const pts = values.map((v, i) => {
-    const x = pad + (i / (values.length - 1)) * (W - pad*2);
-    const y = H - pad - ((v - min) / range) * (H - pad*2);
-    return `${x.toFixed(1)},${y.toFixed(1)}`;
-  }).join(' ');
- 
-  // Area fill
-  const firstX = pad;
-  const lastX  = W - pad;
-  const firstPt = pts.split(' ')[0];
-  const lastPt  = pts.split(' ').slice(-1)[0];
- 
-  svg.innerHTML = `
-    <defs>
-      <linearGradient id="sg-${svgId}" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="${color}" stop-opacity="0.2"/>
-        <stop offset="100%" stop-color="${color}" stop-opacity="0"/>
-      </linearGradient>
-    </defs>
-    <polygon fill="url(#sg-${svgId})" points="${firstPt} ${pts} ${lastPt.split(',')[0]},${H}"/>
-    <polyline fill="none" stroke="${color}" stroke-width="1.5" opacity="0.9" points="${pts}"/>
-    <circle cx="${pts.split(' ').slice(-1)[0].split(',')[0]}" cy="${pts.split(' ').slice(-1)[0].split(',')[1]}" r="2.5" fill="${color}"/>
-  `;
+function setF(f, btn) {
+  curF = f;
+  document.querySelectorAll('.ftags .ftag').forEach(b=>{
+    b.className = 'ftag';
+    if (b === btn) {
+      b.classList.add(f==='all'?'fa':f==='steel'?'fs':f==='cement'?'fc':f==='aluminum'?'fal':'fch');
+    }
+  });
+  document.getElementById('ind-filter-lbl').textContent =
+    f==='all'?'all subsectors':
+    f==='steel'?'steel only':f==='cement'?'cement only':
+    f==='aluminum'?'aluminium only':'chemicals only';
+  renderBars();
 }
  
-// ─── INDUSTRY BARS ────────────────────────────────────────────────────────────
-function renderIndustry() {
-  const container = document.getElementById('industry-bars');
-  if (!container) return;
- 
-  const COLORS = { steel:'#378ADD', cement:'#E24B4A', aluminum:'#1D9E75', chemicals:'#EF9F27' };
-  const maxTotal = Math.max(...INDUSTRY_DATA.map(d => d.steel + d.cement + d.aluminum + d.chemicals));
- 
-  container.innerHTML = INDUSTRY_DATA.map(d => {
-    const total = d.steel + d.cement + d.aluminum + d.chemicals;
-    const pct = (total / maxTotal * 100).toFixed(1);
-    const steel_w    = (d.steel    / total * 100).toFixed(1);
-    const cement_w   = (d.cement   / total * 100).toFixed(1);
-    const aluminum_w = (d.aluminum / total * 100).toFixed(1);
-    const chem_w     = (d.chemicals/ total * 100).toFixed(1);
- 
-    return `<div class="bar-row">
-      <span class="bar-flag">${d.flag}</span>
-      <span class="bar-name">${d.name}</span>
-      <div class="bar-track" style="position:relative">
-        <div style="width:${pct}%;height:100%;display:flex;overflow:hidden;border-radius:3px">
-          ${d.steel    > 0 ? `<div style="width:${steel_w}%;background:${COLORS.steel};height:100%"></div>` : ''}
-          ${d.cement   > 0 ? `<div style="width:${cement_w}%;background:${COLORS.cement};height:100%"></div>` : ''}
-          ${d.aluminum > 0 ? `<div style="width:${aluminum_w}%;background:${COLORS.aluminum};height:100%"></div>` : ''}
-          ${d.chemicals> 0 ? `<div style="width:${chem_w}%;background:${COLORS.chemicals};height:100%"></div>` : ''}
-        </div>
-      </div>
-      <span class="bar-num">${total.toFixed(0)} Mt</span>
+function renderBars() {
+  const el = document.getElementById('ind-bars');
+  const getV = d => curF==='all'
+    ? d.steel+d.cement+d.aluminum+d.chemicals
+    : (d[curF]||0);
+  const maxV = Math.max(...IND_DATA.map(getV));
+  el.innerHTML = IND_DATA.map(d => {
+    const v = getV(d);
+    if (!v) return '';
+    const pw = (v/maxV*100).toFixed(1);
+    const segs = curF==='all'
+      ? ['steel','cement','aluminum','chemicals'].map(k =>
+          d[k]>0?`<div class="br-sg" style="width:${(d[k]/v*100).toFixed(1)}%;background:${IND_C[k]}"></div>`:'').join('')
+      : `<div class="br-sg" style="width:100%;background:${IND_C[curF]}"></div>`;
+    return `<div class="br">
+      <span class="br-fl">${d.fl}</span>
+      <span class="br-nm">${d.nm}</span>
+      <div class="br-tr"><div style="width:${pw}%;height:100%;display:flex;border-radius:3px;overflow:hidden">${segs}</div></div>
+      <span class="br-vl">${v.toFixed(1)} Mt</span>
     </div>`;
   }).join('');
 }
  
-// ─── GRID INTENSITY ───────────────────────────────────────────────────────────
+// ── ELECTRICITY MIX ───────────────────────────────────────────────────────────
+const GMIX = [
+  {l:'EU27',coal:11,gas:20,nuclear:22,hydro:12,wind:18,solar:10,other:7, int:228,tr:'↓12%'},
+  {l:'UK',  coal:1, gas:40,nuclear:14,hydro:2, wind:30,solar:5, other:8, int:178,tr:'↓17%'},
+  {l:'DE',  coal:26,gas:14,nuclear:0, hydro:3, wind:38,solar:12,other:7, int:342,tr:'↓17%'},
+  {l:'FR',  coal:0, gas:3, nuclear:71,hydro:12,wind:8, solar:4, other:2, int:68, tr:'↓6%' },
+  {l:'PL',  coal:65,gas:8, nuclear:0, hydro:2, wind:14,solar:6, other:5, int:564,tr:'↓9%' },
+  {l:'SE',  coal:0, gas:2, nuclear:29,hydro:43,wind:22,solar:2, other:2, int:20, tr:'↓20%'},
+];
+const GCOL = {coal:'#4a4a4a',gas:'#5577bb',nuclear:'#ffcc00',hydro:'#00b8cc',wind:'#00cc88',solar:'#ff9900',other:'#334455'};
+const maxInt = Math.max(...GMIX.map(g=>g.int));
+ 
 function renderGrid() {
-  const container = document.getElementById('grid-items');
-  if (!container) return;
- 
-  container.innerHTML = GRID_DATA.map(g => {
-    const pct = (g.val / g.max * 100).toFixed(0);
-    const prevPct = (g.prev / g.max * 100).toFixed(0);
-    const trendCls = g.val < g.prev ? 'chg-dn' : 'chg-up';
-    return `<div class="grid-item">
-      <span class="grid-loc">${g.label}</span>
-      <div class="grid-track">
-        <div class="grid-fill" style="width:${pct}%;background:${g.color}"></div>
-      </div>
-      <span class="grid-val">${g.val} gCO₂/kWh <span class="grid-trend ${trendCls}">${g.trend}</span></span>
+  document.getElementById('grid-mix').innerHTML = GMIX.map(g => {
+    const ic = g.int>400?'var(--red)':g.int>200?'var(--amber)':'var(--grn)';
+    const segs = ['coal','gas','nuclear','hydro','wind','solar','other'].map(k =>
+      g[k]>0?`<div class="mix-sg" style="width:${g[k]}%;background:${GCOL[k]}"></div>`:''
+    ).join('');
+    return `<div class="mix-r">
+      <span class="mix-loc">${g.l}</span>
+      <div class="mix-bar">${segs}</div>
+      <span class="mix-int" style="color:${ic}">${g.int}<span style="font-size:8px;color:var(--dim)"> g/kWh</span> <span style="color:var(--grn);font-size:9px">${g.tr}</span></span>
     </div>`;
   }).join('');
 }
  
-// ─── AI STATUS BANNER ─────────────────────────────────────────────────────────
+// ── AI STATUS ──────────────────────────────────────────────────────────────────
 async function loadStatus() {
   try {
     const r = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 60,
-        system: 'You are a terse climate data terminal. Output ONE sentence of max 25 words, all caps, no punctuation except periods. State the key planetary climate status right now based on the data given.',
-        messages: [{ role: 'user', content:
-          'CO2 ~428ppm (+0.9% vs year ago). SST anomaly +0.49C (3rd hottest yr). Arctic ice near record low. EEI 0.9W/m2 record. Global emissions 53.5Gt/yr still rising. What is the planetary climate status?'
-        }]
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514', max_tokens:55,
+        system:'Climate data terminal. ONE sentence. ALL CAPS. Max 22 words. No markdown. Be factual.',
+        messages:[{role:'user',content:'CO₂ ~429ppm, SST anomaly +0.49°C (2025 La Niña), Arctic ice record low, EEI 0.90W/m² record high, emissions still rising at 53.5Gt/yr. State planetary status.'}]
       })
     });
-    const data = await r.json();
-    const text = data.content?.[0]?.text?.trim() || '';
-    if (text) document.getElementById('status-text').textContent = text;
+    const d = await r.json();
+    const t = d.content?.[0]?.text?.trim();
+    if (t) document.getElementById('status-txt').textContent = t;
   } catch(e) {
-    document.getElementById('status-text').textContent =
-      'ATMOSPHERIC CO₂ AT 2M-YEAR HIGH · GLOBAL TEMPS 1.43°C ABOVE PRE-INDUSTRIAL · ALL KEY INDICATORS WORSENING.';
+    document.getElementById('status-txt').textContent =
+      'CO₂ AT 2-MILLION-YEAR HIGH · EEI DOUBLED SINCE 2000 · GLOBAL EMISSIONS STILL RISING · NET ZERO OFF TRACK.';
   }
 }
  
-// ─── LAST UPDATE ─────────────────────────────────────────────────────────────
-document.getElementById('last-update').textContent =
-  'Last loaded: ' + new Date().toUTCString();
- 
-// ─── INIT ──────────────────────────────────────────────────────────────────
-renderIndustry();
+// ── INIT ────────────────────────────────────────────────────────────────────
+renderBars();
 renderGrid();
 loadCO2();
 loadArctic();
 loadStatus();
+document.getElementById('ts').textContent = 'Dashboard loaded: ' + new Date().toUTCString();
 </script>
 </body>
 </html>
