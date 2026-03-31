@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#fff;--bg1:#f7f8fa;--bg2:#f0f2f5;
+  --bg:#fff;--bg1:#f7f8fa;
   --border:#e3e7ed;--border2:#c8d0da;
   --text:#4a5568;--dim:#94a3b8;--bright:#1a202c;
   --red:#c8251c;--amber:#b45309;--green:#166534;
@@ -15,138 +15,134 @@
   --mono:'JetBrains Mono',monospace;--disp:'Barlow Condensed',sans-serif;--body:'Inter',sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{background:var(--bg);color:var(--text);font-family:var(--body);font-size:13px;-webkit-font-smoothing:antialiased}
+html{background:var(--bg);color:var(--text);font-family:var(--body);font-size:12px;-webkit-font-smoothing:antialiased}
 body{overflow-x:hidden}
-.page{max-width:1400px;margin:0 auto;padding:0 20px 60px}
+.page{max-width:1600px;margin:0 auto;padding:0 16px 16px}
  
 /* ══ COUNTER ══ */
-#ctr{background:#fff;border-bottom:1px solid var(--border);padding:28px 20px 22px;text-align:center}
-.clabel{font-family:var(--disp);font-weight:400;font-size:12px;letter-spacing:.3em;
-  text-transform:uppercase;color:var(--dim);margin-bottom:8px}
+#ctr{background:#fff;border-bottom:1px solid var(--border);padding:14px 20px 12px;text-align:center}
+.clabel{font-family:var(--disp);font-weight:400;font-size:10px;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--dim);margin-bottom:5px}
 .clabel .yr{color:var(--amber)}
-#main-num{font-family:var(--disp);font-weight:800;font-size:clamp(48px,8vw,92px);
-  color:var(--red);line-height:1;display:inline-block;
-  font-variant-numeric:tabular-nums;letter-spacing:-.01em}
-.cunit{font-family:var(--disp);font-weight:300;font-size:14px;color:var(--dim);
-  letter-spacing:.18em;margin-top:5px}
-.ldot{display:inline-block;width:6px;height:6px;background:#166634;border-radius:50%;
-  margin-right:5px;animation:pd 2s infinite;vertical-align:middle}
+#main-num{font-family:var(--disp);font-weight:800;font-size:clamp(38px,5.5vw,72px);
+  color:var(--red);line-height:1;display:inline-block;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.cunit{font-family:var(--disp);font-weight:300;font-size:12px;color:var(--dim);letter-spacing:.18em;margin-top:3px}
+.ldot{display:inline-block;width:5px;height:5px;background:#166634;border-radius:50%;
+  margin-right:4px;animation:pd 2s infinite;vertical-align:middle}
 @keyframes pd{0%,100%{opacity:1}50%{opacity:.2}}
-.rate-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:16px}
-.rate-block{background:var(--bg1);border:1px solid var(--border);border-radius:8px;
-  padding:11px 20px;text-align:center;min-width:148px}
-.rb-val{font-family:var(--disp);font-weight:700;font-size:24px;color:var(--red);
+.rate-row{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:10px}
+.rate-block{background:var(--bg1);border:1px solid var(--border);border-radius:6px;
+  padding:7px 16px;text-align:center;min-width:120px}
+.rb-val{font-family:var(--disp);font-weight:700;font-size:18px;color:var(--red);
   line-height:1;font-variant-numeric:tabular-nums}
-.rb-unit{font-size:10px;color:var(--dim);font-weight:400;margin-left:2px}
-.rb-label{font-size:10px;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
-.cgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
-  margin-top:16px;max-width:1100px;margin-left:auto;margin-right:auto}
+.rb-unit{font-size:9px;color:var(--dim);font-weight:400;margin-left:2px}
+.rb-label{font-size:9px;color:var(--dim);letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+.cgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;
+  margin-top:10px;max-width:1200px;margin-left:auto;margin-right:auto}
 @media(max-width:720px){.cgrid{grid-template-columns:repeat(2,1fr)}}
-.cblock{background:var(--bg1);border:1px solid var(--border);border-radius:8px;
-  padding:13px 15px;display:flex;justify-content:space-between;align-items:center;gap:6px}
-.cflag{font-size:17px}
-.cname{font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:var(--dim);margin:2px 0}
-.cval{font-family:var(--disp);font-weight:600;font-size:clamp(16px,2.3vw,22px);line-height:1;
+.cblock{background:var(--bg1);border:1px solid var(--border);border-radius:7px;
+  padding:10px 12px;display:flex;justify-content:space-between;align-items:center;gap:6px}
+.cflag{font-size:15px}
+.cname{font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin:1px 0}
+.cval{font-family:var(--disp);font-weight:600;font-size:clamp(14px,1.8vw,18px);line-height:1;
   color:var(--bright);font-variant-numeric:tabular-nums;min-width:8ch;display:inline-block;text-align:right}
-.cval .cu{font-size:10px;font-weight:300;color:var(--dim)}
-.cbar{height:3px;border-radius:2px;background:var(--border);margin-top:6px;overflow:hidden}
+.cval .cu{font-size:9px;font-weight:300;color:var(--dim)}
+.cbar{height:2px;border-radius:2px;background:var(--border);margin-top:5px;overflow:hidden}
 .cbar-f{height:100%;border-radius:2px}
-.cpct{font-family:var(--disp);font-weight:800;font-size:clamp(38px,5vw,58px);
+.cpct{font-family:var(--disp);font-weight:800;font-size:clamp(30px,3.5vw,46px);
   line-height:1;flex-shrink:0;opacity:.5}
 .cpct sup{font-size:.4em;vertical-align:super;opacity:.8}
  
 /* ══ SCALE VIZ ══ */
-#scale-viz{background:var(--bg1);border-bottom:2px solid var(--border);
-  padding:0;overflow:hidden}
+#scale-viz{background:var(--bg1);border-bottom:1px solid var(--border);overflow:hidden}
 #scale-viz svg{display:block;width:100%;height:auto}
  
 /* ══ LAYOUT ══ */
-.sh{display:flex;align-items:center;gap:12px;margin:28px 0 14px;
-  font-family:var(--disp);font-weight:600;font-size:11px;letter-spacing:.25em;
+.sh{display:flex;align-items:center;gap:10px;margin:10px 0 7px;
+  font-family:var(--disp);font-weight:600;font-size:10px;letter-spacing:.25em;
   text-transform:uppercase;color:var(--dim)}
 .sh::before,.sh::after{content:'';flex:1;height:1px;background:var(--border)}
  
-/* ══ INDICATOR CARDS ══ */
-.igrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media(max-width:820px){.igrid{grid-template-columns:1fr}}
-.icard{background:#fff;border:1px solid var(--border);border-radius:10px;padding:20px;overflow:hidden}
-.icard-bar{height:3px;margin:-20px -20px 16px;border-radius:10px 10px 0 0}
+/* ══ INDICATORS — 4 COLUMNS ══ */
+.igrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:1000px){.igrid{grid-template-columns:repeat(2,1fr)}}
+.icard{background:#fff;border:1px solid var(--border);border-radius:8px;padding:13px;overflow:hidden}
+.icard-bar{height:2px;margin:-13px -13px 11px;border-radius:8px 8px 0 0}
 .ic-red .icard-bar{background:linear-gradient(90deg,#c8251c,#f97316)}
 .ic-ora .icard-bar{background:linear-gradient(90deg,#ea580c,#b45309)}
 .ic-amb .icard-bar{background:linear-gradient(90deg,#b45309,#ca8a04)}
 .ic-blu .icard-bar{background:linear-gradient(90deg,#0e7490,#1e40af)}
-.ch-hd{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:5px}
-.ch-title{font-family:var(--disp);font-weight:700;font-size:16px;letter-spacing:.04em;
+.ch-hd{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:4px}
+.ch-title{font-family:var(--disp);font-weight:700;font-size:13px;letter-spacing:.04em;
   text-transform:uppercase;color:var(--bright)}
-.ch-pill{font-size:10px;padding:2px 8px;border-radius:3px;background:var(--bg1);
+.ch-pill{font-size:9px;padding:1px 7px;border-radius:3px;background:var(--bg1);
   border:1px solid var(--border);color:var(--dim);white-space:nowrap;flex-shrink:0}
-.ch-desc{font-size:11px;color:var(--dim);line-height:1.55;margin-bottom:10px}
-.ch-now-row{display:flex;align-items:baseline;gap:8px;margin-bottom:12px}
-.ch-now{font-family:var(--disp);font-weight:800;font-size:36px;line-height:1;color:var(--bright)}
-.ch-now sub{font-size:14px;font-weight:400;color:var(--text);vertical-align:baseline}
-.ch-base{font-size:11px;color:var(--dim);padding:2px 8px;background:var(--bg1);
+.ch-desc{font-size:10px;color:var(--dim);line-height:1.45;margin-bottom:7px}
+.ch-now-row{display:flex;align-items:baseline;gap:6px;margin-bottom:8px}
+.ch-now{font-family:var(--disp);font-weight:800;font-size:26px;line-height:1;color:var(--bright)}
+.ch-now sub{font-size:12px;font-weight:400;color:var(--text);vertical-align:baseline}
+.ch-base{font-size:10px;color:var(--dim);padding:1px 7px;background:var(--bg1);
   border-radius:3px;border:1px solid var(--border)}
-.cwrap{height:220px;position:relative;margin-bottom:12px}
-.chips{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}
-.chip{font-size:10px;padding:3px 9px;border-radius:4px;background:var(--bg1);border:1px solid var(--border)}
+.cwrap{height:120px;position:relative;margin-bottom:8px}
+.chips{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px}
+.chip{font-size:9px;padding:2px 7px;border-radius:3px;background:var(--bg1);border:1px solid var(--border)}
 .cp{color:var(--dim)}.cv{margin-left:3px;font-weight:500}
 .cu{color:var(--red)}.cd{color:var(--green)}.cn2{color:var(--amber)}
-.ch-src{font-size:9px;color:var(--dim);border-top:1px solid var(--border);padding-top:8px;line-height:1.6}
+.ch-src{font-size:8px;color:var(--dim);border-top:1px solid var(--border);padding-top:6px;line-height:1.5}
  
-/* ══ SECTORS ══ */
-.sgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+/* ══ SECTORS — 3 COLUMNS ══ */
+.sgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
 @media(max-width:1050px){.sgrid{grid-template-columns:1fr}}
-.scard{background:#fff;border:1px solid var(--border);border-radius:10px;padding:20px}
-.stitle{font-family:var(--disp);font-weight:700;font-size:16px;letter-spacing:.06em;
-  text-transform:uppercase;color:var(--bright);margin-bottom:14px;display:flex;align-items:center;gap:8px}
-.subhd{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin:12px 0 7px}
+.scard{background:#fff;border:1px solid var(--border);border-radius:8px;padding:13px}
+.stitle{font-family:var(--disp);font-weight:700;font-size:13px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--bright);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.subhd{font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin:8px 0 5px}
 .subhd:first-child{margin-top:0}
-.divr{border:none;border-top:1px solid var(--border);margin:14px 0}
-.br{display:flex;align-items:center;gap:6px;margin-bottom:6px}
-.bf{font-size:12px;width:18px;text-align:center;flex-shrink:0}
-.bn{font-size:10px;color:var(--text);width:78px;flex-shrink:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.bt{flex:1;height:22px;background:var(--bg1);border-radius:4px;overflow:hidden;display:flex}
+.divr{border:none;border-top:1px solid var(--border);margin:10px 0}
+.br{display:flex;align-items:center;gap:5px;margin-bottom:4px}
+.bf{font-size:11px;width:16px;text-align:center;flex-shrink:0}
+.bn{font-size:9px;color:var(--text);width:70px;flex-shrink:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bt{flex:1;height:17px;background:var(--bg1);border-radius:3px;overflow:hidden;display:flex}
 .bs{height:100%;display:flex;align-items:center}
-.bs-lbl{font-size:8px;font-weight:600;color:rgba(255,255,255,.92);padding:0 4px;
-  white-space:nowrap;overflow:hidden;font-family:var(--mono)}
-.bv{font-size:10px;color:var(--dim);width:46px;text-align:right;flex-shrink:0;
-  font-variant-numeric:tabular-nums;font-family:var(--mono)}
-.lcb{background:var(--bg1);border:1px solid var(--border);border-radius:7px;padding:12px;margin-bottom:10px}
-.lc-inner{display:flex;gap:12px;align-items:flex-start}
+.bs-lbl{font-size:7px;font-weight:600;color:rgba(255,255,255,.92);padding:0 3px;white-space:nowrap;overflow:hidden;font-family:var(--mono)}
+.bv{font-size:9px;color:var(--dim);width:40px;text-align:right;flex-shrink:0;font-variant-numeric:tabular-nums;font-family:var(--mono)}
+.lcb{background:var(--bg1);border:1px solid var(--border);border-radius:6px;padding:9px;margin-bottom:8px}
+.lc-inner{display:flex;gap:10px;align-items:flex-start}
 .lc-left{flex:1}
-.lc-right{border-left:1px solid var(--border);padding-left:12px;min-width:130px;flex-shrink:0}
-.lcl{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:4px}
-.lcv{font-family:var(--disp);font-weight:700;font-size:28px;color:var(--bright);line-height:1;
-  font-variant-numeric:tabular-nums}
-.lcu{font-size:11px;font-weight:300;color:var(--text);margin-left:2px}
-.lcs{font-size:10px;color:var(--dim);margin-top:3px}
-.lcr-item{margin-bottom:7px}
-.lcr-label{font-size:9px;color:var(--dim);letter-spacing:.06em}
-.lcr-val{font-family:var(--disp);font-weight:600;font-size:16px;color:var(--bright);
-  line-height:1.1;font-variant-numeric:tabular-nums}
-.lcr-unit{font-size:9px;color:var(--dim);font-weight:400}
-.ftk{height:20px;border-radius:4px;overflow:hidden;display:flex;margin:6px 0}
-.ff{background:#c8251c;display:flex;align-items:center;justify-content:flex-end;padding-right:8px}
-.fg{background:#166534;display:flex;align-items:center;padding-left:5px}
-.fp{font-size:9px;font-weight:600;color:rgba(255,255,255,.9);white-space:nowrap}
-.fleg{display:flex;gap:12px;font-size:9px;color:var(--dim);margin-top:4px;flex-wrap:wrap}
-.fd{width:8px;height:8px;border-radius:2px;display:inline-block;margin-right:3px;vertical-align:middle}
-.ecwrap{height:200px;position:relative;margin-bottom:12px}
-.n9{font-size:9px;color:var(--dim);line-height:1.55;margin-top:7px}
+.lc-right{border-left:1px solid var(--border);padding-left:10px;min-width:110px;flex-shrink:0}
+.lcl{font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:3px}
+.lcv{font-family:var(--disp);font-weight:700;font-size:22px;color:var(--bright);line-height:1;font-variant-numeric:tabular-nums}
+.lcu{font-size:10px;font-weight:300;color:var(--text);margin-left:2px}
+.lcs{font-size:9px;color:var(--dim);margin-top:2px}
+.lcr-item{margin-bottom:5px}
+.lcr-label{font-size:8px;color:var(--dim);letter-spacing:.05em}
+.lcr-val{font-family:var(--disp);font-weight:600;font-size:14px;color:var(--bright);line-height:1.1;font-variant-numeric:tabular-nums}
+.lcr-unit{font-size:8px;color:var(--dim);font-weight:400}
+.ftk{height:17px;border-radius:3px;overflow:hidden;display:flex;margin:5px 0}
+.ff{background:#c8251c;display:flex;align-items:center;justify-content:flex-end;padding-right:7px}
+.fg{background:#166534;display:flex;align-items:center;padding-left:4px}
+.fp{font-size:8px;font-weight:600;color:rgba(255,255,255,.9);white-space:nowrap}
+.fleg{display:flex;gap:10px;font-size:8px;color:var(--dim);margin-top:3px;flex-wrap:wrap}
+.fd{width:7px;height:7px;border-radius:2px;display:inline-block;margin-right:2px;vertical-align:middle}
+.ecwrap{height:130px;position:relative;margin-bottom:8px}
+.n9{font-size:8px;color:var(--dim);line-height:1.5;margin-top:5px}
 .n9 a{color:var(--blue);text-decoration:none}
-.trend-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+ 
+/* ══ TREND CHARTS ══ */
+.trend-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media(max-width:820px){.trend-grid{grid-template-columns:1fr}}
-.tcard{background:#fff;border:1px solid var(--border);border-radius:10px;padding:20px}
-.tc-bar{height:3px;margin:-20px -20px 16px;border-radius:10px 10px 0 0}
+.tcard{background:#fff;border:1px solid var(--border);border-radius:8px;padding:13px}
+.tc-bar{height:2px;margin:-13px -13px 11px;border-radius:8px 8px 0 0}
 .tc-grn .tc-bar{background:linear-gradient(90deg,#166534,#0e7490)}
 .tc-sol .tc-bar{background:linear-gradient(90deg,#b45309,#f97316)}
-.tc-title{font-family:var(--disp);font-weight:700;font-size:16px;letter-spacing:.04em;
-  text-transform:uppercase;color:var(--bright);margin-bottom:5px}
-.tc-desc{font-size:11px;color:var(--dim);line-height:1.55;margin-bottom:12px}
-.tc-wrap{height:260px;position:relative}
-footer{text-align:center;padding:22px 20px 12px;font-size:9px;color:var(--dim);
-  letter-spacing:.06em;line-height:1.9;border-top:1px solid var(--border);
-  max-width:1400px;margin:0 auto}
+.tc-title{font-family:var(--disp);font-weight:700;font-size:13px;letter-spacing:.04em;
+  text-transform:uppercase;color:var(--bright);margin-bottom:4px}
+.tc-desc{font-size:10px;color:var(--dim);line-height:1.45;margin-bottom:8px}
+.tc-wrap{height:180px;position:relative}
+ 
+footer{text-align:center;padding:10px 20px 8px;font-size:8px;color:var(--dim);
+  letter-spacing:.06em;line-height:1.7;border-top:1px solid var(--border);
+  max-width:1600px;margin:0 auto}
 </style>
 </head>
 <body>
@@ -179,477 +175,344 @@ footer{text-align:center;padding:22px 20px 12px;font-size:9px;color:var(--dim);
       <div class="cbar"><div class="cbar-f" style="width:54%;background:#6b7280"></div></div></div>
       <div class="cpct" style="color:#9ca3af">54<sup>%</sup></div></div>
   </div>
-  <div style="margin-top:10px;font-size:10px;color:var(--dim);letter-spacing:.06em">
-    53,500 Mt CO₂e / yr · EDGAR 2024–25 · 1,695.6 t/s = 0.001696 Mt/s
+  <div style="margin-top:7px;font-size:9px;color:var(--dim);letter-spacing:.06em">
+    53,500 Mt CO₂e / yr · EDGAR 2024–25 · 1,695.6 t/s
   </div>
 </div>
  
-<!-- ══ 1 MT SCALE VISUALISATION ══ -->
+<!-- ══ SCALE VIZ — viewBox rescaled to h=200 ══ -->
 <div id="scale-viz">
-<!-- Scale: 1px ≈ 7.5m · Ground: y=225 · All heights proportional -->
-<svg viewBox="0 0 1100 290" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+<svg viewBox="0 0 1100 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
 <defs>
-  <!-- Front face grid pattern -->
-  <pattern id="fg" width="14.6" height="14.6" patternUnits="userSpaceOnUse" patternTransform="translate(28,118)">
-    <path d="M14.6 0L0 0 0 14.6" fill="none" stroke="rgba(30,64,175,0.1)" stroke-width="0.6"/>
+  <pattern id="fg" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="translate(28,81)">
+    <path d="M10 0L0 0 0 10" fill="none" stroke="rgba(30,64,175,0.1)" stroke-width="0.5"/>
   </pattern>
-  <!-- Top face grid (isometric, going upper-right) -->
-  <pattern id="tg" width="14.6" height="14.6" patternUnits="userSpaceOnUse" patternTransform="translate(28,118)">
-    <line x1="0" y1="14.6" x2="14.6" y2="0" stroke="rgba(30,64,175,0.1)" stroke-width="0.6"/>
-  </pattern>
-  <clipPath id="fc"><polygon points="28,118 175,118 175,225 28,225"/></clipPath>
-  <clipPath id="tc"><polygon points="28,118 68,96 215,96 175,118"/></clipPath>
-  <clipPath id="rc"><polygon points="175,118 215,96 215,203 175,225"/></clipPath>
-  <!-- Red dashed equality marker style -->
-  <marker id="eq-arrow" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
-    <circle cx="3" cy="3" r="2" fill="#c8251c" opacity="0.6"/>
-  </marker>
+  <clipPath id="fc"><polygon points="28,81 175,81 175,155 28,155"/></clipPath>
+  <clipPath id="tc"><polygon points="28,81 68,66 215,66 175,81"/></clipPath>
+  <clipPath id="rc"><polygon points="175,81 215,66 215,140 175,155"/></clipPath>
 </defs>
  
-<!-- Background -->
-<rect width="1100" height="290" fill="#f8f9fa"/>
+<rect width="1100" height="200" fill="#f8f9fa"/>
+<rect x="0" y="156" width="1100" height="44" fill="#f0f2f5"/>
+<line x1="0" y1="156" x2="1100" y2="156" stroke="#e3e7ed" stroke-width="1"/>
  
-<!-- Subtle ground shadow -->
-<rect x="0" y="226" width="1100" height="64" fill="#f0f2f5"/>
-<line x1="0" y1="226" x2="1100" y2="226" stroke="#e3e7ed" stroke-width="1"/>
+<!-- Title -->
+<text x="28" y="13" font-family="'Barlow Condensed',sans-serif" font-weight="600" font-size="9" fill="#94a3b8" letter-spacing="2.5">WHAT IS 1 MEGATONNE OF CO₂? · 1 px ≈ 7.5 m</text>
  
-<!-- Section title -->
-<text x="28" y="18" font-family="'Barlow Condensed',sans-serif" font-weight="600" font-size="11"
-  fill="#94a3b8" letter-spacing="3">WHAT IS 1 MEGATONNE OF CO₂?</text>
-<text x="28" y="31" font-family="'Inter',sans-serif" font-size="9" fill="#94a3b8">
-  Atmospheric gas at standard conditions (STP) · 1 px ≈ 7.5 metres</text>
+<!-- ═══ CUBE ═══ (800m → ~107px scaled to 74px at y-factor 0.69) -->
+<polygon points="28,81 175,81 175,155 28,155" fill="rgba(219,234,254,0.85)" stroke="none"/>
+<polygon points="28,81 175,81 175,155 28,155" fill="url(#fg)" clip-path="url(#fc)"/>
+<polygon points="28,81 175,81 175,155 28,155" fill="none" stroke="#1e40af" stroke-width="1.2"/>
+<polygon points="28,81 68,66 215,66 175,81" fill="rgba(191,219,254,0.9)" stroke="#1e40af" stroke-width="1.2"/>
+<polygon points="175,81 215,66 215,140 175,155" fill="rgba(147,197,253,0.92)" stroke="#1e40af" stroke-width="1.2"/>
  
-<!-- ═══ CUBE ═══ (800m per side → 106.5px at 1px=7.5m) -->
-<!-- Front face fill -->
-<polygon points="28,118 175,118 175,225 28,225"
-  fill="rgba(219,234,254,0.85)" stroke="none"/>
-<!-- Front face grid -->
-<polygon points="28,118 175,118 175,225 28,225"
-  fill="url(#fg)" clip-path="url(#fc)"/>
-<!-- Front face outline -->
-<polygon points="28,118 175,118 175,225 28,225"
-  fill="none" stroke="#1e40af" stroke-width="1.5"/>
+<!-- Cube labels -->
+<text x="101" y="107" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-weight="800" font-size="24" fill="#c8251c">1 MT</text>
+<text x="101" y="121" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-weight="600" font-size="12" fill="#1e40af" letter-spacing="2">CO₂</text>
+<text x="101" y="133" text-anchor="middle" font-family="'Inter',sans-serif" font-size="8" fill="#4a5568">atmospheric gas</text>
+<text x="101" y="144" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="7.5" fill="#6b7280">800m × 800m × 800m</text>
  
-<!-- Top face fill -->
-<polygon points="28,118 68,96 215,96 175,118"
-  fill="rgba(191,219,254,0.9)" stroke="none"/>
-<!-- Top face grid -->
-<polygon points="28,118 68,96 215,96 175,118"
-  fill="url(#tg)" clip-path="url(#tc)"/>
-<!-- Top face outline -->
-<polygon points="28,118 68,96 215,96 175,118"
-  fill="none" stroke="#1e40af" stroke-width="1.5"/>
- 
-<!-- Right face fill -->
-<polygon points="175,118 215,96 215,203 175,225"
-  fill="rgba(147,197,253,0.92)" stroke="none"/>
-<!-- Right face outline -->
-<polygon points="175,118 215,96 215,203 175,225"
-  fill="none" stroke="#1e40af" stroke-width="1.5"/>
- 
-<!-- Cube front-face label -->
-<text x="101" y="156" text-anchor="middle"
-  font-family="'Barlow Condensed',sans-serif" font-weight="800" font-size="32"
-  fill="#c8251c" letter-spacing="-0.5">1 MT</text>
-<text x="101" y="174" text-anchor="middle"
-  font-family="'Barlow Condensed',sans-serif" font-weight="600" font-size="15"
-  fill="#1e40af" letter-spacing="2">CO₂</text>
-<text x="101" y="190" text-anchor="middle"
-  font-family="'Inter',sans-serif" font-size="9" fill="#4a5568">atmospheric gas</text>
-<text x="101" y="204" text-anchor="middle"
-  font-family="'JetBrains Mono',monospace" font-size="8.5" fill="#6b7280">800 m × 800 m × 800 m</text>
-<text x="101" y="217" text-anchor="middle"
-  font-family="'JetBrains Mono',monospace" font-size="8" fill="#94a3b8">505 million m³</text>
- 
-<!-- Width dimension arrow (below cube) -->
-<line x1="28" y1="243" x2="175" y2="243" stroke="#94a3b8" stroke-width="1"/>
-<line x1="28" y1="239" x2="28" y2="247" stroke="#94a3b8" stroke-width="1"/>
-<line x1="175" y1="239" x2="175" y2="247" stroke="#94a3b8" stroke-width="1"/>
-<text x="101" y="257" text-anchor="middle"
-  font-family="'Inter',sans-serif" font-size="9" fill="#6b7280">800 m</text>
- 
-<!-- Height dimension arrow (left of cube) -->
-<line x1="14" y1="118" x2="14" y2="225" stroke="#94a3b8" stroke-width="1"/>
-<line x1="10" y1="118" x2="18" y2="118" stroke="#94a3b8" stroke-width="1"/>
-<line x1="10" y1="225" x2="18" y2="225" stroke="#94a3b8" stroke-width="1"/>
-<text x="8" y="176" text-anchor="middle"
-  font-family="'Inter',sans-serif" font-size="9" fill="#6b7280"
-  transform="rotate(-90,8,176)">800 m</text>
- 
-<!-- Depth annotation on top face -->
-<line x1="68" y1="84" x2="215" y2="84" stroke="#94a3b8" stroke-width="1" stroke-dasharray="2,2"/>
-<text x="141" y="81" text-anchor="middle"
-  font-family="'Inter',sans-serif" font-size="9" fill="#6b7280">800 m</text>
+<!-- Dimension arrows -->
+<line x1="28" y1="167" x2="175" y2="167" stroke="#94a3b8" stroke-width="0.8"/>
+<line x1="28" y1="164" x2="28" y2="170" stroke="#94a3b8" stroke-width="0.8"/>
+<line x1="175" y1="164" x2="175" y2="170" stroke="#94a3b8" stroke-width="0.8"/>
+<text x="101" y="177" text-anchor="middle" font-family="'Inter',sans-serif" font-size="8" fill="#6b7280">800 m</text>
+<line x1="14" y1="81" x2="14" y2="155" stroke="#94a3b8" stroke-width="0.8"/>
+<line x1="10" y1="81" x2="18" y2="81" stroke="#94a3b8" stroke-width="0.8"/>
+<line x1="10" y1="155" x2="18" y2="155" stroke="#94a3b8" stroke-width="0.8"/>
+<text x="7" y="122" text-anchor="middle" font-family="'Inter',sans-serif" font-size="8" fill="#6b7280" transform="rotate(-90,7,122)">800 m</text>
+<line x1="68" y1="57" x2="215" y2="57" stroke="#94a3b8" stroke-width="0.8" stroke-dasharray="2,2"/>
+<text x="141" y="55" text-anchor="middle" font-family="'Inter',sans-serif" font-size="8" fill="#6b7280">800 m</text>
  
 <!-- ═══ DIVIDER ═══ -->
-<line x1="242" y1="40" x2="242" y2="270" stroke="#e3e7ed" stroke-width="1" stroke-dasharray="4,3"/>
+<line x1="242" y1="25" x2="242" y2="188" stroke="#e3e7ed" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="263" y="13" font-family="'Barlow Condensed',sans-serif" font-weight="600" font-size="9" fill="#94a3b8" letter-spacing="2.5">SAME SCALE COMPARISON</text>
  
-<!-- ═══ BUILDINGS AT SAME SCALE ═══ -->
-<!-- Header -->
-<text x="265" y="18" font-family="'Barlow Condensed',sans-serif" font-weight="600" font-size="11"
-  fill="#94a3b8" letter-spacing="3">LANDMARK COMPARISON · SAME SCALE</text>
+<!-- ═══ BUILDINGS ═══  — all buildings moved up by -6 from original (226→156 ground) -->
  
-<!-- ── 1. Burj Khalifa (828m → 110.4px) top at y=225-110=115 ── -->
-<!-- The ≈equal height dashed line connecting cube top to Burj top -->
-<line x1="215" y1="115" x2="295" y2="115"
-  stroke="#c8251c" stroke-width="1" stroke-dasharray="5,3" opacity="0.45"/>
-<text x="254" y="112" text-anchor="middle"
-  font-family="'Inter',sans-serif" font-size="8" font-weight="600" fill="#c8251c" opacity="0.8">≈ same height</text>
+<!-- Equality line: cube top y=81, Burj top y≈79 -->
+<line x1="215" y1="79" x2="295" y2="79" stroke="#c8251c" stroke-width="0.8" stroke-dasharray="4,3" opacity="0.5"/>
+<text x="254" y="77" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7.5" font-weight="600" fill="#c8251c" opacity="0.85">≈ same height</text>
  
-<!-- Base of Burj -->
-<polygon points="270,225 314,225 310,210 274,210" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.8"/>
-<!-- Lower body -->
-<polygon points="274,210 310,210 306,182 278,182" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.8"/>
-<!-- Mid body -->
-<polygon points="278,182 306,182 303,156 281,156" fill="#e5eaf0" stroke="#9ca3af" stroke-width="0.8"/>
-<!-- Upper body -->
-<polygon points="281,156 303,156 300,136 284,136" fill="#ebeef3" stroke="#9ca3af" stroke-width="0.8"/>
-<!-- Spire base -->
-<polygon points="284,136 300,136 293,120 291,120" fill="#ebeef3" stroke="#9ca3af" stroke-width="0.8"/>
-<!-- Spire tip -->
-<line x1="292" y1="115" x2="292" y2="120" stroke="#9ca3af" stroke-width="2"/>
-<!-- Burj label -->
-<text x="292" y="241" text-anchor="middle"
-  font-family="'Inter',sans-serif" font-size="8.5" fill="#4a5568" font-weight="600">Burj Khalifa</text>
-<text x="292" y="253" text-anchor="middle"
-  font-family="'JetBrains Mono',monospace" font-size="8" fill="#94a3b8">828 m</text>
+<!-- 1. Burj Khalifa (828m → 114×0.69=79px, top at y=77) -->
+<polygon points="270,156 314,156 310,143 274,143" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.7"/>
+<polygon points="274,143 310,143 306,121 278,121" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.7"/>
+<polygon points="278,121 306,121 303,101 281,101" fill="#e5eaf0" stroke="#9ca3af" stroke-width="0.7"/>
+<polygon points="281,101 303,101 300,87 284,87" fill="#ebeef3" stroke="#9ca3af" stroke-width="0.7"/>
+<polygon points="284,87 300,87 293,80 291,80" fill="#ebeef3" stroke="#9ca3af" stroke-width="0.7"/>
+<line x1="292" y1="77" x2="292" y2="80" stroke="#9ca3af" stroke-width="1.5"/>
+<text x="292" y="165" text-anchor="middle" font-family="'Inter',sans-serif" font-size="8" fill="#4a5568" font-weight="600">Burj Khalifa</text>
+<text x="292" y="174" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="7.5" fill="#94a3b8">828 m</text>
  
-<!-- ── 2. Eiffel Tower (330m → 44px) top at y=225-44=181 ── -->
-<!-- Legs -->
-<polygon points="338,225 344,225 344,208 341,208" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.8"/>
-<polygon points="356,225 362,225 362,208 359,208" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.8"/>
-<!-- Lower arch sweep -->
-<path d="M338,225 Q350,214 362,225" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
-<!-- First platform -->
-<rect x="338" y="207" width="24" height="3" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.8"/>
-<!-- Middle section -->
-<polygon points="340,207 360,207 356,197 344,197" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.8"/>
-<!-- Second platform -->
-<rect x="342" y="196" width="16" height="2" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.8"/>
-<!-- Upper narrowing -->
-<polygon points="343,196 357,196 354,189 346,189" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.8"/>
-<!-- Top spire -->
-<line x1="350" y1="181" x2="350" y2="189" stroke="#9ca3af" stroke-width="2"/>
-<!-- Eiffel label -->
-<text x="350" y="241" text-anchor="middle"
-  font-family="'Inter',sans-serif" font-size="8.5" fill="#4a5568" font-weight="600">Eiffel Tower</text>
-<text x="350" y="253" text-anchor="middle"
-  font-family="'JetBrains Mono',monospace" font-size="8" fill="#94a3b8">330 m</text>
+<!-- 2. Eiffel Tower (330m → 44×0.69=30px, top at y=126) -->
+<polygon points="338,156 344,156 344,143 341,143" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.7"/>
+<polygon points="356,156 362,156 362,143 359,143" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.7"/>
+<path d="M338,156 Q350,148 362,156" fill="none" stroke="#9ca3af" stroke-width="0.7"/>
+<rect x="338" y="142" width="24" height="2" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.7"/>
+<polygon points="340,142 360,142 356,135 344,135" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.7"/>
+<rect x="342" y="134" width="16" height="2" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.7"/>
+<polygon points="343,134 357,134 354,130 346,130" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.7"/>
+<line x1="350" y1="126" x2="350" y2="130" stroke="#9ca3af" stroke-width="1.5"/>
+<text x="350" y="165" text-anchor="middle" font-family="'Inter',sans-serif" font-size="8" fill="#4a5568" font-weight="600">Eiffel Tower</text>
+<text x="350" y="174" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="7.5" fill="#94a3b8">330 m</text>
  
-<!-- ── 3. The Shard (310m → 41px) top at y=225-41=184 ── -->
-<polygon points="388,225 408,225 395,184" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.8"/>
-<!-- Shard facet lines -->
-<line x1="393" y1="225" x2="396" y2="187" stroke="#9ca3af" stroke-width="0.5" opacity="0.5"/>
-<line x1="404" y1="225" x2="396.5" y2="188" stroke="#9ca3af" stroke-width="0.5" opacity="0.5"/>
-<!-- Shard label -->
-<text x="397" y="241" text-anchor="middle"
-  font-family="'Inter',sans-serif" font-size="8.5" fill="#4a5568" font-weight="600">The Shard</text>
-<text x="397" y="253" text-anchor="middle"
-  font-family="'JetBrains Mono',monospace" font-size="8" fill="#94a3b8">310 m</text>
+<!-- 3. The Shard (310m → 43×0.69=30px, top at y=126) -->
+<polygon points="388,156 408,156 395,127" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.7"/>
+<line x1="393" y1="156" x2="396" y2="130" stroke="#9ca3af" stroke-width="0.4" opacity="0.5"/>
+<line x1="404" y1="156" x2="396.5" y2="130" stroke="#9ca3af" stroke-width="0.4" opacity="0.5"/>
+<text x="397" y="165" text-anchor="middle" font-family="'Inter',sans-serif" font-size="8" fill="#4a5568" font-weight="600">The Shard</text>
+<text x="397" y="174" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="7.5" fill="#94a3b8">310 m</text>
  
-<!-- ── 4. Empire State Building (443m → 59px) top at y=225-59=166 ── -->
-<!-- Base wide section -->
-<rect x="426" y="213" width="22" height="12" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.8"/>
-<!-- Lower body -->
-<rect x="429" y="197" width="16" height="16" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.8"/>
-<!-- Mid body -->
-<rect x="431" y="185" width="12" height="12" fill="#e5eaf0" stroke="#9ca3af" stroke-width="0.8"/>
-<!-- Upper body -->
-<rect x="433" y="175" width="8" height="10" fill="#ebeef3" stroke="#9ca3af" stroke-width="0.8"/>
-<!-- Spire -->
-<line x1="437" y1="166" x2="437" y2="175" stroke="#9ca3af" stroke-width="2.5"/>
-<!-- ESB label -->
-<text x="437" y="241" text-anchor="middle"
-  font-family="'Inter',sans-serif" font-size="8.5" fill="#4a5568" font-weight="600">Empire State</text>
-<text x="437" y="253" text-anchor="middle"
-  font-family="'JetBrains Mono',monospace" font-size="8" fill="#94a3b8">443 m</text>
+<!-- 4. Empire State (443m → 59×0.69=41px, top at y=115) -->
+<rect x="426" y="147" width="22" height="9" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.7"/>
+<rect x="429" y="136" width="16" height="11" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.7"/>
+<rect x="431" y="128" width="12" height="8" fill="#e5eaf0" stroke="#9ca3af" stroke-width="0.7"/>
+<rect x="433" y="121" width="8" height="7" fill="#ebeef3" stroke="#9ca3af" stroke-width="0.7"/>
+<line x1="437" y1="115" x2="437" y2="121" stroke="#9ca3af" stroke-width="2"/>
+<text x="437" y="165" text-anchor="middle" font-family="'Inter',sans-serif" font-size="8" fill="#4a5568" font-weight="600">Empire State</text>
+<text x="437" y="174" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="7.5" fill="#94a3b8">443 m</text>
  
-<!-- ── 5. Big Ben / Elizabeth Tower (96m → 13px) top at y=225-13=212 ── -->
-<!-- Tower body -->
-<rect x="465" y="215" width="14" height="10" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.8"/>
-<!-- Clock face section -->
-<rect x="465" y="213" width="14" height="3" fill="#d1d5db" stroke="#9ca3af" stroke-width="0.8"/>
-<!-- Spire -->
-<polygon points="466,213 478,213 472,208" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.8"/>
-<line x1="472" y1="208" x2="472" y2="212" stroke="#9ca3af" stroke-width="1.5"/>
-<!-- Big Ben label -->
-<text x="472" y="241" text-anchor="middle"
-  font-family="'Inter',sans-serif" font-size="8.5" fill="#4a5568" font-weight="600">Big Ben</text>
-<text x="472" y="253" text-anchor="middle"
-  font-family="'JetBrains Mono',monospace" font-size="8" fill="#94a3b8">96 m</text>
+<!-- 5. Big Ben (96m → 13×0.69=9px, top at y=147) -->
+<rect x="465" y="148" width="14" height="8" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.7"/>
+<rect x="465" y="146" width="14" height="2" fill="#d1d5db" stroke="#9ca3af" stroke-width="0.7"/>
+<polygon points="466,146 478,146 472,141" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.7"/>
+<line x1="472" y1="138" x2="472" y2="141" stroke="#9ca3af" stroke-width="1.2"/>
+<text x="472" y="165" text-anchor="middle" font-family="'Inter',sans-serif" font-size="8" fill="#4a5568" font-weight="600">Big Ben</text>
+<text x="472" y="174" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="7.5" fill="#94a3b8">96 m</text>
  
-<!-- ── 6. Human figure with magnified inset ── -->
-<!-- Tiny marker at ground for human (1.8m → 0.24px, essentially invisible) -->
-<circle cx="506" cy="225" r="1.5" fill="#4a5568"/>
-<line x1="506" y1="208" x2="506" y2="223" stroke="#94a3b8" stroke-width="0.8" stroke-dasharray="2,2"/>
- 
-<!-- Human callout inset box -->
-<rect x="490" y="165" width="68" height="55" rx="4"
-  fill="#fff" stroke="#e3e7ed" stroke-width="1" filter="drop-shadow(0 1px 3px rgba(0,0,0,0.08))"/>
-<text x="524" y="176" text-anchor="middle"
-  font-family="'Inter',sans-serif" font-size="7.5" fill="#94a3b8">magnified 40×</text>
-<!-- Ground line inside inset -->
-<line x1="492" y1="213" x2="556" y2="213" stroke="#e3e7ed" stroke-width="0.8"/>
-<!-- Human stick figure (1.8m × 40 = 72px → shrunk to ~18px for inset) -->
-<!-- At x=516 in the inset: -->
-<circle cx="516" cy="196" r="3" fill="#4a5568"/>
-<line x1="516" y1="199" x2="516" y2="209" stroke="#4a5568" stroke-width="1.5"/>
-<line x1="512" y1="203" x2="520" y2="203" stroke="#4a5568" stroke-width="1.3"/>
-<line x1="516" y1="209" x2="513" y2="213" stroke="#4a5568" stroke-width="1.3"/>
-<line x1="516" y1="209" x2="519" y2="213" stroke="#4a5568" stroke-width="1.3"/>
-<!-- Height arrow -->
-<line x1="508" y1="193" x2="508" y2="213" stroke="#94a3b8" stroke-width="0.6"/>
-<text x="506" y="202" text-anchor="end"
-  font-family="'JetBrains Mono',monospace" font-size="7" fill="#94a3b8">1.8m</text>
-<!-- Human label -->
-<text x="524" y="222" text-anchor="middle"
-  font-family="'Inter',sans-serif" font-size="7.5" fill="#6b7280">human = 0.24px</text>
- 
-<!-- Label column header -->
-<text x="506" y="241" text-anchor="middle"
-  font-family="'Inter',sans-serif" font-size="8.5" fill="#4a5568" font-weight="600">Person</text>
-<text x="506" y="253" text-anchor="middle"
-  font-family="'JetBrains Mono',monospace" font-size="8" fill="#94a3b8">1.8 m</text>
+<!-- 6. Human callout -->
+<circle cx="506" cy="156" r="1.2" fill="#4a5568"/>
+<line x1="506" y1="143" x2="506" y2="154" stroke="#94a3b8" stroke-width="0.8" stroke-dasharray="2,2"/>
+<rect x="490" y="108" width="64" height="40" rx="3" fill="#fff" stroke="#e3e7ed" stroke-width="0.8"/>
+<text x="522" y="118" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7" fill="#94a3b8">magnified 40×</text>
+<line x1="492" y1="142" x2="552" y2="142" stroke="#e3e7ed" stroke-width="0.6"/>
+<circle cx="516" cy="129" r="2.5" fill="#4a5568"/>
+<line x1="516" y1="131.5" x2="516" y2="140" stroke="#4a5568" stroke-width="1.2"/>
+<line x1="512" y1="135" x2="520" y2="135" stroke="#4a5568" stroke-width="1.1"/>
+<line x1="516" y1="140" x2="513" y2="142" stroke="#4a5568" stroke-width="1.1"/>
+<line x1="516" y1="140" x2="519" y2="142" stroke="#4a5568" stroke-width="1.1"/>
+<text x="548" y="135" text-anchor="end" font-family="'JetBrains Mono',monospace" font-size="7" fill="#94a3b8">1.8m</text>
+<text x="522" y="149" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7" fill="#6b7280">0.24 px at scale</text>
+<text x="506" y="165" text-anchor="middle" font-family="'Inter',sans-serif" font-size="8" fill="#4a5568" font-weight="600">Person</text>
+<text x="506" y="174" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="7.5" fill="#94a3b8">1.8 m</text>
  
 <!-- ═══ FACTS PANEL ═══ -->
-<line x1="580" y1="40" x2="580" y2="270" stroke="#e3e7ed" stroke-width="1" stroke-dasharray="4,3"/>
+<line x1="580" y1="25" x2="580" y2="188" stroke="#e3e7ed" stroke-width="1" stroke-dasharray="4,3"/>
+<rect x="596" y="22" width="492" height="164" rx="6" fill="#fff" stroke="#e3e7ed" stroke-width="0.8"/>
+<text x="614" y="39" font-family="'Barlow Condensed',sans-serif" font-weight="700" font-size="11" fill="#1a202c" letter-spacing="1">1 MT EMITTED EVERY ~10 MINUTES GLOBALLY</text>
+<line x1="614" y1="44" x2="1068" y2="44" stroke="#e3e7ed" stroke-width="0.7"/>
  
-<!-- Fact card background -->
-<rect x="598" y="48" width="482" height="198" rx="8"
-  fill="#fff" stroke="#e3e7ed" stroke-width="1"/>
+<!-- Fact 1 -->
+<circle cx="626" cy="58" r="3.5" fill="#fef2f2" stroke="#fca5a5" stroke-width="0.8"/>
+<text x="626" y="62" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-weight="800" font-size="8" fill="#c8251c">!</text>
+<text x="639" y="57" font-family="'Inter',sans-serif" font-size="10" font-weight="600" fill="#1a202c">Taller than the Burj Khalifa (828m)</text>
+<text x="639" y="68" font-family="'Inter',sans-serif" font-size="9" fill="#6b7280">800m cube · the world's tallest building reaches 828m — nearly identical height</text>
  
-<!-- Card header -->
-<text x="618" y="72" font-family="'Barlow Condensed',sans-serif" font-weight="700" font-size="14"
-  fill="#1a202c" letter-spacing="1">1 MEGATONNE EMITTED EVERY ~10 MINUTES</text>
-<line x1="618" y1="78" x2="1060" y2="78" stroke="#e3e7ed" stroke-width="0.8"/>
+<!-- Fact 2 -->
+<circle cx="626" cy="85" r="3.5" fill="#fef2f2" stroke="#fca5a5" stroke-width="0.8"/>
+<text x="626" y="89" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-weight="800" font-size="8" fill="#c8251c">!</text>
+<text x="639" y="84" font-family="'Inter',sans-serif" font-size="10" font-weight="600" fill="#1a202c">2.4× taller than the Eiffel Tower</text>
+<text x="639" y="95" font-family="'Inter',sans-serif" font-size="9" fill="#6b7280">Stack the 330m Eiffel Tower 2.4 times to equal this cube's height</text>
  
-<!-- Fact rows -->
-<!-- Row 1 -->
-<circle cx="630" cy="100" r="4" fill="#fef2f2" stroke="#fca5a5" stroke-width="1"/>
-<text x="630" y="104" text-anchor="middle"
-  font-family="'Barlow Condensed',sans-serif" font-weight="800" font-size="9" fill="#c8251c">!</text>
-<text x="644" y="98" font-family="'Inter',sans-serif" font-size="11" font-weight="600" fill="#1a202c">Taller than the Burj Khalifa (828m)</text>
-<text x="644" y="111" font-family="'Inter',sans-serif" font-size="10" fill="#6b7280">The world's tallest building reaches 828m — 1 Mt of CO₂ is an 800m cube, nearly identical in height</text>
+<!-- Fact 3 -->
+<circle cx="626" cy="112" r="3.5" fill="#fef2f2" stroke="#fca5a5" stroke-width="0.8"/>
+<text x="626" y="116" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-weight="800" font-size="8" fill="#c8251c">!</text>
+<text x="639" y="111" font-family="'Inter',sans-serif" font-size="10" font-weight="600" fill="#1a202c">Footprint covers ½ the City of London</text>
+<text x="639" y="122" font-family="'Inter',sans-serif" font-size="9" fill="#6b7280">800m × 800m = 0.64 km² · City of London financial district = 1.12 km²</text>
  
-<!-- Row 2 -->
-<circle cx="630" cy="136" r="4" fill="#fef2f2" stroke="#fca5a5" stroke-width="1"/>
-<text x="630" y="140" text-anchor="middle"
-  font-family="'Barlow Condensed',sans-serif" font-weight="800" font-size="9" fill="#c8251c">!</text>
-<text x="644" y="134" font-family="'Inter',sans-serif" font-size="11" font-weight="600" fill="#1a202c">2.4× taller than the Eiffel Tower</text>
-<text x="644" y="147" font-family="'Inter',sans-serif" font-size="10" fill="#6b7280">The 330m Eiffel Tower stacked 2.4 times would equal the height of this cube</text>
- 
-<!-- Row 3 -->
-<circle cx="630" cy="172" r="4" fill="#fef2f2" stroke="#fca5a5" stroke-width="1"/>
-<text x="630" y="176" text-anchor="middle"
-  font-family="'Barlow Condensed',sans-serif" font-weight="800" font-size="9" fill="#c8251c">!</text>
-<text x="644" y="170" font-family="'Inter',sans-serif" font-size="11" font-weight="600" fill="#1a202c">Footprint covers half the City of London</text>
-<text x="644" y="183" font-family="'Inter',sans-serif" font-size="10" fill="#6b7280">800m × 800m = 0.64 km² · The City of London financial district = 1.12 km²</text>
- 
-<!-- Row 4 -->
-<circle cx="630" cy="208" r="4" fill="#fef2f2" stroke="#fca5a5" stroke-width="1"/>
-<text x="630" y="212" text-anchor="middle"
-  font-family="'Barlow Condensed',sans-serif" font-weight="800" font-size="9" fill="#c8251c">!</text>
-<text x="644" y="206" font-family="'Inter',sans-serif" font-size="11" font-weight="600" fill="#1a202c">Weight of 6,700 blue whales</text>
-<text x="644" y="219" font-family="'Inter',sans-serif" font-size="10" fill="#6b7280">1 Mt = 10⁹ kg · Average blue whale ≈ 150,000 kg · This cube = 6,667 blue whales</text>
+<!-- Fact 4 -->
+<circle cx="626" cy="139" r="3.5" fill="#fef2f2" stroke="#fca5a5" stroke-width="0.8"/>
+<text x="626" y="143" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-weight="800" font-size="8" fill="#c8251c">!</text>
+<text x="639" y="138" font-family="'Inter',sans-serif" font-size="10" font-weight="600" fill="#1a202c">Weight of 6,700 blue whales</text>
+<text x="639" y="149" font-family="'Inter',sans-serif" font-size="9" fill="#6b7280">1 Mt = 10⁹ kg · average blue whale ≈ 150,000 kg · 505 million m³ of gas</text>
  
 </svg>
 </div>
  
 <div class="page">
+ 
+<!-- ══ INDICATORS — 4 COLUMNS ══ -->
 <div class="sh">Key climate indicators · 1990–present</div>
 <div class="igrid">
  
   <div class="icard ic-red">
     <div class="icard-bar"></div>
     <div class="ch-hd"><div class="ch-title">Atmospheric CO₂</div>
-      <div class="ch-pill"><span class="ldot"></span>Monthly · ~2wk lag</div></div>
-    <div class="ch-desc">CO₂ at Mauna Loa, Hawaii — Earth's longest continuous record. Pre-industrial: ~280 ppm; never exceeded 300 ppm in 800,000 years of ice core data. 350 ppm is widely cited as the upper safe limit for a stable climate.</div>
+      <div class="ch-pill"><span class="ldot"></span>Monthly</div></div>
+    <div class="ch-desc">CO₂ at Mauna Loa. Pre-industrial: 280 ppm. Never exceeded 300 ppm in 800,000 years of ice cores. 350 ppm = widely cited safe limit.</div>
     <div class="ch-now-row">
       <div class="ch-now" id="co2now" style="color:var(--red)">—<sub>ppm</sub></div>
-      <div class="ch-base">safe limit: 350 ppm</div></div>
+      <div class="ch-base">safe: 350 ppm</div></div>
     <div class="cwrap"><canvas id="co2c"></canvas></div>
     <div class="chips">
-      <div class="chip"><span class="cp">12 months</span><span class="cv cu" id="co2_12m">…</span></div>
-      <div class="chip"><span class="cp">5 years</span><span class="cv cu" id="co2_5y">…</span></div>
-      <div class="chip"><span class="cp">10 years</span><span class="cv cu" id="co2_10y">…</span></div></div>
-    <div class="ch-src">NOAA Global Monitoring Lab · Mauna Loa Observatory · global-warming.org/api/co2-api</div>
+      <div class="chip"><span class="cp">12m</span><span class="cv cu" id="co2_12m">…</span></div>
+      <div class="chip"><span class="cp">5yr</span><span class="cv cu" id="co2_5y">…</span></div>
+      <div class="chip"><span class="cp">10yr</span><span class="cv cu" id="co2_10y">…</span></div></div>
+    <div class="ch-src">NOAA Global Monitoring Lab · Mauna Loa · global-warming.org/api/co2-api</div>
   </div>
  
   <div class="icard ic-ora">
     <div class="icard-bar"></div>
-    <div class="ch-hd"><div class="ch-title">Sea Surface Temp Anomaly</div>
+    <div class="ch-hd"><div class="ch-title">Sea Surface Temp</div>
       <div class="ch-pill"><span class="ldot"></span>Daily</div></div>
-    <div class="ch-desc">Global mean SST anomaly vs 1981–2010 baseline. Oceans absorb ~90% of excess greenhouse heat. Record +0.61°C in 2024; 2025 is a La Niña year causing temporary surface cooling while deep ocean heat content continues rising.</div>
+    <div class="ch-desc">Global mean SST anomaly vs 1981–2010 baseline. Oceans absorb ~90% of excess heat. Record +0.61°C in 2024; 2025 La Niña year causing temporary cooling.</div>
     <div class="ch-now-row">
       <div class="ch-now" style="color:#ea580c">+0.49<sub>°C</sub></div>
-      <div class="ch-base">2024 record: +0.61°C</div></div>
+      <div class="ch-base">2024: +0.61°C</div></div>
     <div class="cwrap"><canvas id="sstc"></canvas></div>
     <div class="chips">
-      <div class="chip"><span class="cp">12 months</span><span class="cv cn2">−0.12°C vs 2024</span></div>
-      <div class="chip"><span class="cp">5 years</span><span class="cv cu">+0.19°C (+63%)</span></div>
-      <div class="chip"><span class="cp">10 years</span><span class="cv cu">+0.39°C (+390%)</span></div></div>
+      <div class="chip"><span class="cp">12m</span><span class="cv cn2">−0.12°C</span></div>
+      <div class="chip"><span class="cp">5yr</span><span class="cv cu">+0.19°C</span></div>
+      <div class="chip"><span class="cp">10yr</span><span class="cv cu">+0.39°C</span></div></div>
     <div class="ch-src">NOAA OISST v2.1 · climatereanalyzer.org · vs 1981–2010 baseline</div>
   </div>
  
   <div class="icard ic-amb">
     <div class="icard-bar"></div>
     <div class="ch-hd"><div class="ch-title">Earth's Energy Imbalance</div>
-      <div class="ch-pill">Monthly · ~60 day lag</div></div>
-    <div class="ch-desc">Net rate at which energy enters the Earth system (W/m²). A positive imbalance means Earth absorbs more than it emits — the root cause of warming. Has roughly doubled since 2000, driving accelerating ocean heat uptake.</div>
+      <div class="ch-pill">Monthly · 60d lag</div></div>
+    <div class="ch-desc">Net energy entering Earth system (W/m²). Positive = warming. Has doubled since 2000, driving accelerating ocean heat and sea level rise.</div>
     <div class="ch-now-row">
       <div class="ch-now" style="color:var(--amber)">0.90<sub>W/m²</sub></div>
-      <div class="ch-base">pre-industrial: ~0 W/m²</div></div>
+      <div class="ch-base">pre-ind: ~0</div></div>
     <div class="cwrap"><canvas id="eeic"></canvas></div>
     <div class="chips">
-      <div class="chip"><span class="cp">vs 2000</span><span class="cv cu">+0.48 W/m² (+114%)</span></div>
-      <div class="chip"><span class="cp">vs 2010</span><span class="cv cu">+0.35 W/m² (+64%)</span></div>
-      <div class="chip"><span class="cp">vs 2015</span><span class="cv cu">+0.20 W/m² (+29%)</span></div></div>
-    <div class="ch-src">NASA CERES EBAF Ed4.2.1 · opendap.larc.nasa.gov · top-of-atmosphere radiation</div>
+      <div class="chip"><span class="cp">vs 2000</span><span class="cv cu">+0.48 (+114%)</span></div>
+      <div class="chip"><span class="cp">vs 2010</span><span class="cv cu">+0.35 (+64%)</span></div>
+      <div class="chip"><span class="cp">vs 2015</span><span class="cv cu">+0.20 (+29%)</span></div></div>
+    <div class="ch-src">NASA CERES EBAF Ed4.2.1 · opendap.larc.nasa.gov</div>
   </div>
  
   <div class="icard ic-blu">
     <div class="icard-bar"></div>
     <div class="ch-hd"><div class="ch-title">Arctic Sea Ice Extent</div>
-      <div class="ch-pill"><span class="ldot"></span>Daily · annual index</div></div>
-    <div class="ch-desc">Annual September minimum Arctic sea ice extent (M km²). Arctic ice acts as Earth's reflective shield — loss triggers the ice-albedo feedback where darker ocean absorbs more heat. Oldest ice (&gt;4yr) has declined over 95% since the 1980s.</div>
+      <div class="ch-pill"><span class="ldot"></span>Daily</div></div>
+    <div class="ch-desc">September minimum extent (M km²). Arctic ice loss triggers albedo feedback — darker ocean absorbs more heat. Ice >4yr old has declined 95%+ since 1980s.</div>
     <div class="ch-now-row">
       <div class="ch-now" id="icenow" style="color:var(--blue)">4.18<sub>M km²</sub></div>
-      <div class="ch-base">1980 avg: ~7.5 M km²</div></div>
+      <div class="ch-base">1980: ~7.5 M km²</div></div>
     <div class="cwrap"><canvas id="icec"></canvas></div>
     <div class="chips">
-      <div class="chip"><span class="cp">12 months</span><span class="cv cd">−0.10M (−2.3%)</span></div>
-      <div class="chip"><span class="cp">5 years</span><span class="cv cd">−0.54M (−11%)</span></div>
-      <div class="chip"><span class="cp">10 years</span><span class="cv cd">−0.84M (−17%)</span></div></div>
-    <div class="ch-src">NSIDC Sea Ice Index v3 · nsidc.org · G02135 · global-warming.org/api/arctic-api</div>
+      <div class="chip"><span class="cp">12m</span><span class="cv cd">−0.10M</span></div>
+      <div class="chip"><span class="cp">5yr</span><span class="cv cd">−0.54M</span></div>
+      <div class="chip"><span class="cp">10yr</span><span class="cv cd">−0.84M</span></div></div>
+    <div class="ch-src">NSIDC Sea Ice Index v3 · nsidc.org · G02135 · global-warming.org</div>
   </div>
  
 </div>
  
+<!-- ══ SECTORS ══ -->
 <div class="sh">Sector drivers · live estimates</div>
 <div class="sgrid">
  
   <div class="scard">
     <div class="stitle">🏭 Industry · EU + UK</div>
-    <div class="lcb" style="padding:12px">
+    <div class="lcb" style="padding:9px">
       <div class="lcl"><span class="ldot"></span>EU + UK manufacturing CO₂e in 2026</div>
       <div class="lcv" id="ind_ctr">0.000<span class="lcu">Mt</span></div>
-      <div class="lcs">~250 Mt/yr · steel, cement, aluminium, chemicals · Climate TRACE 2024</div>
+      <div class="lcs">~250 Mt/yr · steel, cement, aluminium, chemicals</div>
     </div>
     <div class="subhd">CO₂e by country · Mt/yr · 2024</div>
     <div id="indbars"></div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:9px">
-      <span style="font-size:9px;color:var(--dim);display:flex;align-items:center;gap:3px"><span style="width:8px;height:8px;border-radius:2px;background:#2563eb;display:inline-block"></span>Steel</span>
-      <span style="font-size:9px;color:var(--dim);display:flex;align-items:center;gap:3px"><span style="width:8px;height:8px;border-radius:2px;background:#dc2626;display:inline-block"></span>Cement</span>
-      <span style="font-size:9px;color:var(--dim);display:flex;align-items:center;gap:3px"><span style="width:8px;height:8px;border-radius:2px;background:#16a34a;display:inline-block"></span>Aluminium</span>
-      <span style="font-size:9px;color:var(--dim);display:flex;align-items:center;gap:3px"><span style="width:8px;height:8px;border-radius:2px;background:#ca8a04;display:inline-block"></span>Chemicals</span>
+    <div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:7px">
+      <span style="font-size:8px;color:var(--dim);display:flex;align-items:center;gap:2px"><span style="width:7px;height:7px;border-radius:2px;background:#2563eb;display:inline-block"></span>Steel</span>
+      <span style="font-size:8px;color:var(--dim);display:flex;align-items:center;gap:2px"><span style="width:7px;height:7px;border-radius:2px;background:#dc2626;display:inline-block"></span>Cement</span>
+      <span style="font-size:8px;color:var(--dim);display:flex;align-items:center;gap:2px"><span style="width:7px;height:7px;border-radius:2px;background:#16a34a;display:inline-block"></span>Aluminium</span>
+      <span style="font-size:8px;color:var(--dim);display:flex;align-items:center;gap:2px"><span style="width:7px;height:7px;border-radius:2px;background:#ca8a04;display:inline-block"></span>Chemicals</span>
     </div>
-    <div class="n9">Climate TRACE v4.8 · Scope 1 direct · 2024 annual · api.climatetrace.org/v6</div>
+    <div class="n9">Climate TRACE v4.8 · Scope 1 · 2024 annual · api.climatetrace.org/v6</div>
   </div>
  
   <div class="scard">
     <div class="stitle">✈️ Transport</div>
-    <div class="subhd"><span class="ldot"></span>Aviation · global fuel &amp; miles · 2026 YTD</div>
+    <div class="subhd"><span class="ldot"></span>Aviation · 2026 YTD</div>
     <div class="lcb">
       <div class="lc-inner">
         <div class="lc-left">
           <div class="lcl">Jet fuel consumed</div>
           <div class="lcv" id="av_tot">0.000<span class="lcu">Mt</span></div>
           <div class="lcs">~300 Mt/yr · ~9.51 t/sec</div>
-          <div style="margin-top:8px">
-            <div class="ftk">
-              <div class="ff" style="width:99.3%"><span class="fp">Fossil 99.3%</span></div>
-              <div class="fg" style="width:0.7%"></div>
-            </div>
+          <div style="margin-top:6px">
+            <div class="ftk"><div class="ff" style="width:99.3%"><span class="fp">Fossil 99.3%</span></div><div class="fg" style="width:0.7%"></div></div>
             <div class="fleg">
               <span><span class="fd" style="background:#c8251c"></span>Fossil: <span id="av_fos" style="font-family:var(--mono);font-weight:500">—</span> Mt</span>
-              <span><span class="fd" style="background:#166534"></span>SAF 0.7%: <span id="av_saf" style="font-family:var(--mono);font-weight:500;color:var(--green)">—</span> Mt</span>
+              <span><span class="fd" style="background:#166534"></span>SAF: <span id="av_saf" style="font-family:var(--mono);font-weight:500;color:var(--green)">—</span> Mt</span>
             </div>
           </div>
         </div>
         <div class="lc-right">
-          <div class="lcr-item"><div class="lcr-label">Fossil miles flown</div>
-            <div class="lcr-val" id="av_fmi">—<span class="lcr-unit"> bn mi</span></div></div>
-          <div class="lcr-item"><div class="lcr-label">SAF miles flown</div>
-            <div class="lcr-val" id="av_smi" style="color:var(--green)">—<span class="lcr-unit"> bn mi</span></div></div>
-          <div class="lcr-item"><div class="lcr-label">Total miles</div>
-            <div class="lcr-val" id="av_tmi">—<span class="lcr-unit"> bn mi</span></div></div>
+          <div class="lcr-item"><div class="lcr-label">Fossil miles</div><div class="lcr-val" id="av_fmi">—<span class="lcr-unit"> bn mi</span></div></div>
+          <div class="lcr-item"><div class="lcr-label">SAF miles</div><div class="lcr-val" id="av_smi" style="color:var(--green)">—<span class="lcr-unit"> bn mi</span></div></div>
+          <div class="lcr-item"><div class="lcr-label">Total miles</div><div class="lcr-val" id="av_tmi">—<span class="lcr-unit"> bn mi</span></div></div>
         </div>
       </div>
     </div>
-    <div class="n9">IATA 2025 · EASA ReFuelEU · IAG 162k t SAF · AF-KLM 103k t SAF · EU: 2%→6%→70%</div>
+    <div class="n9">IATA 2025 · EASA ReFuelEU · IAG 162k t SAF · EU: 2%→6%→70% (2025–2050)</div>
     <div class="divr"></div>
-    <div class="subhd"><span class="ldot"></span>Shipping · global fuel &amp; miles · 2026 YTD</div>
+    <div class="subhd"><span class="ldot"></span>Shipping · 2026 YTD</div>
     <div class="lcb">
       <div class="lc-inner">
         <div class="lc-left">
           <div class="lcl">Marine fuel consumed</div>
           <div class="lcv" id="sh_tot">0.000<span class="lcu">Mt</span></div>
           <div class="lcs">~300 Mt/yr · ~9.51 t/sec</div>
-          <div style="margin-top:8px">
-            <div class="ftk">
-              <div class="ff" style="width:99.1%"><span class="fp">HFO/VLSFO 99.1%</span></div>
-              <div class="fg" style="width:0.9%"></div>
-            </div>
+          <div style="margin-top:6px">
+            <div class="ftk"><div class="ff" style="width:99.1%"><span class="fp">HFO/VLSFO 99.1%</span></div><div class="fg" style="width:0.9%"></div></div>
             <div class="fleg">
               <span><span class="fd" style="background:#c8251c"></span>Fossil: <span id="sh_fos" style="font-family:var(--mono);font-weight:500">—</span> Mt</span>
-              <span><span class="fd" style="background:#166534"></span>Green 0.9%: <span id="sh_grn" style="font-family:var(--mono);font-weight:500;color:var(--green)">—</span> Mt</span>
+              <span><span class="fd" style="background:#166534"></span>Green: <span id="sh_grn" style="font-family:var(--mono);font-weight:500;color:var(--green)">—</span> Mt</span>
             </div>
           </div>
         </div>
         <div class="lc-right">
-          <div class="lcr-item"><div class="lcr-label">Fossil miles sailed</div>
-            <div class="lcr-val" id="sh_fmi">—<span class="lcr-unit"> bn mi</span></div></div>
-          <div class="lcr-item"><div class="lcr-label">eFuel/alt miles</div>
-            <div class="lcr-val" id="sh_gmi" style="color:var(--green)">—<span class="lcr-unit"> bn mi</span></div></div>
-          <div class="lcr-item"><div class="lcr-label">Total miles</div>
-            <div class="lcr-val" id="sh_tmi">—<span class="lcr-unit"> bn mi</span></div></div>
+          <div class="lcr-item"><div class="lcr-label">Fossil miles</div><div class="lcr-val" id="sh_fmi">—<span class="lcr-unit"> bn mi</span></div></div>
+          <div class="lcr-item"><div class="lcr-label">eFuel miles</div><div class="lcr-val" id="sh_gmi" style="color:var(--green)">—<span class="lcr-unit"> bn mi</span></div></div>
+          <div class="lcr-item"><div class="lcr-label">Total miles</div><div class="lcr-val" id="sh_tmi">—<span class="lcr-unit"> bn mi</span></div></div>
         </div>
       </div>
     </div>
-    <div class="n9">IMO DCS 2024 · DNV Alt Fuels Insight · ~100k vessels · IMO net-zero 2050</div>
+    <div class="n9">IMO DCS 2024 · DNV Alt Fuels Insight · IMO net-zero 2050</div>
   </div>
  
   <div class="scard">
     <div class="stitle">⚡ Electricity &amp; Heat</div>
-    <div class="subhd">Carbon intensity of the grid · gCO₂/kWh · 1990–2024</div>
-    <div style="font-size:11px;color:var(--dim);margin-bottom:10px;line-height:1.5">Daily average (not hourly — hourly varies 3–8× intraday). EU grid has decarbonised ~54% since 1990 driven by renewables and coal phase-out.</div>
+    <div class="subhd">Grid carbon intensity · gCO₂/kWh · 1990–2024</div>
+    <div style="font-size:9px;color:var(--dim);margin-bottom:7px;line-height:1.45">Daily avg (hourly varies 3–8×). EU grid decarbonised ~54% since 1990 via renewables &amp; coal phase-out.</div>
     <div class="ecwrap"><canvas id="gridc"></canvas></div>
-    <div class="n9"><strong style="color:var(--bright)">Note:</strong> Live hourly intensity requires the <a href="https://app.electricitymaps.com/docs">Electricity Maps API</a>. Chart shows Ember &amp; ENTSO-E verified annual averages.</div>
-    <div class="n9" style="margin-top:5px">Sources: Ember · ENTSO-E · National Grid ESO · 2024 verified annual data</div>
+    <div class="n9">Sources: Ember · ENTSO-E · National Grid ESO · 2024 verified annual data<br>
+      Live hourly: <a href="https://app.electricitymaps.com/docs">Electricity Maps API</a></div>
   </div>
  
 </div>
  
+<!-- ══ PROGRESS TRENDS ══ -->
 <div class="sh">Signals of progress · 1990–present</div>
 <div class="trend-grid">
   <div class="tcard tc-grn">
     <div class="tc-bar"></div>
     <div class="tc-title">Global EV Rollout vs ICE Sales</div>
-    <div class="tc-desc">Global EV sales vs ICE new car sales (both millions, left axis). EV share: &lt;0.01% in 2010 → ~18% in 2024 — a structural shift accelerating as battery costs fall below $100/kWh.</div>
+    <div class="tc-desc">EV vs ICE new car sales (millions, single axis). EV share: &lt;0.01% in 2010 → ~18% in 2024. Battery costs now below $100/kWh accelerating the shift.</div>
     <div class="tc-wrap"><canvas id="evc"></canvas></div>
-    <div class="n9" style="margin-top:10px">IEA Global EV Outlook 2024 · OICA World Motor Vehicle Production · BloombergNEF</div>
+    <div class="n9" style="margin-top:6px">IEA Global EV Outlook 2024 · OICA · BloombergNEF</div>
   </div>
   <div class="tcard tc-sol">
     <div class="tc-bar"></div>
     <div class="tc-title">Solar &amp; Battery Storage · Europe</div>
-    <div class="tc-desc">Cumulative installed solar PV capacity (GW) and grid-scale battery storage (GWh) across Europe. Solar has grown ~1,000× since 2000. Battery storage now in exponential growth as costs collapse.</div>
+    <div class="tc-desc">Cumulative solar PV (GW) and grid battery storage (GWh) across Europe. Solar ~1,000× since 2000. Battery now in exponential growth as costs collapse.</div>
     <div class="tc-wrap"><canvas id="solc"></canvas></div>
-    <div class="n9" style="margin-top:10px">IRENA · SolarPower Europe · Ember · BloombergNEF 2024 · annual installed capacity data</div>
+    <div class="n9" style="margin-top:6px">IRENA · SolarPower Europe · Ember · BloombergNEF 2024</div>
   </div>
 </div>
  
 <footer>
-  SOURCES: EDGAR/JRC · NOAA GML · NOAA OISST · NASA CERES EBAF · NSIDC · Climate TRACE v4.8 · IATA/EASA ReFuelEU · DNV Alt Fuels Insight · Ember · ENTSO-E · IEA GEO · IRENA · SolarPower Europe · BloombergNEF<br>
-  Live counters from Jan 1 2026 00:00 UTC at published annual rates · Climate TRACE ~60d lag · CERES monthly
-  &nbsp;·&nbsp; <span id="lupd"></span>
+  EDGAR/JRC · NOAA GML · NOAA OISST · NASA CERES · NSIDC · Climate TRACE v4.8 · IATA/EASA · DNV · Ember · ENTSO-E · IEA · IRENA · BloombergNEF &nbsp;·&nbsp; <span id="lupd"></span>
 </footer>
 </div>
  
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script>
 const YS=new Date('2026-01-01T00:00:00Z').getTime(),MPY=365.25*24*3600*1000;
-const R_G=53500/MPY,R_AV=300/MPY,R_SH=300/MPY,R_IND=250/MPY;
-const R_AVM=6000/MPY,R_SHM=2500/MPY;
+const R_G=53500/MPY,R_AV=300/MPY,R_SH=300/MPY,R_IND=250/MPY,R_AVM=6000/MPY,R_SHM=2500/MPY;
 const A=53500,D=A/365.25,H=D/24,M=H/60;
 document.getElementById('rb-day').innerHTML=D.toFixed(2)+'<span class="rb-unit">Mt</span>';
 document.getElementById('rb-hr').innerHTML=H.toFixed(3)+'<span class="rb-unit">Mt</span>';
@@ -657,7 +520,6 @@ document.getElementById('rb-min').innerHTML=M.toFixed(4)+'<span class="rb-unit">
  
 const f3=v=>{const i=Math.floor(v),d=(v-i).toFixed(3).slice(1);return i.toLocaleString('en-US')+d};
 const f4=v=>{const i=Math.floor(v),d=(v-i).toFixed(4).slice(1);return i.toLocaleString('en-US')+d};
-const f2=v=>{const i=Math.floor(v),d=(v-i).toFixed(2).slice(1);return i.toLocaleString('en-US')+d};
  
 function tick(){
   const e=Math.max(0,Date.now()-YS),g=e*R_G;
@@ -685,78 +547,63 @@ function tick(){
 }
 requestAnimationFrame(tick);
  
-Chart.defaults.color='#94a3b8';
-Chart.defaults.borderColor='#e3e7ed';
-Chart.defaults.font.family="'Inter',sans-serif";
-Chart.defaults.font.size=10;
-const TT={backgroundColor:'#1a202c',borderColor:'#e3e7ed',borderWidth:1,
-  titleColor:'#fff',bodyColor:'#94a3b8',padding:10,
-  titleFont:{family:"'Barlow Condensed'",size:14,weight:'700'},
-  bodyFont:{family:"'JetBrains Mono'",size:10}};
- 
-const sparseLabels={
-  id:'sl',
-  afterDatasetsDraw(chart){
-    const{ctx,data}=chart;
-    data.datasets.forEach((ds,di)=>{
-      if(ds._noLabels) return;
-      const meta=chart.getDatasetMeta(di);
-      if(meta.hidden||!meta.data.length) return;
-      [0,meta.data.length-1].forEach(i=>{
-        const pt=meta.data[i],val=ds.data[i];
-        if(val===null||val===undefined) return;
-        ctx.save();
-        ctx.font=`500 9px 'JetBrains Mono',monospace`;
-        ctx.fillStyle=typeof ds.borderColor==='string'?ds.borderColor:'#94a3b8';
-        ctx.textAlign='center';ctx.textBaseline='bottom';
-        ctx.fillText(val+(ds._unit||''),pt.x,pt.y-6);
-        ctx.restore();
-      });
+Chart.defaults.color='#94a3b8';Chart.defaults.borderColor='#e3e7ed';
+Chart.defaults.font.family="'Inter',sans-serif";Chart.defaults.font.size=9;
+const TT={backgroundColor:'#1a202c',borderColor:'#e3e7ed',borderWidth:1,titleColor:'#fff',
+  bodyColor:'#94a3b8',padding:8,titleFont:{family:"'Barlow Condensed'",size:13,weight:'700'},
+  bodyFont:{family:"'JetBrains Mono'",size:9}};
+const sparseLbl={id:'sl',afterDatasetsDraw(chart){
+  const{ctx,data}=chart;
+  data.datasets.forEach((ds,di)=>{
+    if(ds._noLabels) return;
+    const meta=chart.getDatasetMeta(di);
+    if(meta.hidden||!meta.data.length) return;
+    [0,meta.data.length-1].forEach(i=>{
+      const pt=meta.data[i],val=ds.data[i];
+      if(val===null||val===undefined) return;
+      ctx.save();ctx.font=`500 8px 'JetBrains Mono',monospace`;
+      ctx.fillStyle=typeof ds.borderColor==='string'?ds.borderColor:'#94a3b8';
+      ctx.textAlign='center';ctx.textBaseline='bottom';
+      ctx.fillText(val+(ds._unit||''),pt.x,pt.y-5);ctx.restore();
     });
-  }
-};
+  });
+}};
  
 function mkC(id,labels,datasets,scales){
-  const ctx=document.getElementById(id);
-  if(!ctx) return;
+  const ctx=document.getElementById(id);if(!ctx) return;
   new Chart(ctx.getContext('2d'),{type:'line',data:{labels,datasets},
     options:{responsive:true,maintainAspectRatio:false,
       interaction:{mode:'index',intersect:false},
-      plugins:{
-        legend:{display:datasets.length>1,
-          labels:{boxWidth:10,font:{size:9},color:'#4a5568',padding:10,usePointStyle:true}},
-        tooltip:TT},
+      plugins:{legend:{display:datasets.length>1,
+        labels:{boxWidth:8,font:{size:8},color:'#4a5568',padding:8,usePointStyle:true}},tooltip:TT},
       scales:scales||{
-        x:{grid:{color:'#f1f4f8'},ticks:{color:'#94a3b8',maxRotation:45,font:{size:9}},border:{color:'#e3e7ed'}},
-        y:{grid:{color:'#f1f4f8'},border:{color:'#e3e7ed'},ticks:{color:'#94a3b8',font:{size:9}}}}
-    },plugins:[sparseLabels]});
+        x:{grid:{color:'#f1f4f8'},ticks:{color:'#94a3b8',maxRotation:45,font:{size:8}},border:{color:'#e3e7ed'}},
+        y:{grid:{color:'#f1f4f8'},border:{color:'#e3e7ed'},ticks:{color:'#94a3b8',font:{size:8}}}}
+    },plugins:[sparseLbl]});
 }
  
 // CO2
-const CO2_L=['1990','1992','1994','1996','1998','2000','2002','2004','2006','2008','2010','2012','2014','2016','2018','2020','2022','2024','2025'];
-const CO2_V=[354.0,356.4,358.9,362.6,366.6,369.5,373.1,377.5,381.9,385.6,389.9,393.8,398.6,403.8,408.5,414.2,418.6,422.8,426.4];
+const CO2_L=['1990','1993','1996','1999','2002','2005','2008','2011','2014','2017','2020','2022','2024','2025'];
+const CO2_V=[354.0,357.1,362.6,368.3,373.1,379.8,385.6,391.6,398.6,406.5,414.2,418.6,422.8,426.4];
 function renderCO2(labels,vals){
   const cur=vals[vals.length-1];
   document.getElementById('co2now').innerHTML=cur.toFixed(1)+'<sub>ppm</sub>';
   const fc=(c,o)=>`+${(c-o).toFixed(1)}ppm (+${((c-o)/o*100).toFixed(1)}%)`;
   document.getElementById('co2_12m').textContent=fc(cur,vals[vals.length-3]||vals[0]);
-  document.getElementById('co2_5y').textContent=fc(cur,vals[vals.length-8]||vals[0]);
-  document.getElementById('co2_10y').textContent=fc(cur,vals[vals.length-13]||vals[0]);
+  document.getElementById('co2_5y').textContent=fc(cur,vals[vals.length-7]||vals[0]);
+  document.getElementById('co2_10y').textContent=fc(cur,vals[0]);
   mkC('co2c',labels,[
-    {label:'CO₂ ppm',data:vals,borderColor:'#c8251c',borderWidth:2,
-      pointRadius:3,pointHoverRadius:5,pointBackgroundColor:'#c8251c',
-      pointBorderColor:'#fff',pointBorderWidth:1.5,tension:0.35,fill:true,
-      backgroundColor:c=>{const g=c.chart.ctx.createLinearGradient(0,0,0,220);
-        g.addColorStop(0,'rgba(200,37,28,0.14)');g.addColorStop(1,'rgba(200,37,28,0.02)');return g},
+    {label:'CO₂ ppm',data:vals,borderColor:'#c8251c',borderWidth:1.8,
+      pointRadius:2.5,pointHoverRadius:4,pointBackgroundColor:'#c8251c',pointBorderColor:'#fff',pointBorderWidth:1,
+      tension:0.35,fill:true,
+      backgroundColor:c=>{const g=c.chart.ctx.createLinearGradient(0,0,0,120);g.addColorStop(0,'rgba(200,37,28,0.13)');g.addColorStop(1,'rgba(200,37,28,0.01)');return g},
       _unit:'ppm'},
-    {label:'350ppm safe limit',data:labels.map(()=>350),
-      borderColor:'#1e40af',borderWidth:1.5,borderDash:[6,4],
-      pointRadius:0,fill:false,tension:0,_noLabels:true}
+    {label:'350ppm safe limit',data:labels.map(()=>350),borderColor:'#1e40af',borderWidth:1.2,
+      borderDash:[5,3],pointRadius:0,fill:false,tension:0,_noLabels:true}
   ],{
-    x:{grid:{color:'#f1f4f8'},ticks:{color:'#94a3b8',maxRotation:45,font:{size:9}},border:{color:'#e3e7ed'}},
+    x:{grid:{color:'#f1f4f8'},ticks:{color:'#94a3b8',maxRotation:45,font:{size:8}},border:{color:'#e3e7ed'}},
     y:{grid:{color:'#f1f4f8'},border:{color:'#e3e7ed'},
-       ticks:{color:'#94a3b8',font:{size:9},callback:v=>v+' ppm'},
-       min:340,max:435,
+       ticks:{color:'#94a3b8',font:{size:8},callback:v=>v+' ppm'},min:340,max:435,
        afterBuildTicks(ax){if(!ax.ticks.find(t=>t.value===350))ax.ticks.unshift({value:350})}}
   });
 }
@@ -766,35 +613,30 @@ fetch('https://global-warming.org/api/co2-api')
     const res=(d.result||[]).filter(x=>x.trend&&+x.year>=1990);
     if(res.length<20) throw 0;
     const by={};res.forEach(x=>{(by[x.year]=by[x.year]||[]).push(+x.trend)});
-    const yrs=Object.keys(by).sort();
-    const thin=yrs.filter((y,i)=>+y>=2018||i%2===0);
-    renderCO2(thin,thin.map(y=>+(by[y].reduce((a,b)=>a+b)/by[y].length).toFixed(1)));
-  })
-  .catch(()=>renderCO2(CO2_L,CO2_V));
+    const yrs=Object.keys(by).sort().filter((y,i)=>+y>=2018||i%3===0);
+    renderCO2(yrs,yrs.map(y=>+(by[y].reduce((a,b)=>a+b)/by[y].length).toFixed(1)));
+  }).catch(()=>renderCO2(CO2_L,CO2_V));
  
 // SST
 mkC('sstc',
-  ['1990','1992','1994','1996','1998','2000','2002','2004','2006','2008','2010','2012','2014','2016','2018','2020','2022','2024','2025'],
-  [{label:'SST anomaly °C',data:[-0.04,-0.01,0.01,0.04,0.11,0.08,0.12,0.10,0.14,0.11,0.17,0.18,0.25,0.20,0.18,0.25,0.40,0.61,0.49],
-    borderColor:'#ea580c',borderWidth:2,pointRadius:3,pointHoverRadius:5,
-    pointBackgroundColor:'#ea580c',pointBorderColor:'#fff',pointBorderWidth:1.5,tension:0.35,fill:true,
-    backgroundColor:c=>{const g=c.chart.ctx.createLinearGradient(0,0,0,220);
-      g.addColorStop(0,'rgba(234,88,12,0.14)');g.addColorStop(1,'rgba(234,88,12,0.02)');return g},_unit:'°C'}],
-  {x:{grid:{color:'#f1f4f8'},ticks:{color:'#94a3b8',maxRotation:45,font:{size:9}},border:{color:'#e3e7ed'}},
-   y:{grid:{color:'#f1f4f8'},border:{color:'#e3e7ed'},ticks:{color:'#94a3b8',font:{size:9},callback:v=>v.toFixed(2)+'°C'}}}
+  ['1990','1993','1996','1999','2002','2005','2008','2011','2014','2017','2020','2022','2024','2025'],
+  [{label:'SST anomaly',data:[-0.04,-0.01,0.04,0.10,0.12,0.15,0.10,0.12,0.25,0.18,0.25,0.40,0.61,0.49],
+    borderColor:'#ea580c',borderWidth:1.8,pointRadius:2.5,pointHoverRadius:4,
+    pointBackgroundColor:'#ea580c',pointBorderColor:'#fff',pointBorderWidth:1,tension:0.35,fill:true,
+    backgroundColor:c=>{const g=c.chart.ctx.createLinearGradient(0,0,0,120);g.addColorStop(0,'rgba(234,88,12,0.13)');g.addColorStop(1,'rgba(234,88,12,0.01)');return g},_unit:'°C'}],
+  {x:{grid:{color:'#f1f4f8'},ticks:{color:'#94a3b8',maxRotation:45,font:{size:8}},border:{color:'#e3e7ed'}},
+   y:{grid:{color:'#f1f4f8'},border:{color:'#e3e7ed'},ticks:{color:'#94a3b8',font:{size:8},callback:v=>v.toFixed(2)+'°C'}}}
 );
  
 // EEI
 mkC('eeic',
   ['1990','1993','1996','1999','2002','2005','2008','2011','2014','2017','2020','2022','2024'],
-  [{label:'EEI W/m²',data:[0.35,0.38,0.40,0.42,0.45,0.50,0.57,0.63,0.70,0.76,0.83,0.88,0.90],
-    borderColor:'#b45309',borderWidth:2,pointRadius:3,pointHoverRadius:5,
-    pointBackgroundColor:'#b45309',pointBorderColor:'#fff',pointBorderWidth:1.5,tension:0.35,fill:true,
-    backgroundColor:c=>{const g=c.chart.ctx.createLinearGradient(0,0,0,220);
-      g.addColorStop(0,'rgba(180,83,9,0.14)');g.addColorStop(1,'rgba(180,83,9,0.02)');return g},_unit:' W/m²'}],
-  {x:{grid:{color:'#f1f4f8'},ticks:{color:'#94a3b8',maxRotation:45,font:{size:9}},border:{color:'#e3e7ed'}},
-   y:{grid:{color:'#f1f4f8'},border:{color:'#e3e7ed'},
-      ticks:{color:'#94a3b8',font:{size:9},callback:v=>v.toFixed(2)+' W/m²'},min:0.25,max:1.0}}
+  [{label:'EEI',data:[0.35,0.38,0.40,0.42,0.45,0.50,0.57,0.63,0.70,0.76,0.83,0.88,0.90],
+    borderColor:'#b45309',borderWidth:1.8,pointRadius:2.5,pointHoverRadius:4,
+    pointBackgroundColor:'#b45309',pointBorderColor:'#fff',pointBorderWidth:1,tension:0.35,fill:true,
+    backgroundColor:c=>{const g=c.chart.ctx.createLinearGradient(0,0,0,120);g.addColorStop(0,'rgba(180,83,9,0.13)');g.addColorStop(1,'rgba(180,83,9,0.01)');return g},_unit:' W/m²'}],
+  {x:{grid:{color:'#f1f4f8'},ticks:{color:'#94a3b8',maxRotation:45,font:{size:8}},border:{color:'#e3e7ed'}},
+   y:{grid:{color:'#f1f4f8'},border:{color:'#e3e7ed'},ticks:{color:'#94a3b8',font:{size:8},callback:v=>v.toFixed(2)+' W/m²'},min:0.25,max:1.0}}
 );
  
 // Arctic
@@ -803,14 +645,12 @@ const IV=[6.23,6.50,7.88,6.24,5.96,5.57,4.67,4.61,5.02,4.64,3.74,4.67,4.28,4.18]
 function renderArctic(labels,vals){
   document.getElementById('icenow').innerHTML=vals[vals.length-1].toFixed(2)+'<sub>M km²</sub>';
   mkC('icec',labels,
-    [{label:'Arctic extent M km²',data:vals,borderColor:'#1e40af',borderWidth:2,
-      pointRadius:3,pointHoverRadius:5,pointBackgroundColor:'#1e40af',
-      pointBorderColor:'#fff',pointBorderWidth:1.5,tension:0.35,fill:true,
-      backgroundColor:c=>{const g=c.chart.ctx.createLinearGradient(0,0,0,220);
-        g.addColorStop(0,'rgba(30,64,175,0.14)');g.addColorStop(1,'rgba(30,64,175,0.02)');return g},_unit:'M'}],
-    {x:{grid:{color:'#f1f4f8'},ticks:{color:'#94a3b8',maxRotation:45,font:{size:9}},border:{color:'#e3e7ed'}},
-     y:{grid:{color:'#f1f4f8'},border:{color:'#e3e7ed'},
-        ticks:{color:'#94a3b8',font:{size:9},callback:v=>v.toFixed(1)+' M km²'},min:3,max:9}}
+    [{label:'Extent',data:vals,borderColor:'#1e40af',borderWidth:1.8,
+      pointRadius:2.5,pointHoverRadius:4,pointBackgroundColor:'#1e40af',pointBorderColor:'#fff',pointBorderWidth:1,
+      tension:0.35,fill:true,
+      backgroundColor:c=>{const g=c.chart.ctx.createLinearGradient(0,0,0,120);g.addColorStop(0,'rgba(30,64,175,0.13)');g.addColorStop(1,'rgba(30,64,175,0.01)');return g},_unit:'M'}],
+    {x:{grid:{color:'#f1f4f8'},ticks:{color:'#94a3b8',maxRotation:45,font:{size:8}},border:{color:'#e3e7ed'}},
+     y:{grid:{color:'#f1f4f8'},border:{color:'#e3e7ed'},ticks:{color:'#94a3b8',font:{size:8},callback:v=>v.toFixed(1)+' M km²'},min:3,max:9}}
   );
 }
 fetch('https://global-warming.org/api/arctic-api')
@@ -818,8 +658,7 @@ fetch('https://global-warming.org/api/arctic-api')
   .then(d=>{
     const dd=(d.arcticData||[]).filter(x=>x.extent&&+x.extent>0&&+x.year>=1990);
     if(dd.length<10) throw 0;
-    const s=[...dd].sort((a,b)=>+a.year-+b.year);
-    const thin=s.filter((_,i)=>i%2===0||+_.year>=2015);
+    const thin=[...dd].sort((a,b)=>+a.year-+b.year).filter((_,i)=>i%3===0||+_.year>=2015);
     renderArctic(thin.map(x=>x.year),thin.map(x=>+(+x.extent).toFixed(2)));
   }).catch(()=>renderArctic(IL,IV));
  
@@ -839,95 +678,88 @@ document.getElementById('indbars').innerHTML=IND.map(d=>{
   let segs='';
   ['steel','cement','aluminum','chemicals'].forEach(k=>{
     if(!d[k]) return;
-    const w=(d[k]/tot*100).toFixed(1),show=(d[k]/tot*100)>9;
+    const w=(d[k]/tot*100).toFixed(1),show=d[k]/tot*100>10;
     segs+=`<div class="bs" style="width:${w}%;background:${IC[k]}">${show?`<span class="bs-lbl">${d[k].toFixed(1)}</span>`:''}</div>`;
   });
   return `<div class="br"><span class="bf">${d.f}</span><span class="bn">${d.n}</span>
-    <div class="bt"><div style="width:${pw}%;height:100%;display:flex;overflow:hidden;border-radius:3px">${segs}</div></div>
+    <div class="bt"><div style="width:${pw}%;height:100%;display:flex;overflow:hidden;border-radius:2px">${segs}</div></div>
     <span class="bv">${tot.toFixed(1)}</span></div>`;
 }).join('');
  
-// Grid chart (all same thickness, no inline labels)
-mkC('gridc',
-  ['1990','1995','2000','2005','2010','2015','2018','2020','2022','2024'],
+// Grid chart
+mkC('gridc',['1990','1995','2000','2005','2010','2015','2018','2020','2022','2024'],
   [
-    {label:'EU27',data:[490,460,430,400,365,330,300,270,248,228],borderColor:'#1e40af',borderWidth:2,pointRadius:2,pointHoverRadius:4,pointBackgroundColor:'#1e40af',pointBorderColor:'#fff',pointBorderWidth:1,tension:0.3,fill:false,_noLabels:true},
-    {label:'UK',  data:[620,590,550,490,440,370,280,230,200,178],borderColor:'#0e7490',borderWidth:2,pointRadius:2,pointHoverRadius:4,pointBackgroundColor:'#0e7490',pointBorderColor:'#fff',pointBorderWidth:1,tension:0.3,fill:false,_noLabels:true},
-    {label:'DE',  data:[530,515,500,480,460,440,410,380,360,342],borderColor:'#ea580c',borderWidth:2,pointRadius:2,pointHoverRadius:4,pointBackgroundColor:'#ea580c',pointBorderColor:'#fff',pointBorderWidth:1,tension:0.3,fill:false,_noLabels:true},
-    {label:'FR',  data:[95,90,85,78,72,65,62,64,66,68],borderColor:'#16a34a',borderWidth:2,pointRadius:2,pointHoverRadius:4,pointBackgroundColor:'#16a34a',pointBorderColor:'#fff',pointBorderWidth:1,tension:0.3,fill:false,_noLabels:true},
-    {label:'PL',  data:[800,790,780,760,730,700,680,640,610,564],borderColor:'#c8251c',borderWidth:2,pointRadius:2,pointHoverRadius:4,pointBackgroundColor:'#c8251c',pointBorderColor:'#fff',pointBorderWidth:1,tension:0.3,fill:false,_noLabels:true},
-    {label:'SE',  data:[40,38,35,32,28,22,20,18,18,20],borderColor:'#b45309',borderWidth:2,pointRadius:2,pointHoverRadius:4,pointBackgroundColor:'#b45309',pointBorderColor:'#fff',pointBorderWidth:1,tension:0.3,fill:false,_noLabels:true},
+    {label:'EU27',data:[490,460,430,400,365,330,300,270,248,228],borderColor:'#1e40af',borderWidth:1.8,pointRadius:2,pointHoverRadius:4,pointBackgroundColor:'#1e40af',pointBorderColor:'#fff',pointBorderWidth:0.8,tension:0.3,fill:false,_noLabels:true},
+    {label:'UK',  data:[620,590,550,490,440,370,280,230,200,178],borderColor:'#0e7490',borderWidth:1.8,pointRadius:2,pointHoverRadius:4,pointBackgroundColor:'#0e7490',pointBorderColor:'#fff',pointBorderWidth:0.8,tension:0.3,fill:false,_noLabels:true},
+    {label:'DE',  data:[530,515,500,480,460,440,410,380,360,342],borderColor:'#ea580c',borderWidth:1.8,pointRadius:2,pointHoverRadius:4,pointBackgroundColor:'#ea580c',pointBorderColor:'#fff',pointBorderWidth:0.8,tension:0.3,fill:false,_noLabels:true},
+    {label:'FR',  data:[95,90,85,78,72,65,62,64,66,68],borderColor:'#16a34a',borderWidth:1.8,pointRadius:2,pointHoverRadius:4,pointBackgroundColor:'#16a34a',pointBorderColor:'#fff',pointBorderWidth:0.8,tension:0.3,fill:false,_noLabels:true},
+    {label:'PL',  data:[800,790,780,760,730,700,680,640,610,564],borderColor:'#c8251c',borderWidth:1.8,pointRadius:2,pointHoverRadius:4,pointBackgroundColor:'#c8251c',pointBorderColor:'#fff',pointBorderWidth:0.8,tension:0.3,fill:false,_noLabels:true},
+    {label:'SE',  data:[40,38,35,32,28,22,20,18,18,20],borderColor:'#b45309',borderWidth:1.8,pointRadius:2,pointHoverRadius:4,pointBackgroundColor:'#b45309',pointBorderColor:'#fff',pointBorderWidth:0.8,tension:0.3,fill:false,_noLabels:true},
   ],
-  {x:{grid:{color:'#f1f4f8'},ticks:{color:'#94a3b8',maxRotation:0,font:{size:9}},border:{color:'#e3e7ed'}},
-   y:{grid:{color:'#f1f4f8'},border:{color:'#e3e7ed'},
-      ticks:{color:'#94a3b8',font:{size:9},callback:v=>v+' g/kWh'},min:0,max:850}}
+  {x:{grid:{color:'#f1f4f8'},ticks:{color:'#94a3b8',maxRotation:0,font:{size:8}},border:{color:'#e3e7ed'}},
+   y:{grid:{color:'#f1f4f8'},border:{color:'#e3e7ed'},ticks:{color:'#94a3b8',font:{size:8},callback:v=>v+' g/kWh'},min:0,max:850}}
 );
  
-// EV chart — single Y axis
+// EV chart (single axis)
 {
-  const EV_L=['1995','1998','2001','2004','2007','2010','2012','2014','2016','2018','2019','2020','2021','2022','2023','2024'];
   const ctx=document.getElementById('evc');
   new Chart(ctx.getContext('2d'),{type:'line',
-    data:{labels:EV_L,datasets:[
-      {label:'EV sales (M)',data:[0,0,0,0,0,0.01,0.06,0.32,0.77,2.10,2.26,3.24,6.60,10.50,14.00,17.00],
-        borderColor:'#166534',borderWidth:2.5,pointRadius:3,pointHoverRadius:5,
-        pointBackgroundColor:'#166534',pointBorderColor:'#fff',pointBorderWidth:1.5,tension:0.3,fill:true,
-        backgroundColor:c=>{const g=c.chart.ctx.createLinearGradient(0,0,0,260);
-          g.addColorStop(0,'rgba(22,101,52,0.18)');g.addColorStop(1,'rgba(22,101,52,0.02)');return g}},
-      {label:'ICE sales (M)',data:[49,52,55,57,61,64,64,70,74,79,77,67,72,76,74,72],
-        borderColor:'#94a3b8',borderWidth:2,pointRadius:2,pointHoverRadius:4,
-        pointBackgroundColor:'#94a3b8',pointBorderColor:'#fff',pointBorderWidth:1,
-        tension:0.3,fill:false,borderDash:[5,3]}
-    ]},
-    options:{responsive:true,maintainAspectRatio:false,
-      interaction:{mode:'index',intersect:false},
-      plugins:{legend:{display:true,labels:{boxWidth:10,font:{size:9},color:'#4a5568',padding:12,usePointStyle:true}},tooltip:TT},
+    data:{labels:['1995','1998','2001','2004','2007','2010','2012','2014','2016','2018','2019','2020','2021','2022','2023','2024'],
+      datasets:[
+        {label:'EV sales (M)',data:[0,0,0,0,0,0.01,0.06,0.32,0.77,2.10,2.26,3.24,6.60,10.50,14.00,17.00],
+          borderColor:'#166534',borderWidth:2,pointRadius:2.5,pointHoverRadius:4,
+          pointBackgroundColor:'#166534',pointBorderColor:'#fff',pointBorderWidth:1,tension:0.3,fill:true,
+          backgroundColor:c=>{const g=c.chart.ctx.createLinearGradient(0,0,0,180);g.addColorStop(0,'rgba(22,101,52,0.16)');g.addColorStop(1,'rgba(22,101,52,0.02)');return g}},
+        {label:'ICE sales (M)',data:[49,52,55,57,61,64,64,70,74,79,77,67,72,76,74,72],
+          borderColor:'#94a3b8',borderWidth:1.8,pointRadius:1.5,pointHoverRadius:3,
+          pointBackgroundColor:'#94a3b8',pointBorderColor:'#fff',pointBorderWidth:0.8,tension:0.3,fill:false,borderDash:[4,3]}
+      ]},
+    options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
+      plugins:{legend:{display:true,labels:{boxWidth:8,font:{size:8},color:'#4a5568',padding:8,usePointStyle:true}},tooltip:TT},
       scales:{
-        x:{grid:{color:'#f1f4f8'},ticks:{color:'#94a3b8',maxRotation:45,font:{size:9}},border:{color:'#e3e7ed'}},
+        x:{grid:{color:'#f1f4f8'},ticks:{color:'#94a3b8',maxRotation:45,font:{size:8}},border:{color:'#e3e7ed'}},
         y:{grid:{color:'#f1f4f8'},border:{color:'#e3e7ed'},
-           ticks:{color:'#94a3b8',font:{size:9},callback:v=>v+' M'},
-           title:{display:true,text:'Millions of vehicles sold',color:'#94a3b8',font:{size:9}},min:0,max:90}
+           ticks:{color:'#94a3b8',font:{size:8},callback:v=>v+' M'},
+           title:{display:true,text:'Millions of vehicles',color:'#94a3b8',font:{size:8}},min:0,max:90}
       }
     },
     plugins:[{id:'evL',afterDatasetsDraw(chart){
-      const{ctx:c,data}=chart;
-      const meta=chart.getDatasetMeta(0);
-      [10,11,12,13,14,15].forEach(i=>{
+      const{ctx:c,data}=chart;const meta=chart.getDatasetMeta(0);
+      [10,12,13,14,15].forEach(i=>{
+        if(!meta.data[i]) return;
         const pt=meta.data[i],val=data.datasets[0].data[i];
-        c.save();c.font="bold 9px 'JetBrains Mono',monospace";c.fillStyle='#166534';
+        c.save();c.font="bold 8px 'JetBrains Mono',monospace";c.fillStyle='#166534';
         c.textAlign='center';c.textBaseline='bottom';
-        c.fillText(val.toFixed(1)+'M',pt.x,pt.y-6);c.restore();
+        c.fillText(val.toFixed(1)+'M',pt.x,pt.y-5);c.restore();
       });
     }}]
   });
 }
  
-// Solar & Battery chart
+// Solar & Battery
 {
   const ctx=document.getElementById('solc');
   new Chart(ctx.getContext('2d'),{type:'line',
-    data:{labels:['1990','1993','1996','1999','2002','2005','2008','2010','2012','2014','2016','2018','2019','2020','2021','2022','2023','2024'],
+    data:{labels:['1990','1993','1996','1999','2002','2005','2008','2010','2012','2014','2016','2018','2020','2022','2024'],
       datasets:[
-        {label:'Solar PV (GW)',data:[0.1,0.1,0.2,0.3,0.5,1.5,7,29,55,87,120,145,155,163,178,220,263,320],
-          yAxisID:'ySol',borderColor:'#f97316',borderWidth:2.5,pointRadius:3,pointHoverRadius:5,
-          pointBackgroundColor:'#f97316',pointBorderColor:'#fff',pointBorderWidth:1.5,tension:0.3,fill:true,
-          backgroundColor:c=>{const g=c.chart.ctx.createLinearGradient(0,0,0,260);
-            g.addColorStop(0,'rgba(249,115,22,0.18)');g.addColorStop(1,'rgba(249,115,22,0.02)');return g}},
-        {label:'Battery storage (GWh)',data:[0,0,0,0,0,0,0.1,0.3,0.8,1.5,3,8,14,20,30,48,62,90],
-          yAxisID:'yBat',borderColor:'#1e40af',borderWidth:2.5,pointRadius:3,pointHoverRadius:5,
-          pointBackgroundColor:'#1e40af',pointBorderColor:'#fff',pointBorderWidth:1.5,tension:0.3,fill:false}
+        {label:'Solar PV (GW)',data:[0.1,0.1,0.2,0.3,0.5,1.5,7,29,55,87,120,145,163,220,320],
+          yAxisID:'ySol',borderColor:'#f97316',borderWidth:2,pointRadius:2.5,pointHoverRadius:4,
+          pointBackgroundColor:'#f97316',pointBorderColor:'#fff',pointBorderWidth:1,tension:0.3,fill:true,
+          backgroundColor:c=>{const g=c.chart.ctx.createLinearGradient(0,0,0,180);g.addColorStop(0,'rgba(249,115,22,0.16)');g.addColorStop(1,'rgba(249,115,22,0.02)');return g}},
+        {label:'Battery (GWh)',data:[0,0,0,0,0,0,0.1,0.3,0.8,1.5,3,8,20,48,90],
+          yAxisID:'yBat',borderColor:'#1e40af',borderWidth:2,pointRadius:2.5,pointHoverRadius:4,
+          pointBackgroundColor:'#1e40af',pointBorderColor:'#fff',pointBorderWidth:1,tension:0.3,fill:false}
       ]},
-    options:{responsive:true,maintainAspectRatio:false,
-      interaction:{mode:'index',intersect:false},
-      plugins:{legend:{display:true,labels:{boxWidth:10,font:{size:9},color:'#4a5568',padding:12,usePointStyle:true}},tooltip:TT},
+    options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
+      plugins:{legend:{display:true,labels:{boxWidth:8,font:{size:8},color:'#4a5568',padding:8,usePointStyle:true}},tooltip:TT},
       scales:{
-        x:{grid:{color:'#f1f4f8'},ticks:{color:'#94a3b8',maxRotation:45,font:{size:9}},border:{color:'#e3e7ed'}},
+        x:{grid:{color:'#f1f4f8'},ticks:{color:'#94a3b8',maxRotation:45,font:{size:8}},border:{color:'#e3e7ed'}},
         ySol:{position:'left',grid:{color:'#f1f4f8'},border:{color:'#e3e7ed'},
-          ticks:{color:'#f97316',font:{size:9},callback:v=>v+' GW'},
-          title:{display:true,text:'Solar GW (cumulative)',color:'#f97316',font:{size:9}},min:0,max:360},
+          ticks:{color:'#f97316',font:{size:8},callback:v=>v+' GW'},
+          title:{display:true,text:'Solar GW',color:'#f97316',font:{size:8}},min:0,max:360},
         yBat:{position:'right',grid:{drawOnChartArea:false},border:{color:'#e3e7ed'},
-          ticks:{color:'#1e40af',font:{size:9},callback:v=>v+' GWh'},
-          title:{display:true,text:'Battery GWh',color:'#1e40af',font:{size:9}},min:0,max:100}
+          ticks:{color:'#1e40af',font:{size:8},callback:v=>v+' GWh'},
+          title:{display:true,text:'Battery GWh',color:'#1e40af',font:{size:8}},min:0,max:100}
       }
     }
   });
