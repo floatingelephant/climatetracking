@@ -6,7 +6,7 @@
 <title>Planetary Carbon Monitor</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root {
+:root{
   --bg:#fff;--bg1:#f7f8fa;--bg2:#f0f2f5;
   --border:#e3e7ed;--border2:#c8d0da;
   --text:#4a5568;--dim:#94a3b8;--bright:#1a202c;
@@ -20,22 +20,18 @@ body{overflow-x:hidden}
 .page{max-width:1400px;margin:0 auto;padding:0 20px 60px}
  
 /* ══ COUNTER ══ */
-#ctr{background:#fff;border-bottom:2px solid var(--border);padding:28px 20px 22px}
-.ctr-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:24px;justify-content:center}
-.ctr-main{flex:1;text-align:center;min-width:0}
-.ctr-cube{flex-shrink:0;width:220px}
+#ctr{background:#fff;border-bottom:1px solid var(--border);padding:28px 20px 22px;text-align:center}
 .clabel{font-family:var(--disp);font-weight:400;font-size:12px;letter-spacing:.3em;
   text-transform:uppercase;color:var(--dim);margin-bottom:8px}
 .clabel .yr{color:var(--amber)}
 #main-num{font-family:var(--disp);font-weight:800;font-size:clamp(48px,8vw,92px);
-  color:var(--red);line-height:1;display:block;
+  color:var(--red);line-height:1;display:inline-block;
   font-variant-numeric:tabular-nums;letter-spacing:-.01em}
 .cunit{font-family:var(--disp);font-weight:300;font-size:14px;color:var(--dim);
   letter-spacing:.18em;margin-top:5px}
-.ldot{display:inline-block;width:6px;height:6px;background:#166534;border-radius:50%;
+.ldot{display:inline-block;width:6px;height:6px;background:#166634;border-radius:50%;
   margin-right:5px;animation:pd 2s infinite;vertical-align:middle}
 @keyframes pd{0%,100%{opacity:1}50%{opacity:.2}}
- 
 .rate-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:16px}
 .rate-block{background:var(--bg1);border:1px solid var(--border);border-radius:8px;
   padding:11px 20px;text-align:center;min-width:148px}
@@ -43,7 +39,6 @@ body{overflow-x:hidden}
   line-height:1;font-variant-numeric:tabular-nums}
 .rb-unit{font-size:10px;color:var(--dim);font-weight:400;margin-left:2px}
 .rb-label{font-size:10px;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
- 
 .cgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
   margin-top:16px;max-width:1100px;margin-left:auto;margin-right:auto}
 @media(max-width:720px){.cgrid{grid-template-columns:repeat(2,1fr)}}
@@ -60,10 +55,10 @@ body{overflow-x:hidden}
   line-height:1;flex-shrink:0;opacity:.5}
 .cpct sup{font-size:.4em;vertical-align:super;opacity:.8}
  
-/* Cube SVG label */
-.cube-title{font-family:var(--disp);font-weight:600;font-size:11px;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--dim);text-align:center;margin-bottom:6px}
-.cube-note{font-size:9px;color:var(--dim);text-align:center;line-height:1.5;margin-top:5px}
+/* ══ SCALE VIZ ══ */
+#scale-viz{background:var(--bg1);border-bottom:2px solid var(--border);
+  padding:0;overflow:hidden}
+#scale-viz svg{display:block;width:100%;height:auto}
  
 /* ══ LAYOUT ══ */
 .sh{display:flex;align-items:center;gap:12px;margin:28px 0 14px;
@@ -107,8 +102,6 @@ body{overflow-x:hidden}
 .subhd{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin:12px 0 7px}
 .subhd:first-child{margin-top:0}
 .divr{border:none;border-top:1px solid var(--border);margin:14px 0}
- 
-/* Industry bars */
 .br{display:flex;align-items:center;gap:6px;margin-bottom:6px}
 .bf{font-size:12px;width:18px;text-align:center;flex-shrink:0}
 .bn{font-size:10px;color:var(--text);width:78px;flex-shrink:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -118,8 +111,6 @@ body{overflow-x:hidden}
   white-space:nowrap;overflow:hidden;font-family:var(--mono)}
 .bv{font-size:10px;color:var(--dim);width:46px;text-align:right;flex-shrink:0;
   font-variant-numeric:tabular-nums;font-family:var(--mono)}
- 
-/* Transport */
 .lcb{background:var(--bg1);border:1px solid var(--border);border-radius:7px;padding:12px;margin-bottom:10px}
 .lc-inner{display:flex;gap:12px;align-items:flex-start}
 .lc-left{flex:1}
@@ -134,22 +125,15 @@ body{overflow-x:hidden}
 .lcr-val{font-family:var(--disp);font-weight:600;font-size:16px;color:var(--bright);
   line-height:1.1;font-variant-numeric:tabular-nums}
 .lcr-unit{font-size:9px;color:var(--dim);font-weight:400}
- 
-/* Fuel split */
 .ftk{height:20px;border-radius:4px;overflow:hidden;display:flex;margin:6px 0}
 .ff{background:#c8251c;display:flex;align-items:center;justify-content:flex-end;padding-right:8px}
 .fg{background:#166534;display:flex;align-items:center;padding-left:5px}
 .fp{font-size:9px;font-weight:600;color:rgba(255,255,255,.9);white-space:nowrap}
 .fleg{display:flex;gap:12px;font-size:9px;color:var(--dim);margin-top:4px;flex-wrap:wrap}
 .fd{width:8px;height:8px;border-radius:2px;display:inline-block;margin-right:3px;vertical-align:middle}
- 
-/* Electricity */
 .ecwrap{height:200px;position:relative;margin-bottom:12px}
- 
 .n9{font-size:9px;color:var(--dim);line-height:1.55;margin-top:7px}
 .n9 a{color:var(--blue);text-decoration:none}
- 
-/* Bottom trend charts */
 .trend-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:820px){.trend-grid{grid-template-columns:1fr}}
 .tcard{background:#fff;border:1px solid var(--border);border-radius:10px;padding:20px}
@@ -160,7 +144,6 @@ body{overflow-x:hidden}
   text-transform:uppercase;color:var(--bright);margin-bottom:5px}
 .tc-desc{font-size:11px;color:var(--dim);line-height:1.55;margin-bottom:12px}
 .tc-wrap{height:260px;position:relative}
- 
 footer{text-align:center;padding:22px 20px 12px;font-size:9px;color:var(--dim);
   letter-spacing:.06em;line-height:1.9;border-top:1px solid var(--border);
   max-width:1400px;margin:0 auto}
@@ -170,217 +153,381 @@ footer{text-align:center;padding:22px 20px 12px;font-size:9px;color:var(--dim);
  
 <!-- ══ COUNTER ══ -->
 <div id="ctr">
-  <div class="ctr-inner">
- 
-    <div class="ctr-main">
-      <div class="clabel">CO₂ equivalent emitted globally in <span class="yr">2026</span></div>
-      <span id="main-num">0.000</span>
-      <div class="cunit"><span class="ldot"></span>megatonnes CO₂e &nbsp;·&nbsp; live</div>
- 
-      <div class="rate-row">
-        <div class="rate-block">
-          <div class="rb-val" id="rb-day">—<span class="rb-unit">Mt</span></div>
-          <div class="rb-label">Every day</div>
-        </div>
-        <div class="rate-block">
-          <div class="rb-val" id="rb-hr">—<span class="rb-unit">Mt</span></div>
-          <div class="rb-label">Every hour</div>
-        </div>
-        <div class="rate-block">
-          <div class="rb-val" id="rb-min">—<span class="rb-unit">Mt</span></div>
-          <div class="rb-label">Every minute</div>
-        </div>
-      </div>
- 
-      <div class="cgrid">
-        <div class="cblock">
-          <div>
-            <div><span class="cflag">🇨🇳</span> <span class="cname">China</span></div>
-            <div class="cval" id="vchina">0.000<span class="cu"> Mt</span></div>
-            <div class="cbar"><div class="cbar-f" style="width:29%;background:#dc2626"></div></div>
-          </div>
-          <div class="cpct" style="color:#dc2626">29<sup>%</sup></div>
-        </div>
-        <div class="cblock">
-          <div>
-            <div><span class="cflag">🇺🇸</span> <span class="cname">USA</span></div>
-            <div class="cval" id="vusa">0.000<span class="cu"> Mt</span></div>
-            <div class="cbar"><div class="cbar-f" style="width:11%;background:#1d4ed8"></div></div>
-          </div>
-          <div class="cpct" style="color:#1d4ed8">11<sup>%</sup></div>
-        </div>
-        <div class="cblock">
-          <div>
-            <div><span class="cflag">🇪🇺</span> <span class="cname">EU 27</span></div>
-            <div class="cval" id="veu">0.000<span class="cu"> Mt</span></div>
-            <div class="cbar"><div class="cbar-f" style="width:6%;background:#0e7490"></div></div>
-          </div>
-          <div class="cpct" style="color:#0e7490">6<sup>%</sup></div>
-        </div>
-        <div class="cblock">
-          <div>
-            <div><span class="cflag">🌍</span> <span class="cname">Rest of World</span></div>
-            <div class="cval" id="vrow">0.000<span class="cu"> Mt</span></div>
-            <div class="cbar"><div class="cbar-f" style="width:54%;background:#6b7280"></div></div>
-          </div>
-          <div class="cpct" style="color:#9ca3af">54<sup>%</sup></div>
-        </div>
-      </div>
-      <div style="margin-top:10px;font-size:10px;color:var(--dim);letter-spacing:.06em">
-        53,500 Mt CO₂e / yr · EDGAR 2024–25 · 1,695.6 t/s = 0.001696 Mt/s
-      </div>
-    </div>
- 
-    <!-- CO2 CUBE -->
-    <div class="ctr-cube">
-      <div class="cube-title">What is 1 tonne of CO₂?</div>
-      <svg viewBox="0 0 200 210" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block">
-        <!-- sky bg -->
-        <rect width="200" height="210" fill="#f0f4f8" rx="8"/>
-        <!-- ground -->
-        <rect x="0" y="168" width="200" height="42" fill="#e8ede4" rx="0"/>
-        <!-- cube isometric: 8m × 8m × 8m, drawn as isometric projection -->
-        <!-- Front face -->
-        <polygon points="48,78 130,78 130,148 48,148" fill="#3d6fa8" opacity="0.85"/>
-        <!-- Top face -->
-        <polygon points="48,78 100,52 182,52 130,78" fill="#5a8fc8" opacity="0.9"/>
-        <!-- Right face -->
-        <polygon points="130,78 182,52 182,122 130,148" fill="#2a5080" opacity="0.88"/>
-        <!-- Cube edges highlight -->
-        <polyline points="48,78 100,52 182,52 182,122 130,148 48,148 48,78 130,78 130,148" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="0.8"/>
-        <line x1="100" y1="52" x2="100" y2="78" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
-        <line x1="130" y1="78" x2="182" y2="52" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
-        <!-- Label on front face -->
-        <text x="89" y="108" font-family="'Barlow Condensed',sans-serif" font-weight="800"
-          font-size="18" fill="white" text-anchor="middle" opacity="0.95">1 tonne</text>
-        <text x="89" y="126" font-family="'Barlow Condensed',sans-serif" font-weight="600"
-          font-size="13" fill="white" text-anchor="middle" opacity="0.85">CO₂ gas</text>
-        <!-- Width dimension arrow -->
-        <line x1="48" y1="158" x2="130" y2="158" stroke="#6b7280" stroke-width="1"/>
-        <line x1="48" y1="154" x2="48" y2="162" stroke="#6b7280" stroke-width="1"/>
-        <line x1="130" y1="154" x2="130" y2="162" stroke="#6b7280" stroke-width="1"/>
-        <text x="89" y="167" font-family="'Inter',sans-serif" font-size="9" fill="#4b5563" text-anchor="middle">8 metres</text>
-        <!-- Human figure for scale at far right of cube -->
-        <!-- Person: 1.75m tall, cube is 8m → ratio ~22% of cube height. cube height in px ≈ 70px → person ≈ 15px -->
-        <g transform="translate(148,148)">
-          <!-- body -->
-          <line x1="0" y1="-15" x2="0" y2="-6" stroke="#374151" stroke-width="1.5"/>
-          <!-- head -->
-          <circle cx="0" cy="-18" r="3" fill="#374151"/>
-          <!-- arms -->
-          <line x1="-4" y1="-12" x2="4" y2="-12" stroke="#374151" stroke-width="1.2"/>
-          <!-- legs -->
-          <line x1="0" y1="-6" x2="-3" y2="0" stroke="#374151" stroke-width="1.2"/>
-          <line x1="0" y1="-6" x2="3" y2="0" stroke="#374151" stroke-width="1.2"/>
-        </g>
-        <text x="156" y="151" font-family="'Inter',sans-serif" font-size="7" fill="#6b7280" text-anchor="middle">1.8m</text>
-        <!-- Height dimension -->
-        <line x1="38" y1="78" x2="38" y2="148" stroke="#6b7280" stroke-width="1" stroke-dasharray="2,2"/>
-        <text x="32" y="114" font-family="'Inter',sans-serif" font-size="8" fill="#6b7280" text-anchor="middle" transform="rotate(-90,32,114)">8 m</text>
-      </svg>
-      <div class="cube-note">Atmospheric CO₂ at STP<br>density: 1.98 kg/m³ · 505 m³ total</div>
-    </div>
- 
+  <div class="clabel">CO₂ equivalent emitted globally in <span class="yr">2026</span></div>
+  <div><span id="main-num">0.000</span></div>
+  <div class="cunit"><span class="ldot"></span>megatonnes CO₂e &nbsp;·&nbsp; live</div>
+  <div class="rate-row">
+    <div class="rate-block"><div class="rb-val" id="rb-day">—<span class="rb-unit">Mt</span></div><div class="rb-label">Every day</div></div>
+    <div class="rate-block"><div class="rb-val" id="rb-hr">—<span class="rb-unit">Mt</span></div><div class="rb-label">Every hour</div></div>
+    <div class="rate-block"><div class="rb-val" id="rb-min">—<span class="rb-unit">Mt</span></div><div class="rb-label">Every minute</div></div>
+  </div>
+  <div class="cgrid">
+    <div class="cblock"><div><div><span class="cflag">🇨🇳</span> <span class="cname">China</span></div>
+      <div class="cval" id="vchina">0.000<span class="cu"> Mt</span></div>
+      <div class="cbar"><div class="cbar-f" style="width:29%;background:#dc2626"></div></div></div>
+      <div class="cpct" style="color:#dc2626">29<sup>%</sup></div></div>
+    <div class="cblock"><div><div><span class="cflag">🇺🇸</span> <span class="cname">USA</span></div>
+      <div class="cval" id="vusa">0.000<span class="cu"> Mt</span></div>
+      <div class="cbar"><div class="cbar-f" style="width:11%;background:#1d4ed8"></div></div></div>
+      <div class="cpct" style="color:#1d4ed8">11<sup>%</sup></div></div>
+    <div class="cblock"><div><div><span class="cflag">🇪🇺</span> <span class="cname">EU 27</span></div>
+      <div class="cval" id="veu">0.000<span class="cu"> Mt</span></div>
+      <div class="cbar"><div class="cbar-f" style="width:6%;background:#0e7490"></div></div></div>
+      <div class="cpct" style="color:#0e7490">6<sup>%</sup></div></div>
+    <div class="cblock"><div><div><span class="cflag">🌍</span> <span class="cname">Rest of World</span></div>
+      <div class="cval" id="vrow">0.000<span class="cu"> Mt</span></div>
+      <div class="cbar"><div class="cbar-f" style="width:54%;background:#6b7280"></div></div></div>
+      <div class="cpct" style="color:#9ca3af">54<sup>%</sup></div></div>
+  </div>
+  <div style="margin-top:10px;font-size:10px;color:var(--dim);letter-spacing:.06em">
+    53,500 Mt CO₂e / yr · EDGAR 2024–25 · 1,695.6 t/s = 0.001696 Mt/s
   </div>
 </div>
  
-<div class="page">
+<!-- ══ 1 MT SCALE VISUALISATION ══ -->
+<div id="scale-viz">
+<!-- Scale: 1px ≈ 7.5m · Ground: y=225 · All heights proportional -->
+<svg viewBox="0 0 1100 290" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+<defs>
+  <!-- Front face grid pattern -->
+  <pattern id="fg" width="14.6" height="14.6" patternUnits="userSpaceOnUse" patternTransform="translate(28,118)">
+    <path d="M14.6 0L0 0 0 14.6" fill="none" stroke="rgba(30,64,175,0.1)" stroke-width="0.6"/>
+  </pattern>
+  <!-- Top face grid (isometric, going upper-right) -->
+  <pattern id="tg" width="14.6" height="14.6" patternUnits="userSpaceOnUse" patternTransform="translate(28,118)">
+    <line x1="0" y1="14.6" x2="14.6" y2="0" stroke="rgba(30,64,175,0.1)" stroke-width="0.6"/>
+  </pattern>
+  <clipPath id="fc"><polygon points="28,118 175,118 175,225 28,225"/></clipPath>
+  <clipPath id="tc"><polygon points="28,118 68,96 215,96 175,118"/></clipPath>
+  <clipPath id="rc"><polygon points="175,118 215,96 215,203 175,225"/></clipPath>
+  <!-- Red dashed equality marker style -->
+  <marker id="eq-arrow" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+    <circle cx="3" cy="3" r="2" fill="#c8251c" opacity="0.6"/>
+  </marker>
+</defs>
  
-<!-- ══ INDICATORS ══ -->
+<!-- Background -->
+<rect width="1100" height="290" fill="#f8f9fa"/>
+ 
+<!-- Subtle ground shadow -->
+<rect x="0" y="226" width="1100" height="64" fill="#f0f2f5"/>
+<line x1="0" y1="226" x2="1100" y2="226" stroke="#e3e7ed" stroke-width="1"/>
+ 
+<!-- Section title -->
+<text x="28" y="18" font-family="'Barlow Condensed',sans-serif" font-weight="600" font-size="11"
+  fill="#94a3b8" letter-spacing="3">WHAT IS 1 MEGATONNE OF CO₂?</text>
+<text x="28" y="31" font-family="'Inter',sans-serif" font-size="9" fill="#94a3b8">
+  Atmospheric gas at standard conditions (STP) · 1 px ≈ 7.5 metres</text>
+ 
+<!-- ═══ CUBE ═══ (800m per side → 106.5px at 1px=7.5m) -->
+<!-- Front face fill -->
+<polygon points="28,118 175,118 175,225 28,225"
+  fill="rgba(219,234,254,0.85)" stroke="none"/>
+<!-- Front face grid -->
+<polygon points="28,118 175,118 175,225 28,225"
+  fill="url(#fg)" clip-path="url(#fc)"/>
+<!-- Front face outline -->
+<polygon points="28,118 175,118 175,225 28,225"
+  fill="none" stroke="#1e40af" stroke-width="1.5"/>
+ 
+<!-- Top face fill -->
+<polygon points="28,118 68,96 215,96 175,118"
+  fill="rgba(191,219,254,0.9)" stroke="none"/>
+<!-- Top face grid -->
+<polygon points="28,118 68,96 215,96 175,118"
+  fill="url(#tg)" clip-path="url(#tc)"/>
+<!-- Top face outline -->
+<polygon points="28,118 68,96 215,96 175,118"
+  fill="none" stroke="#1e40af" stroke-width="1.5"/>
+ 
+<!-- Right face fill -->
+<polygon points="175,118 215,96 215,203 175,225"
+  fill="rgba(147,197,253,0.92)" stroke="none"/>
+<!-- Right face outline -->
+<polygon points="175,118 215,96 215,203 175,225"
+  fill="none" stroke="#1e40af" stroke-width="1.5"/>
+ 
+<!-- Cube front-face label -->
+<text x="101" y="156" text-anchor="middle"
+  font-family="'Barlow Condensed',sans-serif" font-weight="800" font-size="32"
+  fill="#c8251c" letter-spacing="-0.5">1 MT</text>
+<text x="101" y="174" text-anchor="middle"
+  font-family="'Barlow Condensed',sans-serif" font-weight="600" font-size="15"
+  fill="#1e40af" letter-spacing="2">CO₂</text>
+<text x="101" y="190" text-anchor="middle"
+  font-family="'Inter',sans-serif" font-size="9" fill="#4a5568">atmospheric gas</text>
+<text x="101" y="204" text-anchor="middle"
+  font-family="'JetBrains Mono',monospace" font-size="8.5" fill="#6b7280">800 m × 800 m × 800 m</text>
+<text x="101" y="217" text-anchor="middle"
+  font-family="'JetBrains Mono',monospace" font-size="8" fill="#94a3b8">505 million m³</text>
+ 
+<!-- Width dimension arrow (below cube) -->
+<line x1="28" y1="243" x2="175" y2="243" stroke="#94a3b8" stroke-width="1"/>
+<line x1="28" y1="239" x2="28" y2="247" stroke="#94a3b8" stroke-width="1"/>
+<line x1="175" y1="239" x2="175" y2="247" stroke="#94a3b8" stroke-width="1"/>
+<text x="101" y="257" text-anchor="middle"
+  font-family="'Inter',sans-serif" font-size="9" fill="#6b7280">800 m</text>
+ 
+<!-- Height dimension arrow (left of cube) -->
+<line x1="14" y1="118" x2="14" y2="225" stroke="#94a3b8" stroke-width="1"/>
+<line x1="10" y1="118" x2="18" y2="118" stroke="#94a3b8" stroke-width="1"/>
+<line x1="10" y1="225" x2="18" y2="225" stroke="#94a3b8" stroke-width="1"/>
+<text x="8" y="176" text-anchor="middle"
+  font-family="'Inter',sans-serif" font-size="9" fill="#6b7280"
+  transform="rotate(-90,8,176)">800 m</text>
+ 
+<!-- Depth annotation on top face -->
+<line x1="68" y1="84" x2="215" y2="84" stroke="#94a3b8" stroke-width="1" stroke-dasharray="2,2"/>
+<text x="141" y="81" text-anchor="middle"
+  font-family="'Inter',sans-serif" font-size="9" fill="#6b7280">800 m</text>
+ 
+<!-- ═══ DIVIDER ═══ -->
+<line x1="242" y1="40" x2="242" y2="270" stroke="#e3e7ed" stroke-width="1" stroke-dasharray="4,3"/>
+ 
+<!-- ═══ BUILDINGS AT SAME SCALE ═══ -->
+<!-- Header -->
+<text x="265" y="18" font-family="'Barlow Condensed',sans-serif" font-weight="600" font-size="11"
+  fill="#94a3b8" letter-spacing="3">LANDMARK COMPARISON · SAME SCALE</text>
+ 
+<!-- ── 1. Burj Khalifa (828m → 110.4px) top at y=225-110=115 ── -->
+<!-- The ≈equal height dashed line connecting cube top to Burj top -->
+<line x1="215" y1="115" x2="295" y2="115"
+  stroke="#c8251c" stroke-width="1" stroke-dasharray="5,3" opacity="0.45"/>
+<text x="254" y="112" text-anchor="middle"
+  font-family="'Inter',sans-serif" font-size="8" font-weight="600" fill="#c8251c" opacity="0.8">≈ same height</text>
+ 
+<!-- Base of Burj -->
+<polygon points="270,225 314,225 310,210 274,210" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.8"/>
+<!-- Lower body -->
+<polygon points="274,210 310,210 306,182 278,182" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.8"/>
+<!-- Mid body -->
+<polygon points="278,182 306,182 303,156 281,156" fill="#e5eaf0" stroke="#9ca3af" stroke-width="0.8"/>
+<!-- Upper body -->
+<polygon points="281,156 303,156 300,136 284,136" fill="#ebeef3" stroke="#9ca3af" stroke-width="0.8"/>
+<!-- Spire base -->
+<polygon points="284,136 300,136 293,120 291,120" fill="#ebeef3" stroke="#9ca3af" stroke-width="0.8"/>
+<!-- Spire tip -->
+<line x1="292" y1="115" x2="292" y2="120" stroke="#9ca3af" stroke-width="2"/>
+<!-- Burj label -->
+<text x="292" y="241" text-anchor="middle"
+  font-family="'Inter',sans-serif" font-size="8.5" fill="#4a5568" font-weight="600">Burj Khalifa</text>
+<text x="292" y="253" text-anchor="middle"
+  font-family="'JetBrains Mono',monospace" font-size="8" fill="#94a3b8">828 m</text>
+ 
+<!-- ── 2. Eiffel Tower (330m → 44px) top at y=225-44=181 ── -->
+<!-- Legs -->
+<polygon points="338,225 344,225 344,208 341,208" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.8"/>
+<polygon points="356,225 362,225 362,208 359,208" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.8"/>
+<!-- Lower arch sweep -->
+<path d="M338,225 Q350,214 362,225" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+<!-- First platform -->
+<rect x="338" y="207" width="24" height="3" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.8"/>
+<!-- Middle section -->
+<polygon points="340,207 360,207 356,197 344,197" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.8"/>
+<!-- Second platform -->
+<rect x="342" y="196" width="16" height="2" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.8"/>
+<!-- Upper narrowing -->
+<polygon points="343,196 357,196 354,189 346,189" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.8"/>
+<!-- Top spire -->
+<line x1="350" y1="181" x2="350" y2="189" stroke="#9ca3af" stroke-width="2"/>
+<!-- Eiffel label -->
+<text x="350" y="241" text-anchor="middle"
+  font-family="'Inter',sans-serif" font-size="8.5" fill="#4a5568" font-weight="600">Eiffel Tower</text>
+<text x="350" y="253" text-anchor="middle"
+  font-family="'JetBrains Mono',monospace" font-size="8" fill="#94a3b8">330 m</text>
+ 
+<!-- ── 3. The Shard (310m → 41px) top at y=225-41=184 ── -->
+<polygon points="388,225 408,225 395,184" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.8"/>
+<!-- Shard facet lines -->
+<line x1="393" y1="225" x2="396" y2="187" stroke="#9ca3af" stroke-width="0.5" opacity="0.5"/>
+<line x1="404" y1="225" x2="396.5" y2="188" stroke="#9ca3af" stroke-width="0.5" opacity="0.5"/>
+<!-- Shard label -->
+<text x="397" y="241" text-anchor="middle"
+  font-family="'Inter',sans-serif" font-size="8.5" fill="#4a5568" font-weight="600">The Shard</text>
+<text x="397" y="253" text-anchor="middle"
+  font-family="'JetBrains Mono',monospace" font-size="8" fill="#94a3b8">310 m</text>
+ 
+<!-- ── 4. Empire State Building (443m → 59px) top at y=225-59=166 ── -->
+<!-- Base wide section -->
+<rect x="426" y="213" width="22" height="12" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.8"/>
+<!-- Lower body -->
+<rect x="429" y="197" width="16" height="16" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.8"/>
+<!-- Mid body -->
+<rect x="431" y="185" width="12" height="12" fill="#e5eaf0" stroke="#9ca3af" stroke-width="0.8"/>
+<!-- Upper body -->
+<rect x="433" y="175" width="8" height="10" fill="#ebeef3" stroke="#9ca3af" stroke-width="0.8"/>
+<!-- Spire -->
+<line x1="437" y1="166" x2="437" y2="175" stroke="#9ca3af" stroke-width="2.5"/>
+<!-- ESB label -->
+<text x="437" y="241" text-anchor="middle"
+  font-family="'Inter',sans-serif" font-size="8.5" fill="#4a5568" font-weight="600">Empire State</text>
+<text x="437" y="253" text-anchor="middle"
+  font-family="'JetBrains Mono',monospace" font-size="8" fill="#94a3b8">443 m</text>
+ 
+<!-- ── 5. Big Ben / Elizabeth Tower (96m → 13px) top at y=225-13=212 ── -->
+<!-- Tower body -->
+<rect x="465" y="215" width="14" height="10" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.8"/>
+<!-- Clock face section -->
+<rect x="465" y="213" width="14" height="3" fill="#d1d5db" stroke="#9ca3af" stroke-width="0.8"/>
+<!-- Spire -->
+<polygon points="466,213 478,213 472,208" fill="#e2e8f0" stroke="#9ca3af" stroke-width="0.8"/>
+<line x1="472" y1="208" x2="472" y2="212" stroke="#9ca3af" stroke-width="1.5"/>
+<!-- Big Ben label -->
+<text x="472" y="241" text-anchor="middle"
+  font-family="'Inter',sans-serif" font-size="8.5" fill="#4a5568" font-weight="600">Big Ben</text>
+<text x="472" y="253" text-anchor="middle"
+  font-family="'JetBrains Mono',monospace" font-size="8" fill="#94a3b8">96 m</text>
+ 
+<!-- ── 6. Human figure with magnified inset ── -->
+<!-- Tiny marker at ground for human (1.8m → 0.24px, essentially invisible) -->
+<circle cx="506" cy="225" r="1.5" fill="#4a5568"/>
+<line x1="506" y1="208" x2="506" y2="223" stroke="#94a3b8" stroke-width="0.8" stroke-dasharray="2,2"/>
+ 
+<!-- Human callout inset box -->
+<rect x="490" y="165" width="68" height="55" rx="4"
+  fill="#fff" stroke="#e3e7ed" stroke-width="1" filter="drop-shadow(0 1px 3px rgba(0,0,0,0.08))"/>
+<text x="524" y="176" text-anchor="middle"
+  font-family="'Inter',sans-serif" font-size="7.5" fill="#94a3b8">magnified 40×</text>
+<!-- Ground line inside inset -->
+<line x1="492" y1="213" x2="556" y2="213" stroke="#e3e7ed" stroke-width="0.8"/>
+<!-- Human stick figure (1.8m × 40 = 72px → shrunk to ~18px for inset) -->
+<!-- At x=516 in the inset: -->
+<circle cx="516" cy="196" r="3" fill="#4a5568"/>
+<line x1="516" y1="199" x2="516" y2="209" stroke="#4a5568" stroke-width="1.5"/>
+<line x1="512" y1="203" x2="520" y2="203" stroke="#4a5568" stroke-width="1.3"/>
+<line x1="516" y1="209" x2="513" y2="213" stroke="#4a5568" stroke-width="1.3"/>
+<line x1="516" y1="209" x2="519" y2="213" stroke="#4a5568" stroke-width="1.3"/>
+<!-- Height arrow -->
+<line x1="508" y1="193" x2="508" y2="213" stroke="#94a3b8" stroke-width="0.6"/>
+<text x="506" y="202" text-anchor="end"
+  font-family="'JetBrains Mono',monospace" font-size="7" fill="#94a3b8">1.8m</text>
+<!-- Human label -->
+<text x="524" y="222" text-anchor="middle"
+  font-family="'Inter',sans-serif" font-size="7.5" fill="#6b7280">human = 0.24px</text>
+ 
+<!-- Label column header -->
+<text x="506" y="241" text-anchor="middle"
+  font-family="'Inter',sans-serif" font-size="8.5" fill="#4a5568" font-weight="600">Person</text>
+<text x="506" y="253" text-anchor="middle"
+  font-family="'JetBrains Mono',monospace" font-size="8" fill="#94a3b8">1.8 m</text>
+ 
+<!-- ═══ FACTS PANEL ═══ -->
+<line x1="580" y1="40" x2="580" y2="270" stroke="#e3e7ed" stroke-width="1" stroke-dasharray="4,3"/>
+ 
+<!-- Fact card background -->
+<rect x="598" y="48" width="482" height="198" rx="8"
+  fill="#fff" stroke="#e3e7ed" stroke-width="1"/>
+ 
+<!-- Card header -->
+<text x="618" y="72" font-family="'Barlow Condensed',sans-serif" font-weight="700" font-size="14"
+  fill="#1a202c" letter-spacing="1">1 MEGATONNE EMITTED EVERY ~10 MINUTES</text>
+<line x1="618" y1="78" x2="1060" y2="78" stroke="#e3e7ed" stroke-width="0.8"/>
+ 
+<!-- Fact rows -->
+<!-- Row 1 -->
+<circle cx="630" cy="100" r="4" fill="#fef2f2" stroke="#fca5a5" stroke-width="1"/>
+<text x="630" y="104" text-anchor="middle"
+  font-family="'Barlow Condensed',sans-serif" font-weight="800" font-size="9" fill="#c8251c">!</text>
+<text x="644" y="98" font-family="'Inter',sans-serif" font-size="11" font-weight="600" fill="#1a202c">Taller than the Burj Khalifa (828m)</text>
+<text x="644" y="111" font-family="'Inter',sans-serif" font-size="10" fill="#6b7280">The world's tallest building reaches 828m — 1 Mt of CO₂ is an 800m cube, nearly identical in height</text>
+ 
+<!-- Row 2 -->
+<circle cx="630" cy="136" r="4" fill="#fef2f2" stroke="#fca5a5" stroke-width="1"/>
+<text x="630" y="140" text-anchor="middle"
+  font-family="'Barlow Condensed',sans-serif" font-weight="800" font-size="9" fill="#c8251c">!</text>
+<text x="644" y="134" font-family="'Inter',sans-serif" font-size="11" font-weight="600" fill="#1a202c">2.4× taller than the Eiffel Tower</text>
+<text x="644" y="147" font-family="'Inter',sans-serif" font-size="10" fill="#6b7280">The 330m Eiffel Tower stacked 2.4 times would equal the height of this cube</text>
+ 
+<!-- Row 3 -->
+<circle cx="630" cy="172" r="4" fill="#fef2f2" stroke="#fca5a5" stroke-width="1"/>
+<text x="630" y="176" text-anchor="middle"
+  font-family="'Barlow Condensed',sans-serif" font-weight="800" font-size="9" fill="#c8251c">!</text>
+<text x="644" y="170" font-family="'Inter',sans-serif" font-size="11" font-weight="600" fill="#1a202c">Footprint covers half the City of London</text>
+<text x="644" y="183" font-family="'Inter',sans-serif" font-size="10" fill="#6b7280">800m × 800m = 0.64 km² · The City of London financial district = 1.12 km²</text>
+ 
+<!-- Row 4 -->
+<circle cx="630" cy="208" r="4" fill="#fef2f2" stroke="#fca5a5" stroke-width="1"/>
+<text x="630" y="212" text-anchor="middle"
+  font-family="'Barlow Condensed',sans-serif" font-weight="800" font-size="9" fill="#c8251c">!</text>
+<text x="644" y="206" font-family="'Inter',sans-serif" font-size="11" font-weight="600" fill="#1a202c">Weight of 6,700 blue whales</text>
+<text x="644" y="219" font-family="'Inter',sans-serif" font-size="10" fill="#6b7280">1 Mt = 10⁹ kg · Average blue whale ≈ 150,000 kg · This cube = 6,667 blue whales</text>
+ 
+</svg>
+</div>
+ 
+<div class="page">
 <div class="sh">Key climate indicators · 1990–present</div>
 <div class="igrid">
  
-  <!-- CO2 -->
   <div class="icard ic-red">
     <div class="icard-bar"></div>
-    <div class="ch-hd">
-      <div class="ch-title">Atmospheric CO₂</div>
-      <div class="ch-pill"><span class="ldot"></span>Monthly · ~2wk lag</div>
-    </div>
-    <div class="ch-desc">CO₂ concentration at Mauna Loa, Hawaii — Earth's longest continuous atmospheric record. Pre-industrial: ~280 ppm; never exceeded 300 ppm in 800,000 years of ice core data. 350 ppm is widely cited as the upper safe limit for a stable climate.</div>
+    <div class="ch-hd"><div class="ch-title">Atmospheric CO₂</div>
+      <div class="ch-pill"><span class="ldot"></span>Monthly · ~2wk lag</div></div>
+    <div class="ch-desc">CO₂ at Mauna Loa, Hawaii — Earth's longest continuous record. Pre-industrial: ~280 ppm; never exceeded 300 ppm in 800,000 years of ice core data. 350 ppm is widely cited as the upper safe limit for a stable climate.</div>
     <div class="ch-now-row">
       <div class="ch-now" id="co2now" style="color:var(--red)">—<sub>ppm</sub></div>
-      <div class="ch-base">safe limit: 350 ppm</div>
-    </div>
+      <div class="ch-base">safe limit: 350 ppm</div></div>
     <div class="cwrap"><canvas id="co2c"></canvas></div>
     <div class="chips">
       <div class="chip"><span class="cp">12 months</span><span class="cv cu" id="co2_12m">…</span></div>
       <div class="chip"><span class="cp">5 years</span><span class="cv cu" id="co2_5y">…</span></div>
-      <div class="chip"><span class="cp">10 years</span><span class="cv cu" id="co2_10y">…</span></div>
-    </div>
+      <div class="chip"><span class="cp">10 years</span><span class="cv cu" id="co2_10y">…</span></div></div>
     <div class="ch-src">NOAA Global Monitoring Lab · Mauna Loa Observatory · global-warming.org/api/co2-api</div>
   </div>
  
-  <!-- SST -->
   <div class="icard ic-ora">
     <div class="icard-bar"></div>
-    <div class="ch-hd">
-      <div class="ch-title">Sea Surface Temp Anomaly</div>
-      <div class="ch-pill"><span class="ldot"></span>Daily</div>
-    </div>
+    <div class="ch-hd"><div class="ch-title">Sea Surface Temp Anomaly</div>
+      <div class="ch-pill"><span class="ldot"></span>Daily</div></div>
     <div class="ch-desc">Global mean SST anomaly vs 1981–2010 baseline. Oceans absorb ~90% of excess greenhouse heat. Record +0.61°C in 2024; 2025 is a La Niña year causing temporary surface cooling while deep ocean heat content continues rising.</div>
     <div class="ch-now-row">
       <div class="ch-now" style="color:#ea580c">+0.49<sub>°C</sub></div>
-      <div class="ch-base">2024 record: +0.61°C</div>
-    </div>
+      <div class="ch-base">2024 record: +0.61°C</div></div>
     <div class="cwrap"><canvas id="sstc"></canvas></div>
     <div class="chips">
       <div class="chip"><span class="cp">12 months</span><span class="cv cn2">−0.12°C vs 2024</span></div>
       <div class="chip"><span class="cp">5 years</span><span class="cv cu">+0.19°C (+63%)</span></div>
-      <div class="chip"><span class="cp">10 years</span><span class="cv cu">+0.39°C (+390%)</span></div>
-    </div>
-    <div class="ch-src">NOAA OISST v2.1 · climatereanalyzer.org · vs 1981–2010 baseline · daily global mean</div>
+      <div class="chip"><span class="cp">10 years</span><span class="cv cu">+0.39°C (+390%)</span></div></div>
+    <div class="ch-src">NOAA OISST v2.1 · climatereanalyzer.org · vs 1981–2010 baseline</div>
   </div>
  
-  <!-- EEI -->
   <div class="icard ic-amb">
     <div class="icard-bar"></div>
-    <div class="ch-hd">
-      <div class="ch-title">Earth's Energy Imbalance</div>
-      <div class="ch-pill">Monthly · ~60 day lag</div>
-    </div>
-    <div class="ch-desc">Net rate at which energy enters the Earth system (W/m²). A positive imbalance means Earth absorbs more than it emits — the root cause of warming. Has roughly doubled since 2000, driving accelerating ocean heat uptake and sea level rise.</div>
+    <div class="ch-hd"><div class="ch-title">Earth's Energy Imbalance</div>
+      <div class="ch-pill">Monthly · ~60 day lag</div></div>
+    <div class="ch-desc">Net rate at which energy enters the Earth system (W/m²). A positive imbalance means Earth absorbs more than it emits — the root cause of warming. Has roughly doubled since 2000, driving accelerating ocean heat uptake.</div>
     <div class="ch-now-row">
       <div class="ch-now" style="color:var(--amber)">0.90<sub>W/m²</sub></div>
-      <div class="ch-base">pre-industrial: ~0 W/m²</div>
-    </div>
+      <div class="ch-base">pre-industrial: ~0 W/m²</div></div>
     <div class="cwrap"><canvas id="eeic"></canvas></div>
     <div class="chips">
       <div class="chip"><span class="cp">vs 2000</span><span class="cv cu">+0.48 W/m² (+114%)</span></div>
       <div class="chip"><span class="cp">vs 2010</span><span class="cv cu">+0.35 W/m² (+64%)</span></div>
-      <div class="chip"><span class="cp">vs 2015</span><span class="cv cu">+0.20 W/m² (+29%)</span></div>
-    </div>
-    <div class="ch-src">NASA CERES EBAF Ed4.2.1 · opendap.larc.nasa.gov · top-of-atmosphere radiation budget</div>
+      <div class="chip"><span class="cp">vs 2015</span><span class="cv cu">+0.20 W/m² (+29%)</span></div></div>
+    <div class="ch-src">NASA CERES EBAF Ed4.2.1 · opendap.larc.nasa.gov · top-of-atmosphere radiation</div>
   </div>
  
-  <!-- ARCTIC -->
   <div class="icard ic-blu">
     <div class="icard-bar"></div>
-    <div class="ch-hd">
-      <div class="ch-title">Arctic Sea Ice Extent</div>
-      <div class="ch-pill"><span class="ldot"></span>Daily · annual index</div>
-    </div>
-    <div class="ch-desc">Annual September minimum Arctic sea ice extent (M km²). Arctic ice acts as Earth's reflective shield — its loss triggers the ice-albedo feedback where darker ocean absorbs more heat. Oldest, thickest ice (&gt;4yr) has declined over 95% since the 1980s.</div>
+    <div class="ch-hd"><div class="ch-title">Arctic Sea Ice Extent</div>
+      <div class="ch-pill"><span class="ldot"></span>Daily · annual index</div></div>
+    <div class="ch-desc">Annual September minimum Arctic sea ice extent (M km²). Arctic ice acts as Earth's reflective shield — loss triggers the ice-albedo feedback where darker ocean absorbs more heat. Oldest ice (&gt;4yr) has declined over 95% since the 1980s.</div>
     <div class="ch-now-row">
       <div class="ch-now" id="icenow" style="color:var(--blue)">4.18<sub>M km²</sub></div>
-      <div class="ch-base">1980 avg: ~7.5 M km²</div>
-    </div>
+      <div class="ch-base">1980 avg: ~7.5 M km²</div></div>
     <div class="cwrap"><canvas id="icec"></canvas></div>
     <div class="chips">
-      <div class="chip"><span class="cp">12 months</span><span class="cv" id="ice_12m"><span class="cd">−0.10M (−2.3%)</span></span></div>
-      <div class="chip"><span class="cp">5 years</span><span class="cv cd" id="ice_5y">−0.54M (−11%)</span></div>
-      <div class="chip"><span class="cp">10 years</span><span class="cv cd" id="ice_10y">−0.84M (−17%)</span></div>
-    </div>
+      <div class="chip"><span class="cp">12 months</span><span class="cv cd">−0.10M (−2.3%)</span></div>
+      <div class="chip"><span class="cp">5 years</span><span class="cv cd">−0.54M (−11%)</span></div>
+      <div class="chip"><span class="cp">10 years</span><span class="cv cd">−0.84M (−17%)</span></div></div>
     <div class="ch-src">NSIDC Sea Ice Index v3 · nsidc.org · G02135 · global-warming.org/api/arctic-api</div>
   </div>
  
 </div>
  
-<!-- ══ SECTORS ══ -->
 <div class="sh">Sector drivers · live estimates</div>
 <div class="sgrid">
  
-  <!-- INDUSTRY -->
   <div class="scard">
     <div class="stitle">🏭 Industry · EU + UK</div>
     <div class="lcb" style="padding:12px">
@@ -396,13 +543,11 @@ footer{text-align:center;padding:22px 20px 12px;font-size:9px;color:var(--dim);
       <span style="font-size:9px;color:var(--dim);display:flex;align-items:center;gap:3px"><span style="width:8px;height:8px;border-radius:2px;background:#16a34a;display:inline-block"></span>Aluminium</span>
       <span style="font-size:9px;color:var(--dim);display:flex;align-items:center;gap:3px"><span style="width:8px;height:8px;border-radius:2px;background:#ca8a04;display:inline-block"></span>Chemicals</span>
     </div>
-    <div class="n9">Climate TRACE v4.8 · Scope 1 direct · 2024 annual est. · api.climatetrace.org/v6</div>
+    <div class="n9">Climate TRACE v4.8 · Scope 1 direct · 2024 annual · api.climatetrace.org/v6</div>
   </div>
  
-  <!-- TRANSPORT -->
   <div class="scard">
     <div class="stitle">✈️ Transport</div>
- 
     <div class="subhd"><span class="ldot"></span>Aviation · global fuel &amp; miles · 2026 YTD</div>
     <div class="lcb">
       <div class="lc-inner">
@@ -422,25 +567,17 @@ footer{text-align:center;padding:22px 20px 12px;font-size:9px;color:var(--dim);
           </div>
         </div>
         <div class="lc-right">
-          <div class="lcr-item">
-            <div class="lcr-label">Fossil miles flown</div>
-            <div class="lcr-val" id="av_fmi">—<span class="lcr-unit"> bn mi</span></div>
-          </div>
-          <div class="lcr-item">
-            <div class="lcr-label">SAF miles flown</div>
-            <div class="lcr-val" id="av_smi" style="color:var(--green)">—<span class="lcr-unit"> bn mi</span></div>
-          </div>
-          <div class="lcr-item">
-            <div class="lcr-label">Total miles</div>
-            <div class="lcr-val" id="av_tmi">—<span class="lcr-unit"> bn mi</span></div>
-          </div>
+          <div class="lcr-item"><div class="lcr-label">Fossil miles flown</div>
+            <div class="lcr-val" id="av_fmi">—<span class="lcr-unit"> bn mi</span></div></div>
+          <div class="lcr-item"><div class="lcr-label">SAF miles flown</div>
+            <div class="lcr-val" id="av_smi" style="color:var(--green)">—<span class="lcr-unit"> bn mi</span></div></div>
+          <div class="lcr-item"><div class="lcr-label">Total miles</div>
+            <div class="lcr-val" id="av_tmi">—<span class="lcr-unit"> bn mi</span></div></div>
         </div>
       </div>
     </div>
-    <div class="n9">IATA 2025 · EASA ReFuelEU · ~3.8bn pax/yr · IAG 162k t SAF · AF-KLM 103k t SAF<br>EU mandate: 2% (2025) → 6% (2030) → 70% (2050)</div>
- 
+    <div class="n9">IATA 2025 · EASA ReFuelEU · IAG 162k t SAF · AF-KLM 103k t SAF · EU: 2%→6%→70%</div>
     <div class="divr"></div>
- 
     <div class="subhd"><span class="ldot"></span>Shipping · global fuel &amp; miles · 2026 YTD</div>
     <div class="lcb">
       <div class="lc-inner">
@@ -460,60 +597,49 @@ footer{text-align:center;padding:22px 20px 12px;font-size:9px;color:var(--dim);
           </div>
         </div>
         <div class="lc-right">
-          <div class="lcr-item">
-            <div class="lcr-label">Fossil miles sailed</div>
-            <div class="lcr-val" id="sh_fmi">—<span class="lcr-unit"> bn mi</span></div>
-          </div>
-          <div class="lcr-item">
-            <div class="lcr-label">eFuel/alt miles</div>
-            <div class="lcr-val" id="sh_gmi" style="color:var(--green)">—<span class="lcr-unit"> bn mi</span></div>
-          </div>
-          <div class="lcr-item">
-            <div class="lcr-label">Total miles</div>
-            <div class="lcr-val" id="sh_tmi">—<span class="lcr-unit"> bn mi</span></div>
-          </div>
+          <div class="lcr-item"><div class="lcr-label">Fossil miles sailed</div>
+            <div class="lcr-val" id="sh_fmi">—<span class="lcr-unit"> bn mi</span></div></div>
+          <div class="lcr-item"><div class="lcr-label">eFuel/alt miles</div>
+            <div class="lcr-val" id="sh_gmi" style="color:var(--green)">—<span class="lcr-unit"> bn mi</span></div></div>
+          <div class="lcr-item"><div class="lcr-label">Total miles</div>
+            <div class="lcr-val" id="sh_tmi">—<span class="lcr-unit"> bn mi</span></div></div>
         </div>
       </div>
     </div>
-    <div class="n9">IMO DCS 2024 · DNV Alt Fuels Insight · ~100k vessels · ~2.5tn nautical mi/yr<br>~1,000 alt-fuel vessels on order · IMO net-zero 2050</div>
+    <div class="n9">IMO DCS 2024 · DNV Alt Fuels Insight · ~100k vessels · IMO net-zero 2050</div>
   </div>
  
-  <!-- ELECTRICITY -->
   <div class="scard">
     <div class="stitle">⚡ Electricity &amp; Heat</div>
     <div class="subhd">Carbon intensity of the grid · gCO₂/kWh · 1990–2024</div>
     <div style="font-size:11px;color:var(--dim);margin-bottom:10px;line-height:1.5">Daily average (not hourly — hourly varies 3–8× intraday). EU grid has decarbonised ~54% since 1990 driven by renewables and coal phase-out.</div>
     <div class="ecwrap"><canvas id="gridc"></canvas></div>
-    <div class="n9"><strong style="color:var(--bright)">Note:</strong> Live hourly intensity requires the <a href="https://app.electricitymaps.com/docs">Electricity Maps API</a> (key req.). Chart shows Ember &amp; ENTSO-E verified annual averages.</div>
+    <div class="n9"><strong style="color:var(--bright)">Note:</strong> Live hourly intensity requires the <a href="https://app.electricitymaps.com/docs">Electricity Maps API</a>. Chart shows Ember &amp; ENTSO-E verified annual averages.</div>
     <div class="n9" style="margin-top:5px">Sources: Ember · ENTSO-E · National Grid ESO · 2024 verified annual data</div>
   </div>
  
 </div>
  
-<!-- ══ POSITIVE TRENDS ══ -->
 <div class="sh">Signals of progress · 1990–present</div>
 <div class="trend-grid">
- 
   <div class="tcard tc-grn">
     <div class="tc-bar"></div>
     <div class="tc-title">Global EV Rollout vs ICE Sales</div>
     <div class="tc-desc">Global EV sales vs ICE new car sales (both millions, left axis). EV share: &lt;0.01% in 2010 → ~18% in 2024 — a structural shift accelerating as battery costs fall below $100/kWh.</div>
     <div class="tc-wrap"><canvas id="evc"></canvas></div>
-    <div class="n9" style="margin-top:10px">IEA Global EV Outlook 2024 · OICA World Motor Vehicle Production · BloombergNEF · annual global sales data</div>
+    <div class="n9" style="margin-top:10px">IEA Global EV Outlook 2024 · OICA World Motor Vehicle Production · BloombergNEF</div>
   </div>
- 
   <div class="tcard tc-sol">
     <div class="tc-bar"></div>
     <div class="tc-title">Solar &amp; Battery Storage · Europe</div>
-    <div class="tc-desc">Cumulative installed solar PV capacity (GW) and grid-scale battery storage (GWh) across Europe. Solar has grown ~1,000× since 2000. Battery storage now entering exponential growth as costs collapse.</div>
+    <div class="tc-desc">Cumulative installed solar PV capacity (GW) and grid-scale battery storage (GWh) across Europe. Solar has grown ~1,000× since 2000. Battery storage now in exponential growth as costs collapse.</div>
     <div class="tc-wrap"><canvas id="solc"></canvas></div>
     <div class="n9" style="margin-top:10px">IRENA · SolarPower Europe · Ember · BloombergNEF 2024 · annual installed capacity data</div>
   </div>
- 
 </div>
  
 <footer>
-  SOURCES: EDGAR/JRC · NOAA GML · NOAA OISST · NASA CERES EBAF · NSIDC · Climate TRACE v4.8 · IATA/EASA ReFuelEU · DNV Alt Fuels Insight · Ember · ENTSO-E · IEA Global EV Outlook · IRENA · SolarPower Europe · BloombergNEF<br>
+  SOURCES: EDGAR/JRC · NOAA GML · NOAA OISST · NASA CERES EBAF · NSIDC · Climate TRACE v4.8 · IATA/EASA ReFuelEU · DNV Alt Fuels Insight · Ember · ENTSO-E · IEA GEO · IRENA · SolarPower Europe · BloombergNEF<br>
   Live counters from Jan 1 2026 00:00 UTC at published annual rates · Climate TRACE ~60d lag · CERES monthly
   &nbsp;·&nbsp; <span id="lupd"></span>
 </footer>
@@ -521,243 +647,172 @@ footer{text-align:center;padding:22px 20px 12px;font-size:9px;color:var(--dim);
  
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script>
-// ── RATES ─────────────────────────────────────────────────────
-const YS = new Date('2026-01-01T00:00:00Z').getTime();
-const MPY = 365.25*24*3600*1000;
-const R_G=53500/MPY, R_AV=300/MPY, R_SH=300/MPY, R_IND=250/MPY;
-const R_AVM=6000/MPY, R_SHM=2500/MPY;
-const ANNUAL=53500,DAILY=ANNUAL/365.25,HOURLY=DAILY/24,PERMIN=HOURLY/60;
+const YS=new Date('2026-01-01T00:00:00Z').getTime(),MPY=365.25*24*3600*1000;
+const R_G=53500/MPY,R_AV=300/MPY,R_SH=300/MPY,R_IND=250/MPY;
+const R_AVM=6000/MPY,R_SHM=2500/MPY;
+const A=53500,D=A/365.25,H=D/24,M=H/60;
+document.getElementById('rb-day').innerHTML=D.toFixed(2)+'<span class="rb-unit">Mt</span>';
+document.getElementById('rb-hr').innerHTML=H.toFixed(3)+'<span class="rb-unit">Mt</span>';
+document.getElementById('rb-min').innerHTML=M.toFixed(4)+'<span class="rb-unit">Mt</span>';
  
-// static rate blocks
-document.getElementById('rb-day').innerHTML=DAILY.toFixed(2)+'<span class="rb-unit">Mt</span>';
-document.getElementById('rb-hr').innerHTML=HOURLY.toFixed(3)+'<span class="rb-unit">Mt</span>';
-document.getElementById('rb-min').innerHTML=PERMIN.toFixed(4)+'<span class="rb-unit">Mt</span>';
- 
-// ── FORMAT ─────────────────────────────────────────────────────
 const f3=v=>{const i=Math.floor(v),d=(v-i).toFixed(3).slice(1);return i.toLocaleString('en-US')+d};
 const f4=v=>{const i=Math.floor(v),d=(v-i).toFixed(4).slice(1);return i.toLocaleString('en-US')+d};
 const f2=v=>{const i=Math.floor(v),d=(v-i).toFixed(2).slice(1);return i.toLocaleString('en-US')+d};
  
-// ── RAF ────────────────────────────────────────────────────────
 function tick(){
-  const e=Math.max(0,Date.now()-YS);
-  const g=e*R_G;
+  const e=Math.max(0,Date.now()-YS),g=e*R_G;
   document.getElementById('main-num').textContent=f3(g);
   document.getElementById('vchina').innerHTML=f3(g*.29)+'<span class="cu"> Mt</span>';
   document.getElementById('vusa').innerHTML=f3(g*.11)+'<span class="cu"> Mt</span>';
   document.getElementById('veu').innerHTML=f3(g*.06)+'<span class="cu"> Mt</span>';
   document.getElementById('vrow').innerHTML=f3(g*.54)+'<span class="cu"> Mt</span>';
- 
-  const av=e*R_AV, avm=e*R_AVM;
+  const av=e*R_AV,avm=e*R_AVM;
   document.getElementById('av_tot').innerHTML=f3(av)+'<span class="lcu">Mt</span>';
   document.getElementById('av_fos').textContent=f3(av*.993);
-  document.getElementById('av_saf').textContent=f4(av*.007); // 4dp so green ticks visibly
+  document.getElementById('av_saf').textContent=f4(av*.007);
   document.getElementById('av_tmi').innerHTML=f3(avm)+'<span class="lcr-unit"> bn mi</span>';
   document.getElementById('av_fmi').innerHTML=f3(avm*.993)+'<span class="lcr-unit"> bn mi</span>';
-  document.getElementById('av_smi').innerHTML=f4(avm*.007)+'<span class="lcr-unit"> bn mi</span>'; // 4dp
- 
-  const sh=e*R_SH, shm=e*R_SHM;
+  document.getElementById('av_smi').innerHTML=f4(avm*.007)+'<span class="lcr-unit"> bn mi</span>';
+  const sh=e*R_SH,shm=e*R_SHM;
   document.getElementById('sh_tot').innerHTML=f3(sh)+'<span class="lcu">Mt</span>';
   document.getElementById('sh_fos').textContent=f3(sh*.991);
-  document.getElementById('sh_grn').textContent=f4(sh*.009); // 4dp
+  document.getElementById('sh_grn').textContent=f4(sh*.009);
   document.getElementById('sh_tmi').innerHTML=f3(shm)+'<span class="lcr-unit"> bn mi</span>';
   document.getElementById('sh_fmi').innerHTML=f3(shm*.991)+'<span class="lcr-unit"> bn mi</span>';
-  document.getElementById('sh_gmi').innerHTML=f4(shm*.009)+'<span class="lcr-unit"> bn mi</span>'; // 4dp
- 
+  document.getElementById('sh_gmi').innerHTML=f4(shm*.009)+'<span class="lcr-unit"> bn mi</span>';
   document.getElementById('ind_ctr').innerHTML=f3(e*R_IND)+'<span class="lcu">Mt</span>';
   requestAnimationFrame(tick);
 }
 requestAnimationFrame(tick);
  
-// ── CHART HELPERS ──────────────────────────────────────────────
 Chart.defaults.color='#94a3b8';
 Chart.defaults.borderColor='#e3e7ed';
 Chart.defaults.font.family="'Inter',sans-serif";
 Chart.defaults.font.size=10;
- 
-// Simple tooltip config
-const TT={
-  backgroundColor:'#1a202c',borderColor:'#e3e7ed',borderWidth:1,
+const TT={backgroundColor:'#1a202c',borderColor:'#e3e7ed',borderWidth:1,
   titleColor:'#fff',bodyColor:'#94a3b8',padding:10,
   titleFont:{family:"'Barlow Condensed'",size:14,weight:'700'},
-  bodyFont:{family:"'JetBrains Mono'",size:10}
-};
+  bodyFont:{family:"'JetBrains Mono'",size:10}};
  
-// Minimal inline-label plugin: only label first and last point
 const sparseLabels={
-  id:'sparseLabels',
+  id:'sl',
   afterDatasetsDraw(chart){
     const{ctx,data}=chart;
     data.datasets.forEach((ds,di)=>{
       if(ds._noLabels) return;
       const meta=chart.getDatasetMeta(di);
       if(meta.hidden||!meta.data.length) return;
-      // Only label first and last point
-      [0, meta.data.length-1].forEach(i=>{
-        const pt=meta.data[i];
-        const val=ds.data[i];
+      [0,meta.data.length-1].forEach(i=>{
+        const pt=meta.data[i],val=ds.data[i];
         if(val===null||val===undefined) return;
-        const unit=ds._unit||'';
         ctx.save();
-        ctx.font=`500 9px 'JetBrains Mono', monospace`;
+        ctx.font=`500 9px 'JetBrains Mono',monospace`;
         ctx.fillStyle=typeof ds.borderColor==='string'?ds.borderColor:'#94a3b8';
-        ctx.textAlign='center';
-        ctx.textBaseline=i===0?'bottom':'bottom';
-        ctx.fillText(val+unit,pt.x,pt.y-6);
+        ctx.textAlign='center';ctx.textBaseline='bottom';
+        ctx.fillText(val+(ds._unit||''),pt.x,pt.y-6);
         ctx.restore();
       });
     });
   }
 };
  
-function makeChart(canvasId, labels, datasets, scalesOpt){
-  const ctx=document.getElementById(canvasId);
+function mkC(id,labels,datasets,scales){
+  const ctx=document.getElementById(id);
   if(!ctx) return;
-  return new Chart(ctx.getContext('2d'),{
-    type:'line',
-    data:{labels,datasets},
-    options:{
-      responsive:true,maintainAspectRatio:false,
+  new Chart(ctx.getContext('2d'),{type:'line',data:{labels,datasets},
+    options:{responsive:true,maintainAspectRatio:false,
       interaction:{mode:'index',intersect:false},
       plugins:{
         legend:{display:datasets.length>1,
           labels:{boxWidth:10,font:{size:9},color:'#4a5568',padding:10,usePointStyle:true}},
-        tooltip:TT
-      },
-      scales:scalesOpt||{
+        tooltip:TT},
+      scales:scales||{
         x:{grid:{color:'#f1f4f8'},ticks:{color:'#94a3b8',maxRotation:45,font:{size:9}},border:{color:'#e3e7ed'}},
-        y:{grid:{color:'#f1f4f8'},border:{color:'#e3e7ed'},ticks:{color:'#94a3b8',font:{size:9}}}
-      }
-    },
-    plugins:[sparseLabels]
-  });
+        y:{grid:{color:'#f1f4f8'},border:{color:'#e3e7ed'},ticks:{color:'#94a3b8',font:{size:9}}}}
+    },plugins:[sparseLabels]});
 }
  
-// ── CO2 CHART ──────────────────────────────────────────────────
-// Hardcoded fallback data from 1990
-const CO2_L=['1990','1992','1994','1996','1998','2000','2002','2004','2006','2008',
-             '2010','2012','2014','2016','2018','2020','2022','2024','2025'];
-const CO2_V=[354.0,356.4,358.9,362.6,366.6,369.5,373.1,377.5,381.9,385.6,
-             389.9,393.8,398.6,403.8,408.5,414.2,418.6,422.8,426.4];
- 
-function renderCO2(labels, vals){
+// CO2
+const CO2_L=['1990','1992','1994','1996','1998','2000','2002','2004','2006','2008','2010','2012','2014','2016','2018','2020','2022','2024','2025'];
+const CO2_V=[354.0,356.4,358.9,362.6,366.6,369.5,373.1,377.5,381.9,385.6,389.9,393.8,398.6,403.8,408.5,414.2,418.6,422.8,426.4];
+function renderCO2(labels,vals){
   const cur=vals[vals.length-1];
   document.getElementById('co2now').innerHTML=cur.toFixed(1)+'<sub>ppm</sub>';
-  const v12m=vals[vals.length-3]||vals[0];
-  const v5y=vals[vals.length-8]||vals[0];
-  const v10y=vals[vals.length-13]||vals[0];
   const fc=(c,o)=>`+${(c-o).toFixed(1)}ppm (+${((c-o)/o*100).toFixed(1)}%)`;
-  document.getElementById('co2_12m').textContent=fc(cur,v12m);
-  document.getElementById('co2_5y').textContent=fc(cur,v5y);
-  document.getElementById('co2_10y').textContent=fc(cur,v10y);
- 
-  makeChart('co2c', labels, [
-    {
-      label:'CO₂ ppm',data:vals,
-      borderColor:'#c8251c',borderWidth:2,
-      pointRadius:3,pointHoverRadius:5,
-      pointBackgroundColor:'#c8251c',pointBorderColor:'#fff',pointBorderWidth:1.5,
-      tension:0.35,fill:true,
-      backgroundColor(c){const g=c.chart.ctx.createLinearGradient(0,0,0,220);
-        g.addColorStop(0,'rgba(200,37,28,0.15)');g.addColorStop(1,'rgba(200,37,28,0.02)');return g},
-      _unit:'ppm', _noLabels:false
-    },
-    {
-      label:'350ppm safe limit',data:labels.map(()=>350),
+  document.getElementById('co2_12m').textContent=fc(cur,vals[vals.length-3]||vals[0]);
+  document.getElementById('co2_5y').textContent=fc(cur,vals[vals.length-8]||vals[0]);
+  document.getElementById('co2_10y').textContent=fc(cur,vals[vals.length-13]||vals[0]);
+  mkC('co2c',labels,[
+    {label:'CO₂ ppm',data:vals,borderColor:'#c8251c',borderWidth:2,
+      pointRadius:3,pointHoverRadius:5,pointBackgroundColor:'#c8251c',
+      pointBorderColor:'#fff',pointBorderWidth:1.5,tension:0.35,fill:true,
+      backgroundColor:c=>{const g=c.chart.ctx.createLinearGradient(0,0,0,220);
+        g.addColorStop(0,'rgba(200,37,28,0.14)');g.addColorStop(1,'rgba(200,37,28,0.02)');return g},
+      _unit:'ppm'},
+    {label:'350ppm safe limit',data:labels.map(()=>350),
       borderColor:'#1e40af',borderWidth:1.5,borderDash:[6,4],
-      pointRadius:0,fill:false,tension:0,_noLabels:true
-    }
-  ], {
+      pointRadius:0,fill:false,tension:0,_noLabels:true}
+  ],{
     x:{grid:{color:'#f1f4f8'},ticks:{color:'#94a3b8',maxRotation:45,font:{size:9}},border:{color:'#e3e7ed'}},
     y:{grid:{color:'#f1f4f8'},border:{color:'#e3e7ed'},
        ticks:{color:'#94a3b8',font:{size:9},callback:v=>v+' ppm'},
-       min:340, max:435,
-       // ensure 350 is visible as a gridline
-       afterBuildTicks(axis){
-         if(!axis.ticks.find(t=>t.value===350)) axis.ticks.unshift({value:350});
-       }
-    }
+       min:340,max:435,
+       afterBuildTicks(ax){if(!ax.ticks.find(t=>t.value===350))ax.ticks.unshift({value:350})}}
   });
 }
- 
-// Try live API, fall back to hardcoded
 fetch('https://global-warming.org/api/co2-api')
   .then(r=>r.ok?r.json():Promise.reject())
   .then(d=>{
     const res=(d.result||[]).filter(x=>x.trend&&+x.year>=1990);
     if(res.length<20) throw 0;
-    const by={};
-    res.forEach(x=>{(by[x.year]=by[x.year]||[]).push(+x.trend)});
+    const by={};res.forEach(x=>{(by[x.year]=by[x.year]||[]).push(+x.trend)});
     const yrs=Object.keys(by).sort();
     const thin=yrs.filter((y,i)=>+y>=2018||i%2===0);
-    const V=thin.map(y=>+(by[y].reduce((a,b)=>a+b)/by[y].length).toFixed(1));
-    renderCO2(thin,V);
+    renderCO2(thin,thin.map(y=>+(by[y].reduce((a,b)=>a+b)/by[y].length).toFixed(1)));
   })
   .catch(()=>renderCO2(CO2_L,CO2_V));
  
-// ── SST CHART ──────────────────────────────────────────────────
-makeChart('sstc',
-  ['1990','1992','1994','1996','1998','2000','2002','2004','2006','2008',
-   '2010','2012','2014','2016','2018','2020','2022','2024','2025'],
-  [{label:'SST anomaly °C',
-    data:[-0.04,-0.01,0.01,0.04,0.11,0.08,0.12,0.10,0.14,0.11,
-          0.17,0.18,0.25,0.20,0.18,0.25,0.40,0.61,0.49],
-    borderColor:'#ea580c',borderWidth:2,
-    pointRadius:3,pointHoverRadius:5,
-    pointBackgroundColor:'#ea580c',pointBorderColor:'#fff',pointBorderWidth:1.5,
-    tension:0.35,fill:true,
-    backgroundColor(c){const g=c.chart.ctx.createLinearGradient(0,0,0,220);
-      g.addColorStop(0,'rgba(234,88,12,0.15)');g.addColorStop(1,'rgba(234,88,12,0.02)');return g},
-    _unit:'°C'
-  }],
+// SST
+mkC('sstc',
+  ['1990','1992','1994','1996','1998','2000','2002','2004','2006','2008','2010','2012','2014','2016','2018','2020','2022','2024','2025'],
+  [{label:'SST anomaly °C',data:[-0.04,-0.01,0.01,0.04,0.11,0.08,0.12,0.10,0.14,0.11,0.17,0.18,0.25,0.20,0.18,0.25,0.40,0.61,0.49],
+    borderColor:'#ea580c',borderWidth:2,pointRadius:3,pointHoverRadius:5,
+    pointBackgroundColor:'#ea580c',pointBorderColor:'#fff',pointBorderWidth:1.5,tension:0.35,fill:true,
+    backgroundColor:c=>{const g=c.chart.ctx.createLinearGradient(0,0,0,220);
+      g.addColorStop(0,'rgba(234,88,12,0.14)');g.addColorStop(1,'rgba(234,88,12,0.02)');return g},_unit:'°C'}],
   {x:{grid:{color:'#f1f4f8'},ticks:{color:'#94a3b8',maxRotation:45,font:{size:9}},border:{color:'#e3e7ed'}},
-   y:{grid:{color:'#f1f4f8'},border:{color:'#e3e7ed'},
-      ticks:{color:'#94a3b8',font:{size:9},callback:v=>v.toFixed(2)+'°C'}}}
+   y:{grid:{color:'#f1f4f8'},border:{color:'#e3e7ed'},ticks:{color:'#94a3b8',font:{size:9},callback:v=>v.toFixed(2)+'°C'}}}
 );
  
-// ── EEI CHART ──────────────────────────────────────────────────
-makeChart('eeic',
+// EEI
+mkC('eeic',
   ['1990','1993','1996','1999','2002','2005','2008','2011','2014','2017','2020','2022','2024'],
-  [{label:'EEI W/m²',
-    data:[0.35,0.38,0.40,0.42,0.45,0.50,0.57,0.63,0.70,0.76,0.83,0.88,0.90],
-    borderColor:'#b45309',borderWidth:2,
-    pointRadius:3,pointHoverRadius:5,
-    pointBackgroundColor:'#b45309',pointBorderColor:'#fff',pointBorderWidth:1.5,
-    tension:0.35,fill:true,
-    backgroundColor(c){const g=c.chart.ctx.createLinearGradient(0,0,0,220);
-      g.addColorStop(0,'rgba(180,83,9,0.15)');g.addColorStop(1,'rgba(180,83,9,0.02)');return g},
-    _unit:' W/m²'
-  }],
+  [{label:'EEI W/m²',data:[0.35,0.38,0.40,0.42,0.45,0.50,0.57,0.63,0.70,0.76,0.83,0.88,0.90],
+    borderColor:'#b45309',borderWidth:2,pointRadius:3,pointHoverRadius:5,
+    pointBackgroundColor:'#b45309',pointBorderColor:'#fff',pointBorderWidth:1.5,tension:0.35,fill:true,
+    backgroundColor:c=>{const g=c.chart.ctx.createLinearGradient(0,0,0,220);
+      g.addColorStop(0,'rgba(180,83,9,0.14)');g.addColorStop(1,'rgba(180,83,9,0.02)');return g},_unit:' W/m²'}],
   {x:{grid:{color:'#f1f4f8'},ticks:{color:'#94a3b8',maxRotation:45,font:{size:9}},border:{color:'#e3e7ed'}},
    y:{grid:{color:'#f1f4f8'},border:{color:'#e3e7ed'},
-      ticks:{color:'#94a3b8',font:{size:9},callback:v=>v.toFixed(2)+' W/m²'},
-      min:0.25,max:1.0}}
+      ticks:{color:'#94a3b8',font:{size:9},callback:v=>v.toFixed(2)+' W/m²'},min:0.25,max:1.0}}
 );
  
-// ── ARCTIC CHART ───────────────────────────────────────────────
-const ICE_L=['1990','1993','1996','1999','2002','2005','2008','2011','2014','2017','2020','2022','2024','2025'];
-const ICE_V=[6.23,6.50,7.88,6.24,5.96,5.57,4.67,4.61,5.02,4.64,3.74,4.67,4.28,4.18];
- 
+// Arctic
+const IL=['1990','1993','1996','1999','2002','2005','2008','2011','2014','2017','2020','2022','2024','2025'];
+const IV=[6.23,6.50,7.88,6.24,5.96,5.57,4.67,4.61,5.02,4.64,3.74,4.67,4.28,4.18];
 function renderArctic(labels,vals){
-  const cur=vals[vals.length-1];
-  document.getElementById('icenow').innerHTML=cur.toFixed(2)+'<sub>M km²</sub>';
-  makeChart('icec',labels,
-    [{label:'Arctic extent M km²',data:vals,
-      borderColor:'#1e40af',borderWidth:2,
-      pointRadius:3,pointHoverRadius:5,
-      pointBackgroundColor:'#1e40af',pointBorderColor:'#fff',pointBorderWidth:1.5,
-      tension:0.35,fill:true,
-      backgroundColor(c){const g=c.chart.ctx.createLinearGradient(0,0,0,220);
-        g.addColorStop(0,'rgba(30,64,175,0.15)');g.addColorStop(1,'rgba(30,64,175,0.02)');return g},
-      _unit:'M'
-    }],
+  document.getElementById('icenow').innerHTML=vals[vals.length-1].toFixed(2)+'<sub>M km²</sub>';
+  mkC('icec',labels,
+    [{label:'Arctic extent M km²',data:vals,borderColor:'#1e40af',borderWidth:2,
+      pointRadius:3,pointHoverRadius:5,pointBackgroundColor:'#1e40af',
+      pointBorderColor:'#fff',pointBorderWidth:1.5,tension:0.35,fill:true,
+      backgroundColor:c=>{const g=c.chart.ctx.createLinearGradient(0,0,0,220);
+        g.addColorStop(0,'rgba(30,64,175,0.14)');g.addColorStop(1,'rgba(30,64,175,0.02)');return g},_unit:'M'}],
     {x:{grid:{color:'#f1f4f8'},ticks:{color:'#94a3b8',maxRotation:45,font:{size:9}},border:{color:'#e3e7ed'}},
      y:{grid:{color:'#f1f4f8'},border:{color:'#e3e7ed'},
-        ticks:{color:'#94a3b8',font:{size:9},callback:v=>v.toFixed(1)+' M km²'},
-        min:3,max:9}}
+        ticks:{color:'#94a3b8',font:{size:9},callback:v=>v.toFixed(1)+' M km²'},min:3,max:9}}
   );
 }
- 
 fetch('https://global-warming.org/api/arctic-api')
   .then(r=>r.ok?r.json():Promise.reject())
   .then(d=>{
@@ -766,10 +821,9 @@ fetch('https://global-warming.org/api/arctic-api')
     const s=[...dd].sort((a,b)=>+a.year-+b.year);
     const thin=s.filter((_,i)=>i%2===0||+_.year>=2015);
     renderArctic(thin.map(x=>x.year),thin.map(x=>+(+x.extent).toFixed(2)));
-  })
-  .catch(()=>renderArctic(ICE_L,ICE_V));
+  }).catch(()=>renderArctic(IL,IV));
  
-// ── INDUSTRY BARS ──────────────────────────────────────────────
+// Industry bars
 const IND=[
   {f:'🇩🇪',n:'Germany',    steel:17.8,cement:14.3,aluminum:6.2,chemicals:22.1},
   {f:'🇮🇹',n:'Italy',      steel:14.2,cement:9.7, aluminum:3.2,chemicals:12.3},
@@ -781,13 +835,11 @@ const IND=[
 const IC={steel:'#2563eb',cement:'#dc2626',aluminum:'#16a34a',chemicals:'#ca8a04'};
 const mx=Math.max(...IND.map(d=>d.steel+d.cement+d.aluminum+d.chemicals));
 document.getElementById('indbars').innerHTML=IND.map(d=>{
-  const tot=d.steel+d.cement+d.aluminum+d.chemicals;
-  const pw=(tot/mx*100).toFixed(1);
+  const tot=d.steel+d.cement+d.aluminum+d.chemicals,pw=(tot/mx*100).toFixed(1);
   let segs='';
   ['steel','cement','aluminum','chemicals'].forEach(k=>{
     if(!d[k]) return;
-    const w=(d[k]/tot*100).toFixed(1);
-    const show=(d[k]/tot*100)>9;
+    const w=(d[k]/tot*100).toFixed(1),show=(d[k]/tot*100)>9;
     segs+=`<div class="bs" style="width:${w}%;background:${IC[k]}">${show?`<span class="bs-lbl">${d[k].toFixed(1)}</span>`:''}</div>`;
   });
   return `<div class="br"><span class="bf">${d.f}</span><span class="bn">${d.n}</span>
@@ -795,146 +847,87 @@ document.getElementById('indbars').innerHTML=IND.map(d=>{
     <span class="bv">${tot.toFixed(1)}</span></div>`;
 }).join('');
  
-// ── GRID INTENSITY — all same thickness, NO inline labels ──────
-const GL=['1990','1995','2000','2005','2010','2015','2018','2020','2022','2024'];
-const GD={
-  EU27:[490,460,430,400,365,330,300,270,248,228],
-  UK:  [620,590,550,490,440,370,280,230,200,178],
-  DE:  [530,515,500,480,460,440,410,380,360,342],
-  FR:  [95,90,85,78,72,65,62,64,66,68],
-  PL:  [800,790,780,760,730,700,680,640,610,564],
-  SE:  [40,38,35,32,28,22,20,18,18,20],
-};
-const GC={EU27:'#1e40af',UK:'#0e7490',DE:'#ea580c',FR:'#16a34a',PL:'#dc2626',SE:'#b45309'};
- 
-makeChart('gridc',GL,
-  Object.keys(GD).map(k=>({
-    label:k,data:GD[k],
-    borderColor:GC[k],borderWidth:2, // all same thickness
-    pointRadius:2,pointHoverRadius:4,
-    pointBackgroundColor:GC[k],pointBorderColor:'#fff',pointBorderWidth:1,
-    tension:0.3,fill:false,
-    _noLabels:true // NO inline labels on any line
-  })),
+// Grid chart (all same thickness, no inline labels)
+mkC('gridc',
+  ['1990','1995','2000','2005','2010','2015','2018','2020','2022','2024'],
+  [
+    {label:'EU27',data:[490,460,430,400,365,330,300,270,248,228],borderColor:'#1e40af',borderWidth:2,pointRadius:2,pointHoverRadius:4,pointBackgroundColor:'#1e40af',pointBorderColor:'#fff',pointBorderWidth:1,tension:0.3,fill:false,_noLabels:true},
+    {label:'UK',  data:[620,590,550,490,440,370,280,230,200,178],borderColor:'#0e7490',borderWidth:2,pointRadius:2,pointHoverRadius:4,pointBackgroundColor:'#0e7490',pointBorderColor:'#fff',pointBorderWidth:1,tension:0.3,fill:false,_noLabels:true},
+    {label:'DE',  data:[530,515,500,480,460,440,410,380,360,342],borderColor:'#ea580c',borderWidth:2,pointRadius:2,pointHoverRadius:4,pointBackgroundColor:'#ea580c',pointBorderColor:'#fff',pointBorderWidth:1,tension:0.3,fill:false,_noLabels:true},
+    {label:'FR',  data:[95,90,85,78,72,65,62,64,66,68],borderColor:'#16a34a',borderWidth:2,pointRadius:2,pointHoverRadius:4,pointBackgroundColor:'#16a34a',pointBorderColor:'#fff',pointBorderWidth:1,tension:0.3,fill:false,_noLabels:true},
+    {label:'PL',  data:[800,790,780,760,730,700,680,640,610,564],borderColor:'#c8251c',borderWidth:2,pointRadius:2,pointHoverRadius:4,pointBackgroundColor:'#c8251c',pointBorderColor:'#fff',pointBorderWidth:1,tension:0.3,fill:false,_noLabels:true},
+    {label:'SE',  data:[40,38,35,32,28,22,20,18,18,20],borderColor:'#b45309',borderWidth:2,pointRadius:2,pointHoverRadius:4,pointBackgroundColor:'#b45309',pointBorderColor:'#fff',pointBorderWidth:1,tension:0.3,fill:false,_noLabels:true},
+  ],
   {x:{grid:{color:'#f1f4f8'},ticks:{color:'#94a3b8',maxRotation:0,font:{size:9}},border:{color:'#e3e7ed'}},
    y:{grid:{color:'#f1f4f8'},border:{color:'#e3e7ed'},
       ticks:{color:'#94a3b8',font:{size:9},callback:v=>v+' g/kWh'},min:0,max:850}}
 );
  
-// ── EV CHART — SINGLE LEFT AXIS ────────────────────────────────
+// EV chart — single Y axis
 {
   const EV_L=['1995','1998','2001','2004','2007','2010','2012','2014','2016','2018','2019','2020','2021','2022','2023','2024'];
-  const EV_EV=[0,0,0,0,0,0.01,0.06,0.32,0.77,2.10,2.26,3.24,6.60,10.50,14.00,17.00];
-  const EV_ICE=[49,52,55,57,61,64,64,70,74,79,77,67,72,76,74,72];
- 
   const ctx=document.getElementById('evc');
-  new Chart(ctx.getContext('2d'),{
-    type:'line',
+  new Chart(ctx.getContext('2d'),{type:'line',
     data:{labels:EV_L,datasets:[
-      {
-        label:'EV sales (M)',data:EV_EV,
-        borderColor:'#166534',borderWidth:2.5,
-        pointRadius:3,pointHoverRadius:5,
-        pointBackgroundColor:'#166534',pointBorderColor:'#fff',pointBorderWidth:1.5,
-        tension:0.3,fill:true,
-        backgroundColor(c){const g=c.chart.ctx.createLinearGradient(0,0,0,260);
-          g.addColorStop(0,'rgba(22,101,52,0.2)');g.addColorStop(1,'rgba(22,101,52,0.02)');return g}
-      },
-      {
-        label:'ICE sales (M)',data:EV_ICE,
-        borderColor:'#94a3b8',borderWidth:2,
-        pointRadius:2,pointHoverRadius:4,
+      {label:'EV sales (M)',data:[0,0,0,0,0,0.01,0.06,0.32,0.77,2.10,2.26,3.24,6.60,10.50,14.00,17.00],
+        borderColor:'#166534',borderWidth:2.5,pointRadius:3,pointHoverRadius:5,
+        pointBackgroundColor:'#166534',pointBorderColor:'#fff',pointBorderWidth:1.5,tension:0.3,fill:true,
+        backgroundColor:c=>{const g=c.chart.ctx.createLinearGradient(0,0,0,260);
+          g.addColorStop(0,'rgba(22,101,52,0.18)');g.addColorStop(1,'rgba(22,101,52,0.02)');return g}},
+      {label:'ICE sales (M)',data:[49,52,55,57,61,64,64,70,74,79,77,67,72,76,74,72],
+        borderColor:'#94a3b8',borderWidth:2,pointRadius:2,pointHoverRadius:4,
         pointBackgroundColor:'#94a3b8',pointBorderColor:'#fff',pointBorderWidth:1,
-        tension:0.3,fill:false,borderDash:[5,3]
-      }
+        tension:0.3,fill:false,borderDash:[5,3]}
     ]},
-    options:{
-      responsive:true,maintainAspectRatio:false,
+    options:{responsive:true,maintainAspectRatio:false,
       interaction:{mode:'index',intersect:false},
-      plugins:{
-        legend:{display:true,labels:{boxWidth:10,font:{size:9},color:'#4a5568',padding:12,usePointStyle:true}},
-        tooltip:TT
-      },
+      plugins:{legend:{display:true,labels:{boxWidth:10,font:{size:9},color:'#4a5568',padding:12,usePointStyle:true}},tooltip:TT},
       scales:{
         x:{grid:{color:'#f1f4f8'},ticks:{color:'#94a3b8',maxRotation:45,font:{size:9}},border:{color:'#e3e7ed'}},
-        y:{
-          // SINGLE left axis for both datasets
-          grid:{color:'#f1f4f8'},border:{color:'#e3e7ed'},
-          ticks:{color:'#94a3b8',font:{size:9},callback:v=>v+' M'},
-          title:{display:true,text:'Millions of vehicles sold',color:'#94a3b8',font:{size:9}},
-          min:0,max:90
-        }
+        y:{grid:{color:'#f1f4f8'},border:{color:'#e3e7ed'},
+           ticks:{color:'#94a3b8',font:{size:9},callback:v=>v+' M'},
+           title:{display:true,text:'Millions of vehicles sold',color:'#94a3b8',font:{size:9}},min:0,max:90}
       }
     },
-    plugins:[{
-      id:'evInlineLabels',
-      afterDatasetsDraw(chart){
-        const{ctx:c,data}=chart;
-        // Label EV line at key inflection points only
-        const evMeta=chart.getDatasetMeta(0);
-        const evData=data.datasets[0].data;
-        const showAt=[10,11,12,13,14,15]; // indices 2018–2024
-        evMeta.data.forEach((pt,i)=>{
-          if(!showAt.includes(i)) return;
-          const val=evData[i];
-          c.save();
-          c.font="bold 9px 'JetBrains Mono',monospace";
-          c.fillStyle='#166534';
-          c.textAlign='center';
-          c.textBaseline='bottom';
-          c.fillText(val.toFixed(1)+'M',pt.x,pt.y-6);
-          c.restore();
-        });
-      }
-    }]
+    plugins:[{id:'evL',afterDatasetsDraw(chart){
+      const{ctx:c,data}=chart;
+      const meta=chart.getDatasetMeta(0);
+      [10,11,12,13,14,15].forEach(i=>{
+        const pt=meta.data[i],val=data.datasets[0].data[i];
+        c.save();c.font="bold 9px 'JetBrains Mono',monospace";c.fillStyle='#166534';
+        c.textAlign='center';c.textBaseline='bottom';
+        c.fillText(val.toFixed(1)+'M',pt.x,pt.y-6);c.restore();
+      });
+    }}]
   });
 }
  
-// ── SOLAR & BATTERY CHART ──────────────────────────────────────
+// Solar & Battery chart
 {
-  const SOL_L=['1990','1993','1996','1999','2002','2005','2008','2010','2012','2014',
-               '2016','2018','2019','2020','2021','2022','2023','2024'];
-  const SOL_GW=[0.1,0.1,0.2,0.3,0.5,1.5,7,29,55,87,120,145,155,163,178,220,263,320];
-  const BAT_GWH=[0,0,0,0,0,0,0.1,0.3,0.8,1.5,3,8,14,20,30,48,62,90];
- 
   const ctx=document.getElementById('solc');
-  new Chart(ctx.getContext('2d'),{
-    type:'line',
-    data:{labels:SOL_L,datasets:[
-      {
-        label:'Solar PV (GW installed)',data:SOL_GW,yAxisID:'ySol',
-        borderColor:'#f97316',borderWidth:2.5,
-        pointRadius:3,pointHoverRadius:5,
-        pointBackgroundColor:'#f97316',pointBorderColor:'#fff',pointBorderWidth:1.5,
-        tension:0.3,fill:true,
-        backgroundColor(c){const g=c.chart.ctx.createLinearGradient(0,0,0,260);
-          g.addColorStop(0,'rgba(249,115,22,0.2)');g.addColorStop(1,'rgba(249,115,22,0.02)');return g}
-      },
-      {
-        label:'Battery storage (GWh)',data:BAT_GWH,yAxisID:'yBat',
-        borderColor:'#1e40af',borderWidth:2.5,
-        pointRadius:3,pointHoverRadius:5,
-        pointBackgroundColor:'#1e40af',pointBorderColor:'#fff',pointBorderWidth:1.5,
-        tension:0.3,fill:false
-      }
-    ]},
-    options:{
-      responsive:true,maintainAspectRatio:false,
+  new Chart(ctx.getContext('2d'),{type:'line',
+    data:{labels:['1990','1993','1996','1999','2002','2005','2008','2010','2012','2014','2016','2018','2019','2020','2021','2022','2023','2024'],
+      datasets:[
+        {label:'Solar PV (GW)',data:[0.1,0.1,0.2,0.3,0.5,1.5,7,29,55,87,120,145,155,163,178,220,263,320],
+          yAxisID:'ySol',borderColor:'#f97316',borderWidth:2.5,pointRadius:3,pointHoverRadius:5,
+          pointBackgroundColor:'#f97316',pointBorderColor:'#fff',pointBorderWidth:1.5,tension:0.3,fill:true,
+          backgroundColor:c=>{const g=c.chart.ctx.createLinearGradient(0,0,0,260);
+            g.addColorStop(0,'rgba(249,115,22,0.18)');g.addColorStop(1,'rgba(249,115,22,0.02)');return g}},
+        {label:'Battery storage (GWh)',data:[0,0,0,0,0,0,0.1,0.3,0.8,1.5,3,8,14,20,30,48,62,90],
+          yAxisID:'yBat',borderColor:'#1e40af',borderWidth:2.5,pointRadius:3,pointHoverRadius:5,
+          pointBackgroundColor:'#1e40af',pointBorderColor:'#fff',pointBorderWidth:1.5,tension:0.3,fill:false}
+      ]},
+    options:{responsive:true,maintainAspectRatio:false,
       interaction:{mode:'index',intersect:false},
-      plugins:{
-        legend:{display:true,labels:{boxWidth:10,font:{size:9},color:'#4a5568',padding:12,usePointStyle:true}},
-        tooltip:TT
-      },
+      plugins:{legend:{display:true,labels:{boxWidth:10,font:{size:9},color:'#4a5568',padding:12,usePointStyle:true}},tooltip:TT},
       scales:{
         x:{grid:{color:'#f1f4f8'},ticks:{color:'#94a3b8',maxRotation:45,font:{size:9}},border:{color:'#e3e7ed'}},
         ySol:{position:'left',grid:{color:'#f1f4f8'},border:{color:'#e3e7ed'},
           ticks:{color:'#f97316',font:{size:9},callback:v=>v+' GW'},
-          title:{display:true,text:'Solar GW (cumulative)',color:'#f97316',font:{size:9}},
-          min:0,max:360},
+          title:{display:true,text:'Solar GW (cumulative)',color:'#f97316',font:{size:9}},min:0,max:360},
         yBat:{position:'right',grid:{drawOnChartArea:false},border:{color:'#e3e7ed'},
           ticks:{color:'#1e40af',font:{size:9},callback:v=>v+' GWh'},
-          title:{display:true,text:'Battery GWh',color:'#1e40af',font:{size:9}},
-          min:0,max:100}
+          title:{display:true,text:'Battery GWh',color:'#1e40af',font:{size:9}},min:0,max:100}
       }
     }
   });
